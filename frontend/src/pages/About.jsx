@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Target, Lightbulb, HelpCircle, Microscope, HeartHandshake, TrendingUp } from "lucide-react";
+import PartnersSection from "@/components/PartnersSection";
 
 const values = [
   { icon: Lightbulb, title: "Passion for Innovation", desc: "We are deeply committed to investing in R&D focused on Mixed Reality and Artificial Intelligence for Defense, Healthcare, and various other use-cases." },
@@ -135,6 +136,9 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      {/* Partners */}
+      <PartnersSection />
     </div>
   );
 }

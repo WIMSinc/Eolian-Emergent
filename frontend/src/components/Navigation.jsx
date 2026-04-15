@@ -9,6 +9,8 @@ const navLinks = [
   { label: "ARTAK", to: "/artak" },
   { label: "MAP MAKER", to: "/mapmaker" },
   { label: "THE LAB", to: "/lab" },
+  { label: "TEAM", to: "/team" },
+  { label: "NEWS", to: "/news" },
   { label: "SUPPORT", to: "/support" },
   { label: "CONTACT", to: "/#contact" },
 ];

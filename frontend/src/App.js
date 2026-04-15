@@ -11,6 +11,9 @@ import Lab from "@/pages/Lab";
 import Support from "@/pages/Support";
 
 import ArtakSubPage from "@/pages/ArtakSubPage";
+import News from "@/pages/News";
+import NewsPost from "@/pages/NewsPost";
+import Team from "@/pages/Team";
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -41,6 +44,9 @@ function App() {
           <Route path="/mapmaker" element={<MapMaker />} />
           <Route path="/lab" element={<Lab />} />
           <Route path="/support" element={<Support />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/news/:slug" element={<NewsPost />} />
+          <Route path="/team" element={<Team />} />
         </Routes>
         <Footer />
       </BrowserRouter>
