@@ -41,6 +41,7 @@ export default function PlatformSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
+              data-testid={`platform-card-${i}`}
               className="bg-[#0A0A0A] p-8 flex flex-col items-center text-center group hover:bg-[#0D0D0D] transition-all duration-500"
             >
               <div className="w-14 h-14 border border-zinc-800 flex items-center justify-center mb-4 group-hover:border-[#FF0B1B] transition-colors duration-300">

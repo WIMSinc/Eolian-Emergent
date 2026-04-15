@@ -110,6 +110,7 @@ export default function FeaturesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.06 }}
+              data-testid={`feature-card-${i}`}
               className="bg-[#0A0A0A] p-6 md:p-8 group relative overflow-hidden hover:bg-[#0D0D0D] transition-colors duration-500"
             >
               <div className="flex gap-5">

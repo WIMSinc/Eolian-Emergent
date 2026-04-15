@@ -91,6 +91,7 @@ export default function ProductSection() {
               viewport={{ once: true, margin: "-80px" }}
               variants={fadeUp}
               className={`${panel.span} bg-[#0A0A0A] group relative overflow-hidden`}
+              data-testid={`bento-panel-${i}`}
             >
               {/* Image */}
               <div className="relative h-56 md:h-64 overflow-hidden">
