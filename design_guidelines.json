@@ -1,0 +1,103 @@
+{
+  "theme": "dark",
+  "archetype": "Swiss & High-Contrast (Defense Tech Variant)",
+  "colors": {
+    "background": {
+      "primary": "#050505",
+      "secondary": "#0A0A0A",
+      "surface": "#111111",
+      "surface_glow": "rgba(255, 11, 27, 0.05)"
+    },
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "#A1A1AA",
+      "muted": "#52525B",
+      "accent": "#FF0B1B"
+    },
+    "border": {
+      "default": "#27272A",
+      "focus": "#FF0B1B",
+      "subtle": "#18181B"
+    },
+    "brand": {
+      "primary": "#FF0B1B",
+      "primary_hover": "#D90412"
+    }
+  },
+  "typography": {
+    "heading_font": "Unbounded",
+    "body_font": "IBM Plex Sans",
+    "mono_font": "JetBrains Mono",
+    "hierarchy": {
+      "h1": "text-5xl sm:text-6xl+ tracking-tighter font-black uppercase",
+      "h2": "text-3xl sm:text-4xl tracking-tight font-bold uppercase",
+      "h3": "text-xl sm:text-2xl tracking-normal font-semibold",
+      "h4": "text-lg sm:text-xl font-medium",
+      "body": "text-base leading-relaxed text-zinc-400",
+      "mono_labels": "font-mono text-xs uppercase tracking-[0.2em] text-zinc-500"
+    }
+  },
+  "layout_and_spacing": {
+    "philosophy": "Technical Grid / Control Room",
+    "container": "max-w-[1400px] mx-auto px-6 md:px-12",
+    "section_padding": "py-24 md:py-32",
+    "grid_system": {
+      "bento": "grid grid-cols-1 md:grid-cols-12 gap-1",
+      "technical_borders": "border-collapse structure with 1px zinc-800 borders"
+    }
+  },
+  "surfaces_and_components": {
+    "cards": "bg-[#0A0A0A] border border-zinc-800 p-8 rounded-none transition-colors hover:border-zinc-700",
+    "buttons": {
+      "primary": "bg-brand-primary text-white font-mono uppercase text-sm tracking-widest px-8 py-4 rounded-none hover:bg-brand-primary-hover transition-colors",
+      "secondary": "bg-transparent text-white border border-zinc-700 font-mono uppercase text-sm tracking-widest px-8 py-4 rounded-none hover:border-white transition-colors"
+    },
+    "forms": "rounded-none border-zinc-800 bg-[#050505] focus-visible:ring-1 focus-visible:ring-brand-primary focus-visible:border-brand-primary font-mono",
+    "navigation": "fixed top-0 w-full z-50 bg-[#050505]/90 backdrop-blur-md border-b border-zinc-800"
+  },
+  "motion_and_interactions": {
+    "hover": "Subtle border color shifts to white or red. Data points glow on hover.",
+    "entrance": "Staggered fade-up for grid items. Use Framer Motion.",
+    "3d_elements": "Use react-globe.gl for a holographic red/black earth representation in the Hero or C2 section. Use tsparticles for subtle mesh background in the Contact section."
+  },
+  "assets_and_media": {
+    "hero_background": {
+      "url": "https://images.unsplash.com/photo-1775057238082-2038224c79b3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAxODF8MHwxfHNlYXJjaHwxfHxyZWQlMjBsYXNlciUyMGdyaWR8ZW58MHx8fHwxNzc2MjY3NzE2fDA&ixlib=rb-4.1.0&q=85",
+      "description": "Abstract red geometric network on black background",
+      "treatment": "Apply heavy dark overlay (bg-black/80) or use as a fallback if real video bg isn't implemented. Animate slowly if possible."
+    },
+    "military_operations": {
+      "url": "https://images.unsplash.com/photo-1759167625071-069dc252702f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTZ8MHwxfHNlYXJjaHwzfHxtaWxpdGFyeSUyMHRhY3RpY2FsJTIwb3BlcmF0aW9uc3xlbnwwfHx8fDE3NzYyNjc2OTB8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Two soldiers walk through a field at dusk",
+      "treatment": "Use in Pre-Mission Planning section. Grayscale filter with a subtle red duotone effect on hover."
+    },
+    "ar_headset": {
+      "url": "https://images.unsplash.com/photo-1588336443962-49d88df004a1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w7NTY2ODh8MHwxfHNlYXJjaHwxfHxhdWdtZW50ZWQlMjByZWFsaXR5JTIwaGVhZHNldCUyMGRhcmt8ZW58MHx8fHwxNzc2MjY3NjkwfDA&ixlib=rb-4.1.0&q=85",
+      "description": "Person wearing dark VR/AR headset",
+      "treatment": "Use for the ARTAK Virtual ROC Drill/Sand Table feature. Darken significantly and add red glow."
+    },
+    "hud_abstract": {
+      "url": "https://images.unsplash.com/photo-1651505942687-efc26cb528ba?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MTJ8MHwxfHNlYXJjaHwxfHxodWQlMjBhYnN0cmFjdHxlbnwwfHx8fDE3NzYyNjc3MTZ8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Abstract computer screen / HUD",
+      "treatment": "Use for the Block 2 Features section background, heavily blurred (blur-3xl) and low opacity (opacity-20)."
+    }
+  },
+  "page_sections_instructions": {
+    "header": "Minimalist, sticky nav. Logo (text 'EOLIAN') in Unbounded black. Links in mono font, hover state adds a 1px red underline.",
+    "hero": "Hero section with video background (mock with asset if needed). Headline: 'MULTI-DOMAIN JOINT PLANNING & C2'. Subheadline: 'Augmented Reality Team Awareness Kit (ARTAK)'. Include 3D element (react-globe.gl) intersecting the right side of the screen. Primary CTA: 'REQUEST DEMO'.",
+    "product_artak": "Bento grid layout. Mode B (Control Room Grid). 3 main panels: 1. Command & Control (C2), 2. Pre-Mission Planning, 3. Virtual ROC Drill / Sand Table. Each panel should have a distinct visual (globe, tactical map, AR headset) and mono-font labels (e.g., [SYS.01], [SYS.02]).",
+    "block_2_features": "Technical specs section. Use a 'Tracing Beam' or 'Grid Borders' style. List features with high-contrast icons from lucide-react (Target, Shield, Radio, Crosshair). Red borders on active/hovered items.",
+    "device_agnostic": "A stripped-down, horizontal layout showing compatibility. Text like 'DEPLOYABLE ON: VR / AR / DESKTOP / MOBILE / ATAK'. Use a slow marquee or a sleek terminal-style bulleted list.",
+    "contact": "Terminal-style form. Labels in mono font. Inputs are square, bg-transparent, border-b only (or full border-zinc-800). Submit button is full width, solid red, black text."
+  },
+  "technical_libraries": [
+    "framer-motion",
+    "lucide-react",
+    "react-globe.gl",
+    "tsparticles"
+  ],
+  "accessibility_and_testing": {
+    "contrast": "Ensure red accent (#FF0B1B) against black (#050505) meets APCA standards. If not, use it for borders/accents only, and keep text white.",
+    "data_testids": "Must include data-testid on all interactive elements (e.g., 'nav-link-products', 'hero-cta-demo', 'contact-submit-button')."
+  }
+}
