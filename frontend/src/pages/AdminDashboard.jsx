@@ -1,10 +1,12 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   FileText, Mail, Plus, Pencil, Trash2, LogOut, Save, X, Eye, Calendar, Tag,
 } from "lucide-react";
 import axios from "axios";
+import ReactQuill from "react-quill-new";
+import "react-quill-new/dist/quill.snow.css";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
@@ -34,6 +36,16 @@ function PostForm({ post, onSave, onCancel, saving }) {
       slug: post ? f.slug : val.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
     }));
   };
+
+  const quillModules = useMemo(() => ({
+    toolbar: [
+      [{ header: [2, 3, false] }],
+      ["bold", "italic", "underline", "strike"],
+      [{ list: "ordered" }, { list: "bullet" }],
+      ["blockquote", "link", "image"],
+      ["clean"],
+    ],
+  }), []);
 
   const inputCls = "w-full bg-transparent border border-zinc-800 py-2.5 px-3 text-sm text-white font-mono placeholder:text-zinc-700 focus:border-[#FF0B1B] focus:outline-none transition-colors";
 
@@ -67,10 +79,18 @@ function PostForm({ post, onSave, onCancel, saving }) {
       </div>
       <div>
         <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase block mb-1.5">Content *</label>
-        <textarea data-testid="post-form-content" value={form.content} onChange={(e) => setForm({ ...form, content: e.target.value })} required rows={8} className={`${inputCls} resize-y`} placeholder="Full post content (use double newlines for paragraphs)..." />
+        <div className="quill-dark-wrapper" data-testid="post-form-content-editor">
+          <ReactQuill
+            theme="snow"
+            value={form.content}
+            onChange={(val) => setForm({ ...form, content: val })}
+            modules={quillModules}
+            placeholder="Write your post content..."
+          />
+        </div>
       </div>
       <div className="flex gap-3 pt-2">
-        <button data-testid="post-form-save" onClick={() => onSave(form)} disabled={saving || !form.title || !form.slug || !form.excerpt || !form.content} className="flex items-center gap-2 bg-[#FF0B1B] text-white font-mono uppercase text-xs tracking-widest px-6 py-3 hover:bg-[#D90412] transition-colors disabled:opacity-40">
+        <button data-testid="post-form-save" onClick={() => onSave(form)} disabled={saving || !form.title || !form.slug || !form.excerpt || !form.content || form.content === "<p><br></p>"} className="flex items-center gap-2 bg-[#FF0B1B] text-white font-mono uppercase text-xs tracking-widest px-6 py-3 hover:bg-[#D90412] transition-colors disabled:opacity-40">
           <Save size={14} /> {saving ? "Saving..." : post ? "Update" : "Publish"}
         </button>
         <button data-testid="post-form-cancel" onClick={onCancel} className="flex items-center gap-2 bg-transparent text-zinc-500 border border-zinc-800 font-mono uppercase text-xs tracking-widest px-6 py-3 hover:text-white hover:border-zinc-600 transition-colors">

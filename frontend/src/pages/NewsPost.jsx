@@ -84,9 +84,13 @@ export default function NewsPost() {
             </div>
           )}
           <div className="prose-invert max-w-none">
-            {post.content.split("\n\n").map((para, i) => (
-              <p key={i} className="text-base text-zinc-400 leading-relaxed mb-6">{para}</p>
-            ))}
+            {post.content.trim().startsWith("<") ? (
+              <div className="blog-content" dangerouslySetInnerHTML={{ __html: post.content }} />
+            ) : (
+              post.content.split("\n\n").map((para, i) => (
+                <p key={i} className="text-base text-zinc-400 leading-relaxed mb-6">{para}</p>
+              ))
+            )}
           </div>
         </motion.div>
       </section>
