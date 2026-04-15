@@ -10,6 +10,8 @@ import MapMaker from "@/pages/MapMaker";
 import Lab from "@/pages/Lab";
 import Support from "@/pages/Support";
 
+import ArtakSubPage from "@/pages/ArtakSubPage";
+
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
   useEffect(() => {
@@ -35,6 +37,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/artak" element={<ArtakUseCases />} />
+          <Route path="/artak/:slug" element={<ArtakSubPage />} />
           <Route path="/mapmaker" element={<MapMaker />} />
           <Route path="/lab" element={<Lab />} />
           <Route path="/support" element={<Support />} />

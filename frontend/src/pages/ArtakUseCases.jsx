@@ -9,6 +9,7 @@ const useCases = [
     title: "Disaster Response & Emergency Management",
     desc: "In times of chaos, ARTAK transforms fragmented operations into a unified mission picture. Real-time drone feeds, IoT data, and geospatial overlays help command centers coordinate faster, deploy smarter, and save more lives.",
     image: "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=800&q=80",
+    slug: "disaster-response",
   },
   {
     icon: Search,
@@ -16,6 +17,7 @@ const useCases = [
     title: "Search & Rescue / First Responders",
     desc: "Every second matters. ARTAK integrates UAV data, terrain models, and team tracking into a shared 3D environment — enabling crews to visualize hazards, optimize routes, and train in realistic VR scenarios before entering the field.",
     image: "https://images.unsplash.com/photo-1773839420967-b50018fc0505?w=800&q=80",
+    slug: "search-rescue",
   },
   {
     icon: Shield,
@@ -23,6 +25,7 @@ const useCases = [
     title: "Security & Protection Services",
     desc: "Whether providing security for individuals, events, or facilities, ARTAK delivers a fused operational picture — combining radar, drone, and sensor data in a single spatial interface. Agencies gain 360-degree visibility over wide or remote regions.",
     image: "https://images.unsplash.com/photo-1737502483541-92e91801cfaf?w=800&q=80",
+    slug: "security-protection",
   },
   {
     icon: Siren,
@@ -30,6 +33,7 @@ const useCases = [
     title: "Police & Law Enforcement",
     desc: "For urban operations, crowd control, or tactical response, ARTAK provides a shared operational view that improves decision-making and reduces risk. Officers can rehearse complex scenarios in VR and access real-time overlays during live incidents.",
     image: "https://images.unsplash.com/photo-1700774607019-dfa5907a26fd?w=800&q=80",
+    slug: "police-law-enforcement",
   },
   {
     icon: Flame,
@@ -37,6 +41,7 @@ const useCases = [
     title: "Fire & Emergency Services",
     desc: "ARTAK gives fire commanders complete situational awareness — tracking crews, visualizing structure layouts, and modeling wildfire spread in 3D. Through AR and VR, teams can prepare, respond, and review every mission with confidence.",
     image: "https://images.unsplash.com/photo-1542621334-a254cf47733d?w=800&q=80",
+    slug: "fire-emergency",
   },
   {
     icon: Rocket,
@@ -44,6 +49,7 @@ const useCases = [
     title: "Space & Aerospace Operations",
     desc: "From orbital mission planning to ground-station coordination, ARTAK enables teams to visualize assets, trajectories, and contingencies in immersive 3D. It brings real-time command awareness to an increasingly complex operational domain.",
     image: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&q=80",
+    slug: "space-aerospace",
   },
 ];
 
@@ -127,7 +133,10 @@ export default function ArtakUseCases() {
                 </div>
                 <div className="p-6">
                   <h3 className="font-heading text-base font-semibold text-white tracking-wide uppercase mb-3">{uc.title}</h3>
-                  <p className="text-sm text-zinc-500 leading-relaxed">{uc.desc}</p>
+                  <p className="text-sm text-zinc-500 leading-relaxed mb-4">{uc.desc}</p>
+                  <Link to={`/artak/${uc.slug}`} data-testid={`usecase-link-${i}`} className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.15em] text-[#FF0B1B] hover:text-white transition-colors uppercase">
+                    Learn More <ArrowRight size={12} />
+                  </Link>
                 </div>
                 <div className="absolute bottom-0 left-0 w-0 h-px bg-[#FF0B1B] group-hover:w-full transition-all duration-700" />
               </motion.div>
