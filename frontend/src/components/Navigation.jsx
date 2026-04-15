@@ -1,18 +1,22 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "HOME", href: "#hero" },
-  { label: "ARTAK", href: "#artak" },
-  { label: "CAPABILITIES", href: "#capabilities" },
-  { label: "PLATFORMS", href: "#platforms" },
-  { label: "CONTACT", href: "#contact" },
+  { label: "HOME", to: "/" },
+  { label: "ABOUT", to: "/about" },
+  { label: "ARTAK", to: "/artak" },
+  { label: "MAP MAKER", to: "/mapmaker" },
+  { label: "THE LAB", to: "/lab" },
+  { label: "SUPPORT", to: "/support" },
+  { label: "CONTACT", to: "/#contact" },
 ];
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -20,11 +24,24 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const handleClick = (e, href) => {
-    e.preventDefault();
+  useEffect(() => {
     setMobileOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+  }, [location]);
+
+  const handleClick = (e, link) => {
+    if (link.to === "/#contact") {
+      if (location.pathname === "/") {
+        e.preventDefault();
+        const el = document.querySelector("#contact");
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
+  const isActive = (to) => {
+    if (to === "/") return location.pathname === "/";
+    if (to === "/#contact") return false;
+    return location.pathname.startsWith(to);
   };
 
   return (
@@ -33,14 +50,13 @@ export default function Navigation() {
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${
         scrolled
           ? "bg-[#050505]/95 backdrop-blur-md border-b border-zinc-800"
-          : "bg-transparent"
+          : "bg-[#050505]/70 backdrop-blur-sm"
       }`}
     >
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex items-center justify-between h-16 md:h-20">
         {/* Logo */}
-        <a
-          href="#hero"
-          onClick={(e) => handleClick(e, "#hero")}
+        <Link
+          to="/"
           data-testid="nav-logo"
           className="flex items-center gap-3 group"
         >
@@ -50,28 +66,32 @@ export default function Navigation() {
           <span className="font-heading text-lg md:text-xl font-bold tracking-tight text-white">
             EOLIAN
           </span>
-        </a>
+        </Link>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-6">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.label}
-              href={link.href}
-              onClick={(e) => handleClick(e, link.href)}
-              data-testid={`nav-link-${link.label.toLowerCase()}`}
-              className="font-mono text-xs tracking-[0.2em] text-zinc-500 hover:text-white transition-colors duration-300 relative group"
+              to={link.to}
+              onClick={(e) => handleClick(e, link)}
+              data-testid={`nav-link-${link.label.toLowerCase().replace(/\s/g, "-")}`}
+              className={`font-mono text-[11px] tracking-[0.15em] transition-colors duration-300 relative group ${
+                isActive(link.to) ? "text-white" : "text-zinc-500 hover:text-white"
+              }`}
             >
               {link.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-px bg-[#FF0B1B] group-hover:w-full transition-all duration-300" />
-            </a>
+              <span className={`absolute -bottom-1 left-0 h-px bg-[#FF0B1B] transition-all duration-300 ${
+                isActive(link.to) ? "w-full" : "w-0 group-hover:w-full"
+              }`} />
+            </Link>
           ))}
         </div>
 
         {/* Mobile Menu Toggle */}
         <button
           data-testid="mobile-menu-toggle"
-          className="md:hidden text-white"
+          className="lg:hidden text-white"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -85,19 +105,22 @@ export default function Navigation() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-[#050505] border-b border-zinc-800"
+            data-testid="mobile-menu"
+            className="lg:hidden bg-[#050505] border-b border-zinc-800"
           >
             <div className="px-6 py-6 flex flex-col gap-4">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.label}
-                  href={link.href}
-                  onClick={(e) => handleClick(e, link.href)}
-                  data-testid={`mobile-nav-${link.label.toLowerCase()}`}
-                  className="font-mono text-sm tracking-[0.15em] text-zinc-400 hover:text-white transition-colors"
+                  to={link.to}
+                  onClick={(e) => handleClick(e, link)}
+                  data-testid={`mobile-nav-${link.label.toLowerCase().replace(/\s/g, "-")}`}
+                  className={`font-mono text-sm tracking-[0.15em] transition-colors ${
+                    isActive(link.to) ? "text-white" : "text-zinc-400 hover:text-white"
+                  }`}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </div>
           </motion.div>
