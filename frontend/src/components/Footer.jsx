@@ -1,4 +1,13 @@
 import { Link, useLocation } from "react-router-dom";
+import { Youtube, Linkedin, Instagram, Facebook } from "lucide-react";
+
+const socials = [
+  { icon: Youtube, href: "https://www.youtube.com/c/EolianVR", label: "YouTube" },
+  { icon: Linkedin, href: "https://www.linkedin.com/company/eolianvr", label: "LinkedIn" },
+  { icon: () => <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>, href: "https://x.com/EolianVR", label: "X" },
+  { icon: Instagram, href: "https://www.instagram.com/eolian.vr/", label: "Instagram" },
+  { icon: Facebook, href: "https://www.facebook.com/eolianvr", label: "Facebook" },
+];
 
 export default function Footer() {
   const location = useLocation();
@@ -28,6 +37,13 @@ export default function Footer() {
             <p className="font-mono text-xs text-zinc-600 tracking-wider">
               AR & VR Solutions for Defense & Enterprise
             </p>
+            <div className="flex gap-3 mt-3">
+              {socials.map((s) => (
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" data-testid={`social-${s.label.toLowerCase()}`} className="w-8 h-8 border border-zinc-800 flex items-center justify-center text-zinc-600 hover:text-[#FF0B1B] hover:border-[#FF0B1B] transition-colors" aria-label={s.label}>
+                  <s.icon size={14} />
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* Links */}
