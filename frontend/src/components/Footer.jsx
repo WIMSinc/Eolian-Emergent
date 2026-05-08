@@ -1,4 +1,18 @@
+import { Link, useLocation } from "react-router-dom";
+
 export default function Footer() {
+  const location = useLocation();
+
+  const handleClick = (e, target) => {
+    if (target === "contact") {
+      if (location.pathname === "/") {
+        e.preventDefault();
+        const el = document.querySelector("#contact");
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   return (
     <footer
       data-testid="footer"
@@ -9,12 +23,7 @@ export default function Footer() {
           {/* Logo + tagline */}
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-6 h-6 border border-[#FF0B1B] flex items-center justify-center">
-                <div className="w-2 h-2 bg-[#FF0B1B]" />
-              </div>
-              <span className="font-heading text-base font-bold tracking-tight text-white">
-                EOLIAN
-              </span>
+              <img src="/eolian-logo-white.png" alt="Eolian" className="h-10 w-auto opacity-80" />
             </div>
             <p className="font-mono text-xs text-zinc-600 tracking-wider">
               AR & VR Solutions for Defense & Enterprise
@@ -22,27 +31,27 @@ export default function Footer() {
           </div>
 
           {/* Links */}
-          <div className="flex gap-8">
-            {["Home", "ARTAK", "Capabilities", "Contact"].map((link) => (
-              <a
-                key={link}
-                href={`#${link.toLowerCase()}`}
-                data-testid={`footer-link-${link.toLowerCase()}`}
-                className="font-mono text-xs text-zinc-600 hover:text-white transition-colors tracking-wider uppercase"
-                onClick={(e) => {
-                  e.preventDefault();
-                  const target = link === "Home" ? "hero" : link.toLowerCase();
-                  const el = document.querySelector(`#${target}`);
-                  if (el) el.scrollIntoView({ behavior: "smooth" });
-                }}
+          <div className="flex flex-wrap gap-8">
+            {[
+              { label: "Home", to: "/" },
+              { label: "ARTAK", to: "/artak" },
+              { label: "Capabilities", to: "/#capabilities" },
+              { label: "Contact", to: "/#contact" },
+            ].map((link) => (
+              <Link
+                key={link.label}
+                to={link.to}
+                data-testid={`footer-link-${link.label.toLowerCase()}`}
+                onClick={(e) => handleClick(e, link.label.toLowerCase())}
+                className="font-mono text-sm text-zinc-600 hover:text-white transition-colors tracking-wider uppercase"
               >
-                {link}
-              </a>
+                {link.label}
+              </Link>
             ))}
           </div>
 
           {/* Copyright */}
-          <div className="font-mono text-[10px] text-zinc-700 tracking-wider">
+          <div className="font-mono text-xs text-zinc-700 tracking-wider">
             &copy; {new Date().getFullYear()} EolianVR, Inc. All rights reserved.
           </div>
         </div>

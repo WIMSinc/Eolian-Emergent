@@ -55,30 +55,25 @@ export default function Navigation() {
           : "bg-[#050505]/70 backdrop-blur-sm"
       }`}
     >
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex items-center justify-between h-16 md:h-20">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex items-center justify-between h-20 md:h-24">
         {/* Logo */}
         <Link
           to="/"
           data-testid="nav-logo"
-          className="flex items-center gap-3 group"
+          className="flex items-center gap-2 group"
         >
-          <div className="w-8 h-8 border border-[#FF0B1B] flex items-center justify-center relative">
-            <div className="w-3 h-3 bg-[#FF0B1B] group-hover:scale-110 transition-transform" />
-          </div>
-          <span className="font-heading text-lg md:text-xl font-bold tracking-tight text-white">
-            EOLIAN
-          </span>
+          <img src="/eolian-logo-white.png" alt="Eolian" className="h-12 md:h-14 w-auto" />
         </Link>
 
         {/* Desktop Links */}
-        <div className="hidden lg:flex items-center gap-6">
+        <div className="hidden lg:flex items-center gap-7">
           {navLinks.map((link) => (
             <Link
               key={link.label}
               to={link.to}
               onClick={(e) => handleClick(e, link)}
               data-testid={`nav-link-${link.label.toLowerCase().replace(/\s/g, "-")}`}
-              className={`font-mono text-[11px] tracking-[0.15em] transition-colors duration-300 relative group ${
+              className={`font-mono text-xs tracking-[0.15em] transition-colors duration-300 relative group ${
                 isActive(link.to) ? "text-white" : "text-zinc-500 hover:text-white"
               }`}
             >
