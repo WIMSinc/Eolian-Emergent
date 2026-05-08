@@ -1,12 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
+
+const artakSubLinks = [
+  { label: "ARTAK Overview", to: "/artak" },
+  { label: "National Security & Public Safety", to: "/artak/national-security" },
+  { label: "Disaster Response & Emergency Mgmt", to: "/artak/disaster-response" },
+  { label: "Search & Rescue / First Responders", to: "/artak/search-rescue" },
+  { label: "Security & Protection Services", to: "/artak/security-protection" },
+  { label: "Police & Law Enforcement", to: "/artak/police-law-enforcement" },
+  { label: "Fire & Emergency Services", to: "/artak/fire-emergency" },
+  { label: "Space & Aerospace Operations", to: "/artak/space-aerospace" },
+];
 
 const navLinks = [
   { label: "HOME", to: "/" },
   { label: "ABOUT", to: "/about" },
-  { label: "ARTAK", to: "/artak" },
+  { label: "ARTAK", to: "/artak", hasDropdown: true },
   { label: "MAP MAKER", to: "/mapmaker" },
   { label: "THE LAB", to: "/lab" },
   { label: "TEAM", to: "/team" },
@@ -18,6 +29,9 @@ const navLinks = [
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [artakOpen, setArtakOpen] = useState(false);
+  const [mobileArtakOpen, setMobileArtakOpen] = useState(false);
+  const dropdownRef = useRef(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -28,7 +42,20 @@ export default function Navigation() {
 
   useEffect(() => {
     setMobileOpen(false);
+    setArtakOpen(false);
+    setMobileArtakOpen(false);
   }, [location]);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handler = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setArtakOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
   const handleClick = (e, link) => {
     if (link.to === "/#contact") {
@@ -57,32 +84,74 @@ export default function Navigation() {
     >
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex items-center justify-between h-20 md:h-24">
         {/* Logo */}
-        <Link
-          to="/"
-          data-testid="nav-logo"
-          className="flex items-center gap-2 group"
-        >
+        <Link to="/" data-testid="nav-logo" className="flex items-center gap-2 group">
           <img src="/eolian-logo-white.png" alt="Eolian" className="h-12 md:h-14 w-auto" />
         </Link>
 
         {/* Desktop Links */}
         <div className="hidden lg:flex items-center gap-7">
-          {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              to={link.to}
-              onClick={(e) => handleClick(e, link)}
-              data-testid={`nav-link-${link.label.toLowerCase().replace(/\s/g, "-")}`}
-              className={`font-mono text-xs tracking-[0.15em] transition-colors duration-300 relative group ${
-                isActive(link.to) ? "text-white" : "text-zinc-500 hover:text-white"
-              }`}
-            >
-              {link.label}
-              <span className={`absolute -bottom-1 left-0 h-px bg-[#FF0B1B] transition-all duration-300 ${
-                isActive(link.to) ? "w-full" : "w-0 group-hover:w-full"
-              }`} />
-            </Link>
-          ))}
+          {navLinks.map((link) =>
+            link.hasDropdown ? (
+              <div key={link.label} className="relative" ref={dropdownRef}>
+                <button
+                  data-testid="nav-link-artak"
+                  onClick={() => setArtakOpen(!artakOpen)}
+                  className={`font-mono text-xs tracking-[0.15em] transition-colors duration-300 relative group flex items-center gap-1 ${
+                    isActive(link.to) ? "text-white" : "text-zinc-500 hover:text-white"
+                  }`}
+                >
+                  {link.label}
+                  <ChevronDown size={12} className={`transition-transform duration-200 ${artakOpen ? "rotate-180" : ""}`} />
+                  <span className={`absolute -bottom-1 left-0 h-px bg-[#FF0B1B] transition-all duration-300 ${
+                    isActive(link.to) ? "w-full" : "w-0 group-hover:w-full"
+                  }`} />
+                </button>
+
+                <AnimatePresence>
+                  {artakOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: 0.15 }}
+                      data-testid="artak-dropdown"
+                      className="absolute top-full left-0 mt-3 w-80 bg-[#0A0A0A] border border-zinc-800 shadow-xl shadow-black/40"
+                    >
+                      {artakSubLinks.map((sub, i) => (
+                        <Link
+                          key={i}
+                          to={sub.to}
+                          data-testid={`artak-dropdown-${i}`}
+                          className={`block px-5 py-3 font-mono text-[11px] tracking-[0.1em] transition-colors border-b border-zinc-800/50 last:border-0 ${
+                            location.pathname === sub.to
+                              ? "text-[#FF0B1B] bg-[#FF0B1B]/5"
+                              : "text-zinc-500 hover:text-white hover:bg-zinc-800/30"
+                          }`}
+                        >
+                          {i === 0 ? sub.label : sub.label}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ) : (
+              <Link
+                key={link.label}
+                to={link.to}
+                onClick={(e) => handleClick(e, link)}
+                data-testid={`nav-link-${link.label.toLowerCase().replace(/\s/g, "-")}`}
+                className={`font-mono text-xs tracking-[0.15em] transition-colors duration-300 relative group ${
+                  isActive(link.to) ? "text-white" : "text-zinc-500 hover:text-white"
+                }`}
+              >
+                {link.label}
+                <span className={`absolute -bottom-1 left-0 h-px bg-[#FF0B1B] transition-all duration-300 ${
+                  isActive(link.to) ? "w-full" : "w-0 group-hover:w-full"
+                }`} />
+              </Link>
+            )
+          )}
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -105,20 +174,56 @@ export default function Navigation() {
             data-testid="mobile-menu"
             className="lg:hidden bg-[#050505] border-b border-zinc-800"
           >
-            <div className="px-6 py-6 flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  to={link.to}
-                  onClick={(e) => handleClick(e, link)}
-                  data-testid={`mobile-nav-${link.label.toLowerCase().replace(/\s/g, "-")}`}
-                  className={`font-mono text-sm tracking-[0.15em] transition-colors ${
-                    isActive(link.to) ? "text-white" : "text-zinc-400 hover:text-white"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
+            <div className="px-6 py-6 flex flex-col gap-3">
+              {navLinks.map((link) =>
+                link.hasDropdown ? (
+                  <div key={link.label}>
+                    <button
+                      onClick={() => setMobileArtakOpen(!mobileArtakOpen)}
+                      className={`font-mono text-sm tracking-[0.15em] transition-colors flex items-center gap-2 w-full ${
+                        isActive(link.to) ? "text-white" : "text-zinc-400"
+                      }`}
+                    >
+                      {link.label}
+                      <ChevronDown size={14} className={`transition-transform ${mobileArtakOpen ? "rotate-180" : ""}`} />
+                    </button>
+                    <AnimatePresence>
+                      {mobileArtakOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="ml-4 mt-2 flex flex-col gap-2 border-l border-zinc-800 pl-4"
+                        >
+                          {artakSubLinks.map((sub, i) => (
+                            <Link
+                              key={i}
+                              to={sub.to}
+                              className={`font-mono text-xs tracking-[0.1em] transition-colors ${
+                                location.pathname === sub.to ? "text-[#FF0B1B]" : "text-zinc-500 hover:text-white"
+                              }`}
+                            >
+                              {sub.label}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ) : (
+                  <Link
+                    key={link.label}
+                    to={link.to}
+                    onClick={(e) => handleClick(e, link)}
+                    data-testid={`mobile-nav-${link.label.toLowerCase().replace(/\s/g, "-")}`}
+                    className={`font-mono text-sm tracking-[0.15em] transition-colors ${
+                      isActive(link.to) ? "text-white" : "text-zinc-400 hover:text-white"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
             </div>
           </motion.div>
         )}
