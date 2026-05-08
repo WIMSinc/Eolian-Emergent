@@ -17,6 +17,8 @@ import NewsPost from "@/pages/NewsPost";
 import Team from "@/pages/Team";
 import AdminLogin from "@/pages/AdminLogin";
 import AdminDashboard from "@/pages/AdminDashboard";
+import Terms from "@/pages/Terms";
+import Privacy from "@/pages/Privacy";
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -53,6 +55,8 @@ function App() {
           <Route path="/team" element={<Team />} />
           <Route path="/admin" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
         </Routes>
         <Footer />
       </BrowserRouter>

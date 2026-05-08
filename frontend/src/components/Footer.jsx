@@ -50,9 +50,19 @@ export default function Footer() {
             ))}
           </div>
 
-          {/* Copyright */}
-          <div className="font-mono text-xs text-zinc-700 tracking-wider">
-            &copy; {new Date().getFullYear()} EolianVR, Inc. All rights reserved.
+          {/* Copyright + Legal */}
+          <div className="text-right">
+            <div className="font-mono text-xs text-zinc-700 tracking-wider mb-2">
+              &copy; {new Date().getFullYear()} EolianVR, Inc. All rights reserved.
+            </div>
+            <div className="flex gap-4 justify-end">
+              <Link to="/terms" data-testid="footer-link-terms" className="font-mono text-[10px] text-zinc-700 hover:text-white transition-colors tracking-wider uppercase">
+                Terms & Conditions
+              </Link>
+              <Link to="/privacy" data-testid="footer-link-privacy" className="font-mono text-[10px] text-zinc-700 hover:text-white transition-colors tracking-wider uppercase">
+                Privacy Policy
+              </Link>
+            </div>
           </div>
         </div>
       </div>

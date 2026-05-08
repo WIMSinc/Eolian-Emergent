@@ -1,0 +1,193 @@
+import SEO from "@/components/SEO";
+
+export default function Terms() {
+  return (
+    <div data-testid="terms-page">
+      <SEO title="Terms & Conditions" description="Terms and Conditions for EolianVR, Inc. website and services." path="/terms" />
+
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28">
+        <div className="absolute inset-0 tactical-grid opacity-20" />
+        <div className="relative max-w-[900px] mx-auto px-6 md:px-12">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-8 h-px bg-[#FF0B1B]" />
+            <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Legal // Terms</span>
+          </div>
+          <h1 className="font-heading text-4xl sm:text-5xl font-black uppercase tracking-tighter text-white leading-[0.95]">
+            Terms & Conditions
+          </h1>
+          <p className="mt-4 font-mono text-xs text-zinc-500 tracking-wider">Effective Date: May 8, 2026</p>
+        </div>
+      </section>
+
+      <section className="pb-20 md:pb-28">
+        <div className="max-w-[900px] mx-auto px-6 md:px-12 space-y-10">
+          <p className="text-sm text-zinc-400 leading-relaxed">
+            Welcome to the website of EolianVR, Inc. ("Eolian," "Company," "we," "our," or "us"). By accessing or using this website, including any associated applications, software platforms, demonstrations, downloadable materials, communications, or services (collectively, the "Services"), you agree to be bound by these Terms & Conditions ("Terms").
+          </p>
+          <p className="text-sm text-zinc-400 leading-relaxed">
+            If you do not agree to these Terms, you should discontinue use of the Services immediately.
+          </p>
+
+          <div>
+            <h2 className="font-heading text-lg font-bold text-white uppercase tracking-wide mb-3">1. Company Information</h2>
+            <p className="text-sm text-zinc-400 leading-relaxed">EolianVR, Inc. is a U.S.-based defense technology company focused on mission planning, command-and-control ("C2"), spatial computing, mixed reality ("XR"), digital twin, autonomous systems orchestration, and situational awareness technologies.</p>
+          </div>
+
+          <div>
+            <h2 className="font-heading text-lg font-bold text-white uppercase tracking-wide mb-3">2. Eligibility</h2>
+            <p className="text-sm text-zinc-400 leading-relaxed mb-3">You must be at least 18 years old and legally authorized to enter into binding agreements to use this website or Services.</p>
+            <p className="text-sm text-zinc-400 leading-relaxed mb-2">You represent that:</p>
+            <ul className="list-disc list-inside text-sm text-zinc-400 leading-relaxed space-y-1 ml-2">
+              <li>you are not prohibited from accessing U.S.-origin technology under applicable export control laws,</li>
+              <li>you are not located in a sanctioned jurisdiction,</li>
+              <li>and you are not listed on any U.S. government restricted-party list.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="font-heading text-lg font-bold text-white uppercase tracking-wide mb-3">3. Intellectual Property</h2>
+            <p className="text-sm text-zinc-400 leading-relaxed mb-3">All website content, software, source code, text, graphics, branding, videos, demonstrations, technical documentation, whitepapers, architecture diagrams, workflows, user interfaces, patents, trademarks, and related materials are owned by or licensed to EolianVR, Inc.</p>
+            <p className="text-sm text-zinc-400 leading-relaxed mb-2">This includes, without limitation:</p>
+            <ul className="list-disc list-inside text-sm text-zinc-400 leading-relaxed space-y-1 ml-2">
+              <li>ARTAK™</li>
+              <li>Map Maker™</li>
+              <li>Eolian Mixed Reality Platform</li>
+              <li>related software modules, APIs, interfaces, demonstrations, workflows, and associated intellectual property.</li>
+            </ul>
+            <p className="text-sm text-zinc-400 leading-relaxed mt-3">Certain technologies may be protected by U.S. and international patents, including U.S. Patent No. US11297164B2.</p>
+            <p className="text-sm text-zinc-400 leading-relaxed mt-2">No rights are granted except as expressly stated herein.</p>
+          </div>
+
+          <div>
+            <h2 className="font-heading text-lg font-bold text-white uppercase tracking-wide mb-3">4. Acceptable Use</h2>
+            <p className="text-sm text-zinc-400 leading-relaxed mb-2">You agree not to:</p>
+            <ul className="list-disc list-inside text-sm text-zinc-400 leading-relaxed space-y-1 ml-2">
+              <li>reverse engineer any software or platform;</li>
+              <li>attempt unauthorized access to systems or networks;</li>
+              <li>interfere with website security or operations;</li>
+              <li>use the Services for unlawful, harmful, deceptive, or malicious purposes;</li>
+              <li>upload malware, exploits, or harmful code;</li>
+              <li>use the Services in violation of export control laws;</li>
+              <li>scrape or harvest website content using automated means without permission;</li>
+              <li>misrepresent affiliation with Eolian or any government agency.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="font-heading text-lg font-bold text-white uppercase tracking-wide mb-3">5. Government & Defense Use Disclaimer</h2>
+            <p className="text-sm text-zinc-400 leading-relaxed mb-3">Certain products and services referenced on this website are intended solely for authorized government, defense, enterprise, or commercial use.</p>
+            <p className="text-sm text-zinc-400 leading-relaxed mb-3">Descriptions of capabilities, demonstrations, integrations, or operational scenarios are provided for informational purposes only and do not constitute guarantees of operational performance, procurement availability, or regulatory approval.</p>
+            <p className="text-sm text-zinc-400 leading-relaxed mb-2">Any government procurement remains subject to:</p>
+            <ul className="list-disc list-inside text-sm text-zinc-400 leading-relaxed space-y-1 ml-2">
+              <li>applicable FAR/DFARS requirements,</li>
+              <li>export controls,</li>
+              <li>cybersecurity compliance requirements,</li>
+              <li>and formal contractual agreements.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="font-heading text-lg font-bold text-white uppercase tracking-wide mb-3">6. Export Compliance</h2>
+            <p className="text-sm text-zinc-400 leading-relaxed mb-2">Certain technologies, software, hardware, technical data, and services may be subject to:</p>
+            <ul className="list-disc list-inside text-sm text-zinc-400 leading-relaxed space-y-1 ml-2">
+              <li>U.S. Export Administration Regulations ("EAR"),</li>
+              <li>International Traffic in Arms Regulations ("ITAR"),</li>
+              <li>and other applicable export control laws.</li>
+            </ul>
+            <p className="text-sm text-zinc-400 leading-relaxed mt-3">You agree not to export, re-export, transfer, or disclose any controlled technology or information except in full compliance with applicable laws and regulations.</p>
+          </div>
+
+          <div>
+            <h2 className="font-heading text-lg font-bold text-white uppercase tracking-wide mb-3">7. AI & Autonomous Systems Disclaimer</h2>
+            <p className="text-sm text-zinc-400 leading-relaxed mb-2">Certain Eolian platforms may utilize:</p>
+            <ul className="list-disc list-inside text-sm text-zinc-400 leading-relaxed space-y-1 ml-2">
+              <li>artificial intelligence,</li>
+              <li>machine learning,</li>
+              <li>automation,</li>
+              <li>autonomous orchestration,</li>
+              <li>or decision-support technologies.</li>
+            </ul>
+            <p className="text-sm text-zinc-400 leading-relaxed mt-3">Outputs generated by such systems are intended to support human decision-making and should not be relied upon as the sole basis for operational, tactical, safety-critical, or mission-critical decisions.</p>
+            <p className="text-sm text-zinc-400 leading-relaxed mt-2 font-medium text-zinc-300">Human review and oversight remain required.</p>
+          </div>
+
+          <div>
+            <h2 className="font-heading text-lg font-bold text-white uppercase tracking-wide mb-3">8. Privacy</h2>
+            <p className="text-sm text-zinc-400 leading-relaxed">Your use of the Services is also governed by our <a href="/privacy" className="text-[#FF0B1B] hover:text-white transition-colors">Privacy Policy</a>.</p>
+          </div>
+
+          <div>
+            <h2 className="font-heading text-lg font-bold text-white uppercase tracking-wide mb-3">9. Third-Party Services</h2>
+            <p className="text-sm text-zinc-400 leading-relaxed mb-3">The website may contain integrations, references, or links to third-party platforms, services, hardware manufacturers, cloud providers, or government systems.</p>
+            <p className="text-sm text-zinc-400 leading-relaxed">Eolian is not responsible for the availability, security, or practices of third-party services.</p>
+          </div>
+
+          <div>
+            <h2 className="font-heading text-lg font-bold text-white uppercase tracking-wide mb-3">10. Confidentiality & Restricted Information</h2>
+            <p className="text-sm text-zinc-400 leading-relaxed mb-2">Users shall not upload:</p>
+            <ul className="list-disc list-inside text-sm text-zinc-400 leading-relaxed space-y-1 ml-2">
+              <li>classified information,</li>
+              <li>export-controlled information,</li>
+              <li>controlled unclassified information ("CUI"),</li>
+              <li>or other restricted materials</li>
+            </ul>
+            <p className="text-sm text-zinc-400 leading-relaxed mt-3">unless expressly authorized under a separate written agreement and approved secure environment.</p>
+          </div>
+
+          <div>
+            <h2 className="font-heading text-lg font-bold text-white uppercase tracking-wide mb-3">11. Disclaimers</h2>
+            <p className="text-sm text-zinc-300 leading-relaxed mb-3 uppercase font-medium">The Services are provided "as is" and "as available" without warranties of any kind, express or implied.</p>
+            <p className="text-sm text-zinc-400 leading-relaxed mb-2">Eolian disclaims all warranties including:</p>
+            <ul className="list-disc list-inside text-sm text-zinc-400 leading-relaxed space-y-1 ml-2">
+              <li>merchantability,</li>
+              <li>fitness for a particular purpose,</li>
+              <li>non-infringement,</li>
+              <li>accuracy,</li>
+              <li>availability,</li>
+              <li>or reliability.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="font-heading text-lg font-bold text-white uppercase tracking-wide mb-3">12. Limitation of Liability</h2>
+            <p className="text-sm text-zinc-400 leading-relaxed mb-2">To the maximum extent permitted by law, Eolian shall not be liable for:</p>
+            <ul className="list-disc list-inside text-sm text-zinc-400 leading-relaxed space-y-1 ml-2">
+              <li>indirect, incidental, consequential, special, exemplary, or punitive damages,</li>
+              <li>including lost profits, operational interruption, data loss, or mission impacts.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="font-heading text-lg font-bold text-white uppercase tracking-wide mb-3">13. Indemnification</h2>
+            <p className="text-sm text-zinc-400 leading-relaxed mb-2">You agree to indemnify and hold harmless EolianVR, Inc. and its officers, employees, contractors, affiliates, and partners from claims arising from:</p>
+            <ul className="list-disc list-inside text-sm text-zinc-400 leading-relaxed space-y-1 ml-2">
+              <li>your misuse of the Services,</li>
+              <li>violation of these Terms,</li>
+              <li>or violation of applicable law.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="font-heading text-lg font-bold text-white uppercase tracking-wide mb-3">14. Governing Law</h2>
+            <p className="text-sm text-zinc-400 leading-relaxed">These Terms shall be governed by the laws of the State of Florida, without regard to conflict-of-law principles.</p>
+          </div>
+
+          <div>
+            <h2 className="font-heading text-lg font-bold text-white uppercase tracking-wide mb-3">15. Modifications</h2>
+            <p className="text-sm text-zinc-400 leading-relaxed">We reserve the right to modify these Terms at any time. Updated versions will be posted on this page with a revised effective date.</p>
+          </div>
+
+          <div className="border-t border-zinc-800 pt-8">
+            <h2 className="font-heading text-lg font-bold text-white uppercase tracking-wide mb-3">16. Contact</h2>
+            <div className="font-mono text-sm text-zinc-400 space-y-1">
+              <p className="text-white font-medium">EolianVR, Inc.</p>
+              <p>12577 66th St.</p>
+              <p>Largo, FL 33773</p>
+              <p>Email: <a href="mailto:mike@eolianvr.com" className="text-[#FF0B1B] hover:text-white transition-colors">mike@eolianvr.com</a></p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
