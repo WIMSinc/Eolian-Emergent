@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import "@/App.css";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Home from "@/pages/Home";
@@ -59,6 +60,7 @@ function App() {
           <Route path="/privacy" element={<Privacy />} />
         </Routes>
         <Footer />
+        <Analytics />
       </BrowserRouter>
     </div>
   );
