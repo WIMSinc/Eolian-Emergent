@@ -3,8 +3,8 @@ import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import TacticalCanvas from "./TacticalCanvas";
 
-const VIDEO_SRC = "/hero-bg.mp4";
-const POSTER_IMG = "https://images.pexels.com/videos/34189669/pexels-photo-34189669.jpeg?auto=compress&cs=tinysrgb&w=1920";
+const VIDEO_SRC = "/hero-bg-new.mp4";
+const POSTER_IMG = "https://images.pexels.com/videos/28649481/pexels-photo-28649481.jpeg?auto=compress&cs=tinysrgb&w=1920";
 
 export default function HeroSection() {
   const [videoLoaded, setVideoLoaded] = useState(false);
