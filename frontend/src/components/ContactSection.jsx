@@ -68,36 +68,6 @@ export default function ContactSection() {
               command and control, mission planning, and situational awareness
               capabilities? Reach out to our team.
             </p>
-
-            {/* Terminal-style info block */}
-            <div className="bg-[#0A0A0A] border border-zinc-800 p-6">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-2 h-2 rounded-full bg-[#FF0B1B]" />
-                <div className="w-2 h-2 rounded-full bg-zinc-700" />
-                <div className="w-2 h-2 rounded-full bg-zinc-700" />
-                <span className="font-mono text-[10px] text-zinc-600 ml-2">
-                  eolian_terminal
-                </span>
-              </div>
-              <div className="font-mono text-xs text-zinc-500 space-y-2">
-                <p>
-                  <span className="text-[#FF0B1B]">$</span> company: EolianVR,
-                  Inc.
-                </p>
-                <p>
-                  <span className="text-[#FF0B1B]">$</span> focus: AR/VR
-                  Defense Solutions
-                </p>
-                <p>
-                  <span className="text-[#FF0B1B]">$</span> product: ARTAK
-                  Block 2
-                </p>
-                <p>
-                  <span className="text-[#FF0B1B]">$</span> web:
-                  eolianvr.com
-                </p>
-              </div>
-            </div>
           </motion.div>
 
           {/* Right side - Form */}

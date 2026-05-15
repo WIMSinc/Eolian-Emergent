@@ -5,17 +5,19 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Home from "@/pages/Home";
 import About from "@/pages/About";
+import ArtakLanding from "@/pages/ArtakLanding";
 import ArtakUseCases from "@/pages/ArtakUseCases";
+import ArtakSubPage from "@/pages/ArtakSubPage";
 import MapMaker from "@/pages/MapMaker";
 import Lab from "@/pages/Lab";
 import Support from "@/pages/Support";
-
-import ArtakSubPage from "@/pages/ArtakSubPage";
 import News from "@/pages/News";
 import NewsPost from "@/pages/NewsPost";
 import Team from "@/pages/Team";
 import AdminLogin from "@/pages/AdminLogin";
 import AdminDashboard from "@/pages/AdminDashboard";
+import Terms from "@/pages/Terms";
+import Privacy from "@/pages/Privacy";
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -28,7 +30,6 @@ function ScrollToTop() {
     } else {
       window.scrollTo(0, 0);
     }
-    // Track page view in GA4
     if (window.gtag) {
       window.gtag('event', 'page_view', {
         page_path: pathname + (hash || ''),
@@ -48,7 +49,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/artak" element={<ArtakUseCases />} />
+          <Route path="/artak" element={<ArtakLanding />} />
+          <Route path="/artak/national-security" element={<ArtakUseCases />} />
           <Route path="/artak/:slug" element={<ArtakSubPage />} />
           <Route path="/mapmaker" element={<MapMaker />} />
           <Route path="/lab" element={<Lab />} />
@@ -58,6 +60,8 @@ function App() {
           <Route path="/team" element={<Team />} />
           <Route path="/admin" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
         </Routes>
         <Footer />
       </BrowserRouter>
