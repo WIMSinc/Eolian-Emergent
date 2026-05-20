@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Map, Cpu, Wifi, Zap, Box, ArrowRight } from "lucide-react";
+import ArtakFeaturesSection from "@/components/ArtakFeaturesSection";
+import UseCasesSection from "@/components/UseCasesSection";
+import CaseStudiesSection from "@/components/CaseStudiesSection";
 
 const features = [
   { icon: Zap, title: "Speed & Quality Unmatched", desc: "Makes high-quality 3D maps in minutes using machine learning and next-gen surface reconstruction algorithms." },
@@ -122,6 +125,15 @@ export default function MapMaker() {
           </div>
         </div>
       </section>
+
+      {/* Platform Features */}
+      <ArtakFeaturesSection />
+
+      {/* Use Cases */}
+      <UseCasesSection />
+
+      {/* Case Studies */}
+      <CaseStudiesSection />
     </div>
   );
 }

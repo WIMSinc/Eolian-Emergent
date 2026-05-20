@@ -1,20 +1,12 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
-  Eye, Radio, BarChart3, Users, GraduationCap, BrainCircuit, Settings, Scaling,
   AlertTriangle, Search, Shield, Siren, Flame, Rocket, ArrowLeft, ArrowRight,
 } from "lucide-react";
-
-const sharedFeatures = [
-  { icon: Eye, title: "Real-Time Situational Awareness", desc: "Gain immediate insights into evolving situations with live data overlays and 3D mapping, enhancing decision-making and response times." },
-  { icon: Radio, title: "Enhanced Communication Channels", desc: "Facilitate seamless communication among teams with integrated voice and data sharing, ensuring everyone stays informed and coordinated." },
-  { icon: BarChart3, title: "Resource Allocation Optimization", desc: "Utilize predictive analytics to efficiently allocate resources where they are needed most, minimizing waste and maximizing impact." },
-  { icon: Users, title: "Remote Collaboration Tools", desc: "Enable remote teams to collaborate effectively through virtual environments, reducing the need for physical presence and accelerating response." },
-  { icon: GraduationCap, title: "Training & Simulation Modules", desc: "Prepare teams with immersive training scenarios that simulate real-world emergencies, enhancing readiness and response capabilities." },
-  { icon: BrainCircuit, title: "Data-Driven Decision Support", desc: "Leverage comprehensive data analysis to support strategic decisions, improving outcomes and reducing risks during crises." },
-  { icon: Settings, title: "Customizable User Interfaces", desc: "Adapt the ARTAK platform to meet specific operational needs with customizable dashboards and interfaces." },
-  { icon: Scaling, title: "Scalable Deployment Options", desc: "Deploy ARTAK across various scales, from local incidents to large-scale operations, with flexible and scalable solutions." },
-];
+import ArtakFeaturesSection from "@/components/ArtakFeaturesSection";
+import UseCasesSection from "@/components/UseCasesSection";
+import KitsSoftwareSection from "@/components/KitsSoftwareSection";
+import CaseStudiesSection from "@/components/CaseStudiesSection";
 
 const useCaseData = {
   "disaster-response": {
@@ -159,18 +151,14 @@ export default function ArtakSubPage() {
       {/* Hero */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
         <div className="absolute inset-0 tactical-grid opacity-30" />
-        {/* Hero image background */}
         <div className="absolute inset-0 z-0">
           <img src={data.image} alt="" className="w-full h-full object-cover opacity-10 grayscale" loading="eager" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/80 via-[#050505]/90 to-[#050505]" />
         </div>
 
         <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12">
-          {/* Breadcrumb */}
           <div className="flex items-center gap-2 mb-6">
-            <Link to="/artak" className="font-mono text-[10px] tracking-[0.2em] text-zinc-600 hover:text-white transition-colors uppercase">
-              ARTAK
-            </Link>
+            <Link to="/artak" className="font-mono text-[10px] tracking-[0.2em] text-zinc-600 hover:text-white transition-colors uppercase">ARTAK</Link>
             <span className="text-zinc-700">/</span>
             <span className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase">{data.title}</span>
           </div>
@@ -192,27 +180,17 @@ export default function ArtakSubPage() {
       <section className="py-20 md:py-28 border-t border-zinc-800">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            {/* Body text */}
             <div>
               <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase block mb-4">Overview // Mission Context</span>
               <p className="text-sm text-zinc-400 leading-relaxed mb-8">{data.body}</p>
               <p className="text-sm text-zinc-300 leading-relaxed italic border-l-2 border-[#FF0B1B] pl-4">{data.ctaText}</p>
             </div>
 
-            {/* Capabilities list */}
             <div>
               <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase block mb-4">Key Capabilities</span>
               <div className="space-y-3">
                 {data.capabilities.map((cap, i) => (
-                  <motion.div
-                    key={i}
-                    custom={i}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={fadeUp}
-                    className="flex items-start gap-3 group"
-                  >
+                  <motion.div key={i} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="flex items-start gap-3 group">
                     <div className="w-6 h-6 border border-zinc-800 flex items-center justify-center shrink-0 mt-0.5 group-hover:border-[#FF0B1B] transition-colors">
                       <span className="font-mono text-[9px] text-zinc-600 group-hover:text-[#FF0B1B] transition-colors">{String(i + 1).padStart(2, "0")}</span>
                     </div>
@@ -225,47 +203,21 @@ export default function ArtakSubPage() {
         </div>
       </section>
 
-      {/* Shared Features */}
-      <section className="py-20 md:py-28 border-t border-zinc-800">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-          <div className="mb-12">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-px bg-[#FF0B1B]" />
-              <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Platform // Features</span>
-            </div>
-            <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase tracking-tight text-white">
-              ARTAK Features
-            </h2>
-          </div>
+      {/* Platform Features */}
+      <ArtakFeaturesSection />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-zinc-800">
-            {sharedFeatures.map((feat, i) => (
-              <motion.div
-                key={i}
-                custom={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-30px" }}
-                variants={fadeUp}
-                data-testid={`subpage-feature-${i}`}
-                className="bg-[#0A0A0A] p-6 group hover:bg-[#0D0D0D] transition-colors relative"
-              >
-                <div className="w-10 h-10 border border-zinc-800 flex items-center justify-center mb-4 group-hover:border-[#FF0B1B] transition-colors">
-                  <feat.icon size={16} className="text-zinc-600 group-hover:text-[#FF0B1B] transition-colors" />
-                </div>
-                <h3 className="font-heading text-xs font-semibold text-white tracking-wide uppercase mb-2">{feat.title}</h3>
-                <p className="text-xs text-zinc-500 leading-relaxed">{feat.desc}</p>
-                <div className="absolute bottom-0 left-0 w-0 h-px bg-[#FF0B1B] group-hover:w-full transition-all duration-500" />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Use Cases */}
+      <UseCasesSection />
+
+      {/* Kits & Software */}
+      <KitsSoftwareSection />
+
+      {/* Case Studies */}
+      <CaseStudiesSection />
 
       {/* CTA + Navigation */}
       <section className="py-20 md:py-28 border-t border-zinc-800">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-          {/* CTA */}
           <div className="text-center mb-16">
             <h2 className="font-heading text-2xl sm:text-3xl font-bold uppercase tracking-tight text-white mb-4">
               Experience ARTAK in Action
@@ -282,7 +234,6 @@ export default function ArtakSubPage() {
             </Link>
           </div>
 
-          {/* Prev / Next navigation */}
           <div className="flex items-center justify-between border-t border-zinc-800 pt-8">
             {prevSlug ? (
               <Link to={`/artak/${prevSlug}`} data-testid="subpage-nav-prev" className="flex items-center gap-2 font-mono text-xs text-zinc-500 hover:text-white transition-colors uppercase tracking-wider">
