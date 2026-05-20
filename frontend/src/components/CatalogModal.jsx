@@ -18,7 +18,7 @@ export default function CatalogModal({ open, onClose }) {
       setTimeout(() => { window.open(data.download_url, "_blank"); }, 500);
     } catch {
       setStatus("success");
-      window.open("/artak-product-catalog-2026.pdf", "_blank");
+      window.open("https://hubs.ly/Q04hl6L40", "_blank");
     }
   };
 

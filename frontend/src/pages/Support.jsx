@@ -3,11 +3,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Phone, Ticket, FileText, Download, ChevronDown, ArrowRight, Shield, Headset, Wifi, RefreshCw, Lock } from "lucide-react";
 
 const manuals = [
-  { label: "[DOC.01]", device: "HoloLens 2", version: "v2.4.1", href: "#" },
-  { label: "[DOC.02]", device: "Magic Leap 2", version: "v2.4.1", href: "#" },
-  { label: "[DOC.03]", device: "Tactical Desktop", version: "v2.4.1", href: "#" },
-  { label: "[DOC.04]", device: "Field Mobile", version: "v2.3.8", href: "#" },
-  { label: "[DOC.05]", device: "Sensor Suite", version: "V1.15.22.0", href: "#" },
+  { label: "[DOC.01]", device: "Quick Start Guide", version: "2026 Edition", href: "https://hubs.ly/Q04hld9V0" },
+  { label: "[DOC.02]", device: "Block 2 — Full User Manual", version: "v2.4.1", href: "https://hubs.ly/Q04hl7tM0" },
+  { label: "[DOC.03]", device: "Microsoft HoloLens 2", version: "v2.4.1", href: "https://hubs.ly/Q04hl8l20" },
+  { label: "[DOC.04]", device: "Magic Leap 2", version: "v2.4.1", href: "https://hubs.ly/Q04hl88b0" },
+  { label: "[DOC.05]", device: "Oculus Meta Quest 2", version: "v2.4.1", href: "https://hubs.ly/Q04hl9Kk0" },
+  { label: "[DOC.06]", device: "Samsung Mobile & Tablet", version: "v2.3.8", href: "https://hubs.ly/Q04hl8K70" },
+  { label: "[DOC.07]", device: "Windows PC", version: "v2.4.1", href: "https://hubs.ly/Q04hlcVJ0" },
 ];
 
 const faqs = [
