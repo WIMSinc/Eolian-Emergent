@@ -34,7 +34,7 @@ export default function Footer() {
             <div className="flex items-center gap-3 mb-3">
               <img src="/eolian-logo-white.png" alt="Eolian" className="h-10 w-auto opacity-80" />
             </div>
-            <p className="font-mono text-xs text-zinc-600 tracking-wider">
+            <p className="font-mono text-sm text-zinc-300 tracking-wider">
               AR & VR Solutions for Defense & Enterprise
             </p>
             <div className="flex gap-3 mt-3">
@@ -59,7 +59,7 @@ export default function Footer() {
                 to={link.to}
                 data-testid={`footer-link-${link.label.toLowerCase()}`}
                 onClick={(e) => handleClick(e, link.label.toLowerCase())}
-                className="font-mono text-sm text-zinc-600 hover:text-white transition-colors tracking-wider uppercase"
+                className="font-mono text-sm text-white hover:text-[#FF0B1B] transition-colors tracking-wider uppercase"
               >
                 {link.label}
               </Link>
@@ -68,14 +68,14 @@ export default function Footer() {
 
           {/* Copyright + Legal */}
           <div className="text-right">
-            <div className="font-mono text-xs text-zinc-700 tracking-wider mb-2">
+            <div className="font-mono text-sm text-zinc-300 tracking-wider mb-2">
               &copy; {new Date().getFullYear()} EolianVR, Inc. All rights reserved.
             </div>
             <div className="flex gap-4 justify-end">
-              <Link to="/terms" data-testid="footer-link-terms" className="font-mono text-[10px] text-zinc-700 hover:text-white transition-colors tracking-wider uppercase">
+              <Link to="/terms" data-testid="footer-link-terms" className="font-mono text-xs text-zinc-300 hover:text-white transition-colors tracking-wider uppercase">
                 Terms & Conditions
               </Link>
-              <Link to="/privacy" data-testid="footer-link-privacy" className="font-mono text-[10px] text-zinc-700 hover:text-white transition-colors tracking-wider uppercase">
+              <Link to="/privacy" data-testid="footer-link-privacy" className="font-mono text-xs text-zinc-300 hover:text-white transition-colors tracking-wider uppercase">
                 Privacy Policy
               </Link>
             </div>
