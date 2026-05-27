@@ -1,4 +1,20 @@
 // craco.config.js
+
+// MUST come first — intercept require() before CRA's webpack.config.js loads.
+// fork-ts-checker-webpack-plugin has nested ajv-keywords@3.x which crashes when
+// our ajv@8 override is active (its _formatLimit.js calls formats.date, undefined in v8).
+// This project is pure JavaScript (no TypeScript), so the plugin is not needed at all.
+const Module = require('module');
+const originalLoad = Module._load;
+Module._load = function (request, parent, isMain) {
+  if (request === 'fork-ts-checker-webpack-plugin') {
+    // Return a harmless no-op class so CRA can instantiate it without crashing.
+    // The craco configure() below also filters it from the plugins array.
+    return class ForkTsCheckerWebpackPlugin { apply() {} };
+  }
+  return originalLoad.apply(this, arguments);
+};
+
 const path = require("path");
 require("dotenv").config();
 
@@ -34,53 +50,16 @@ let webpackConfig = {
     },
     configure: (webpackConfig) => {
 
-      // Remove ForkTsCheckerWebpackPlugin — this is a JS project (no TypeScript),
-      // and the plugin's bundled ajv-keywords@3 conflicts with our ajv@8 override.
+      // Belt-and-suspenders: also remove the (now-stubbed) plugin from the array
+      // in case CRA still instantiates it before our Module._load hook fires.
       webpackConfig.plugins = webpackConfig.plugins.filter(
         (plugin) => plugin.constructor.name !== 'ForkTsCheckerWebpackPlugin'
       );
 
       // Add ignored patterns to reduce watched directories
-        webpackConfig.watchOptions = {
-          ...webpackConfig.watchOptions,
-          ignored: [
-            '**/node_modules/**',
-            '**/.git/**',
-            '**/build/**',
-            '**/dist/**',
-            '**/coverage/**',
-            '**/public/**',
-        ],
-      };
-
-      // Add health check plugin to webpack if enabled
-      if (config.enableHealthCheck && healthPluginInstance) {
-        webpackConfig.plugins.push(healthPluginInstance);
-      }
-      return webpackConfig;
-    },
-  },
-};
-
-webpackConfig.devServer = (devServerConfig) => {
-  // Add health check endpoints if enabled
-  if (config.enableHealthCheck && setupHealthEndpoints && healthPluginInstance) {
-    const originalSetupMiddlewares = devServerConfig.setupMiddlewares;
-
-    devServerConfig.setupMiddlewares = (middlewares, devServer) => {
-      // Call original setup if exists
-      if (originalSetupMiddlewares) {
-        middlewares = originalSetupMiddlewares(middlewares, devServer);
-      }
-
-      // Setup health endpoints
-      setupHealthEndpoints(devServer, healthPluginInstance);
-
-      return middlewares;
-    };
-  }
-
-  return devServerConfig;
-};
-
-module.exports = webpackConfig;
+      webpackConfig.watchOptions = {
+        ...webpackConfig.watchOptions,
+        ignored: [
+          '**/node_modules/**',
+          '**/.git/**',
+          '**/build/*
