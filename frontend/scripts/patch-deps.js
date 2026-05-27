@@ -6,6 +6,18 @@
 
 'use strict';
 
+// Replacement for ajv-keywords@3's _formatLimit.js under ajv@8.
+// The original code calls `ajv._formats[name].date` which doesn't exist in ajv@8.
+// This stub registers the keywords with ajv@8's addKeyword API so that
+// webpack schema validation doesn't throw "Unknown keyword formatMinimum".
+const STUB =
+  'module.exports = function addFormatLimit(ajv) {\n' +
+  '  [\'formatMinimum\',\'formatMaximum\',\'formatExclusiveMinimum\',\'formatExclusiveMaximum\']\n' +
+  '    .forEach(function(kw) {\n' +
+  '      try { ajv.addKeyword({ keyword: kw, schemaType: \'string\' }); } catch(e) {}\n' +
+  '    });\n' +
+  '};\n';
+
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
@@ -26,7 +38,7 @@ try {
   for (const rel of files) {
     const full = path.join(root, rel);
     try {
-      fs.writeFileSync(full, 'module.exports = function addFormatLimit() {};\n');
+      fs.writeFileSync(full, STUB);
       console.log('[patch-deps] Neutralized:', rel);
       patched++;
     } catch (e) {
@@ -42,7 +54,7 @@ try {
     try {
       const target = path.join(dir, 'ajv-keywords', 'keywords', '_formatLimit.js');
       if (fs.existsSync(target)) {
-        fs.writeFileSync(target, 'module.exports = function addFormatLimit() {};\n');
+        fs.writeFileSync(target, STUB);
         console.log('[patch-deps] Neutralized:', path.relative(root, target));
         patched++;
       }
