@@ -146,6 +146,8 @@ const useCaseData = {
       "OMS/UCI-aligned architecture with proposed message-class extensions for ACP explainability metadata",
     ],
     ctaText: "Developed with Blue Aether and demonstrated on Group 1 UAS testbeds, CHORD positions as the post-action auditability standard for Collaborative Combat Aircraft (CCA) and next-generation ACP programs — while supporting dual-use applications across commercial autonomous systems.",
+    featureImage: null,
+    embedUrl: "https://chord-insight-hub.lovable.app/",
   },
   "chem-bio": {
     icon: FlaskConical,
@@ -245,6 +247,63 @@ export default function ArtakSubPage() {
           </div>
         </div>
       </section>
+
+      {/* Feature Image (optional — e.g. CHORD anomaly tiers diagram) */}
+      {data.featureImage && (
+        <section className="py-20 md:py-28 border-t border-zinc-800">
+          <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+            <div className="mb-8">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-8 h-px bg-[#FF0B1B]" />
+                <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">System // Anomaly Classification</span>
+              </div>
+            </div>
+            <div className="border border-zinc-800 overflow-hidden">
+              <img
+                src={data.featureImage}
+                alt="CHORD Anomaly Tier Classification"
+                className="w-full h-auto"
+              />
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Interactive Embed (optional — e.g. CHORD Insight Hub) */}
+      {data.embedUrl && (
+        <section className="py-20 md:py-28 border-t border-zinc-800">
+          <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+            <div className="mb-8">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-8 h-px bg-[#FF0B1B]" />
+                <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Live Demo // CHORD Insight Hub</span>
+              </div>
+              <h2 className="font-heading text-2xl sm:text-3xl font-bold uppercase tracking-tight text-white">
+                Interactive Demo
+              </h2>
+              <p className="mt-3 text-sm text-zinc-400 max-w-2xl">
+                Explore the CHORD Insight Hub — an interactive prototype demonstrating the decision graph, anomaly timeline, and XAI analytics interface.
+              </p>
+            </div>
+            <div className="border border-zinc-800 overflow-hidden" style={{ height: "780px" }}>
+              <iframe
+                src={data.embedUrl}
+                title="CHORD Insight Hub"
+                className="w-full h-full"
+                style={{ border: "none" }}
+                allow="fullscreen"
+                loading="lazy"
+              />
+            </div>
+            <p className="mt-3 font-mono text-xs text-zinc-600 tracking-wider">
+              Having trouble viewing?{" "}
+              <a href={data.embedUrl} target="_blank" rel="noopener noreferrer" className="text-[#FF0B1B] hover:underline">
+                Open in a new tab →
+              </a>
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* Platform Features */}
       <ArtakFeaturesSection />
