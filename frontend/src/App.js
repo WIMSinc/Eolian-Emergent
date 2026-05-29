@@ -11,6 +11,9 @@ import MapMaker from "@/pages/MapMaker";
 import Lab from "@/pages/Lab";
 import Support from "@/pages/Support";
 
+import AboutPastPerformance from "@/pages/AboutPastPerformance";
+import AboutAwards from "@/pages/AboutAwards";
+import AboutIP from "@/pages/AboutIP";
 import ArtakSubPage from "@/pages/ArtakSubPage";
 import News from "@/pages/News";
 import NewsPost from "@/pages/NewsPost";
@@ -44,6 +47,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/about/past-performance" element={<AboutPastPerformance />} />
+          <Route path="/about/awards" element={<AboutAwards />} />
+          <Route path="/about/intellectual-property" element={<AboutIP />} />
           <Route path="/artak" element={<ArtakLanding />} />
           <Route path="/artak/national-security" element={<ArtakUseCases />} />
           <Route path="/artak/:slug" element={<ArtakSubPage />} />
