@@ -6,26 +6,8 @@ const leadership = [
   { name: "Mike Simmons", title: "Co-Founder & CMO" },
   { name: "John Cannizzaro", title: "Co-Founder & CBDO" },
   { name: "Michael Havenick", title: "Co-Founder" },
-  { name: "Cameron Davis", title: "Chief Technology Officer" },
   { name: "Pablo Lopez", title: "Chief Financial Officer" },
-  { name: "Ismael Rivera", title: "Chief Liaison Officer" },
-];
-
-const team = [
-  { name: "Garrett Krick", title: "VP of Simulations" },
-  { name: "Henry Halse", title: "Full Stack Engineer" },
-  { name: "Ruben Varela", title: "Liaison Officer" },
-  { name: "Lauren Bowler", title: "QA Engineer" },
-  { name: "Reynel Rodriguez", title: "Innovation Lead / LiDAR" },
-  { name: "Arturo Eusebio", title: "S3 - Operations Lead" },
   { name: "Shaun Kelley", title: "Information Security Officer" },
-  { name: "Mac Murphy", title: "Software Engineer" },
-  { name: "Emily Beck", title: "Senior Systems Architect" },
-  { name: "Rock Jackson", title: "Creative Director" },
-  { name: "Luis Lopez", title: "Relationship Manager" },
-  { name: "Matthew Hayes", title: "Unity Developer" },
-  { name: "Tiffany Stelzer", title: "Production Manager" },
-  { name: "Brendan McCaffrey", title: "Project Manager / Operations" },
 ];
 
 function getInitials(name) {
@@ -99,31 +81,13 @@ export default function Team() {
         </div>
       </section>
 
-      {/* Team Members */}
-      <section className="py-20 md:py-28 border-t border-zinc-800">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-          <div className="mb-12">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-px bg-[#FF0B1B]" />
-              <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Operations // Engineering</span>
-            </div>
-            <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase tracking-tight text-white">Team Members</h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px bg-zinc-800">
-            {team.map((m, i) => (
-              <MemberCard key={i} member={m} index={leadership.length + i} />
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Stat */}
       <section className="py-16 border-t border-zinc-800">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex items-center justify-center">
           <div className="flex items-center gap-3">
             <User size={16} className="text-[#FF0B1B]" />
             <span className="font-mono text-xs text-zinc-500 tracking-wider">
-              {leadership.length + team.length} TEAM MEMBERS // UNITED BY MISSION
+              {leadership.length} LEADERS // UNITED BY MISSION
             </span>
           </div>
         </div>
