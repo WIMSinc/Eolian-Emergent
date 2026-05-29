@@ -15,8 +15,6 @@ import AboutPastPerformance from "@/pages/AboutPastPerformance";
 import AboutAwards from "@/pages/AboutAwards";
 import AboutIP from "@/pages/AboutIP";
 import ArtakSubPage from "@/pages/ArtakSubPage";
-import News from "@/pages/News";
-import NewsPost from "@/pages/NewsPost";
 import Team from "@/pages/Team";
 import AdminLogin from "@/pages/AdminLogin";
 import AdminDashboard from "@/pages/AdminDashboard";
@@ -56,8 +54,6 @@ function App() {
           <Route path="/mapmaker" element={<MapMaker />} />
           <Route path="/lab" element={<Lab />} />
           <Route path="/support" element={<Support />} />
-          <Route path="/news" element={<News />} />
-          <Route path="/news/:slug" element={<NewsPost />} />
           <Route path="/team" element={<Team />} />
           <Route path="/admin" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
