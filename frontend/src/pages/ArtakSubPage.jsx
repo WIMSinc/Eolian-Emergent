@@ -2,6 +2,7 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   AlertTriangle, Search, Shield, Siren, Flame, Rocket, ArrowLeft, ArrowRight,
+  Network, FlaskConical,
 } from "lucide-react";
 import ArtakFeaturesSection from "@/components/ArtakFeaturesSection";
 import UseCasesSection from "@/components/UseCasesSection";
@@ -124,6 +125,48 @@ const useCaseData = {
       "Launch-to-orbit mission planning in immersive 3D",
     ],
     ctaText: "From launch to orbit, ARTAK helps teams operate with total confidence and spatial clarity.",
+  },
+  "chord": {
+    icon: Network,
+    sysLabel: "[UC.07]",
+    title: "CHORD",
+    titleAccent: "Human-Autonomy Debrief",
+    subtitle: "Collaborative Human Autonomy Operational Review Debriefing",
+    heroDesc: "As Autonomous Collaborative Platforms take on greater tactical responsibility, traditional after-action review tools can no longer capture what actually happened. CHORD extends ARTAK to log, correlate, and reconstruct the full human-autonomy decision chain — giving warfighters and commanders the auditability they need to understand, trust, and refine autonomous systems.",
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80",
+    body: "The Department of the Air Force is undergoing a fundamental shift toward operations that integrate Autonomous Collaborative Platforms (ACPs) alongside human operators. Existing mission debriefing approaches — manual, verbal, two-dimensional, and human-centric — are no longer sufficient to capture, reconstruct, and explain mission outcomes when autonomy is in the loop. CHORD (Collaborative Human Autonomy Operational Review Debriefing) addresses this gap by extending ARTAK's proven mission planning and C2 platform with a Unified Decision Graph that fuses human and ACP decision chains into a single time-aligned, causally-linked representation. Built on a six-layer service-oriented architecture and exposed through ARTAK's multi-modal interface, CHORD enables warfighters to interrogate what decisions were made, when they occurred, why — and how human-machine interactions shaped mission outcomes.",
+    capabilities: [
+      "Unified Decision Graph fusing human and ACP decision chains into a time-aligned, causally-linked narrative",
+      "Structured logging and ingestion of autonomy-specific data: decision states, intent, and contextual inputs",
+      "Explainable AI (XAI) analytics surfacing autonomy rationale, uncertainty quantification, and anomaly detection",
+      "Stakeholder-tailored views for pilots, mission commanders, JAG/LOAC reviewers, and training cadre",
+      "LLM-driven conversational interface for natural-language interrogation and what-if exploration",
+      "Multi-modal HMI: desktop for primary debrief, tablet for field use, immersive AR/VR for 3D geospatial replay",
+      "Simulation & replay engine for multi-vehicle mission reconstruction and TTP refinement",
+      "OMS/UCI-aligned architecture with proposed message-class extensions for ACP explainability metadata",
+    ],
+    ctaText: "Developed with Blue Aether and demonstrated on Group 1 UAS testbeds, CHORD positions as the post-action auditability standard for Collaborative Combat Aircraft (CCA) and next-generation ACP programs — while supporting dual-use applications across commercial autonomous systems.",
+  },
+  "chem-bio": {
+    icon: FlaskConical,
+    sysLabel: "[UC.08]",
+    title: "CB-SIGHT",
+    titleAccent: "Chemical-Biological Operations",
+    subtitle: "AR Situational Awareness for CB Contested Environments",
+    heroDesc: "Toxic agents are invisible. CB sensors generate alerts that are nearly impossible to interpret in MOPP gear. CB-SIGHT changes that — projecting chemical and biological threat data directly into the warfighter's heads-up field of view, so operators can stay eyes-out and mission-focused even in the most hazardous environments.",
+    image: "https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=1200&q=80",
+    body: "Warfighters operating in Chemical and Biological (CB) contested environments face extreme challenges in situational awareness. Today's solutions force a 'heads down, eyes down' posture — requiring operators to look at EUDs that are difficult to manipulate in protective gloves while wearing an M50 mask. CB-SIGHT is Eolian's response: a clip-on, low-SWaP tactical AR HMI that overlays critical CB hazard information directly onto the warfighter's real-world view in real time. Integrating with existing CB sensors, Nett Warrior EUDs, and the ATAK ecosystem, CB-SIGHT fuses distributed sensor data across the entire operational team — so every warfighter and command post sees the same common operating picture simultaneously. Developed with NT Concepts and Kopin Corporation, and engineered for MOPP Level 3 and 4 compatibility, CB-SIGHT leverages lessons learned from Army IVAS to deliver a carefully designed, minimally intrusive interface that enhances lethality without adding cognitive burden.",
+    capabilities: [
+      "Real-time AR overlay of CB hazard zones, agent type, concentration, and safe maneuver routes on the warfighter's HUD",
+      "Clip-on, low-SWaP hardware compatible with M50 protective mask and full MOPP Level 3/4 operations",
+      "Voice and hands-free control — no screen manipulation required in protective gloves",
+      "Sensor fusion across distributed CB sensors for a unified common operating picture shared across the team and command post",
+      "Seamless integration with Nett Warrior, ATAK, and existing CB sensor infrastructure",
+      "Plume tracking and hazard boundary visualization for reconnaissance, SSE, and casualty care scenarios",
+      "Simultaneous data transmission to command post — real-time decision support at both individual and command levels",
+      "Modular, adaptable hardware architecture supporting diverse CB applications across the full MOPP spectrum",
+    ],
+    ctaText: "CB-SIGHT allows troops to literally see the invisible — transforming fragmented CB sensor data into actionable collective intelligence and enabling faster decisions about donning gear, evacuating, or mission continuation in contaminated battlespaces.",
   },
 };
 

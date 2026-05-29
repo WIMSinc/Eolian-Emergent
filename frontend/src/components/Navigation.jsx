@@ -19,6 +19,8 @@ const artakSubLinks = [
   { label: "Police & Law Enforcement", to: "/artak/police-law-enforcement" },
   { label: "Fire & Emergency Services", to: "/artak/fire-emergency" },
   { label: "Space & Aerospace Operations", to: "/artak/space-aerospace" },
+  { label: "CHORD — Human-Autonomy Debrief", to: "/artak/chord" },
+  { label: "CB-SIGHT — Chem-Bio Operations", to: "/artak/chem-bio" },
 ];
 
 const navLinks = [
