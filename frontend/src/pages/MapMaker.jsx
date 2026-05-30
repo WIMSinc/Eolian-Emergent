@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Check, X, Minus } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 
 const stats = [
   { value: "6", label: "Continents Deployed" },
@@ -16,16 +16,10 @@ const inputTypes = [
   { icon: "🖼️", name: "Images", desc: "Ground or aerial photos" },
   { icon: "📐", name: "360°", desc: "Panoramic capture" },
   { icon: "🔭", name: "Sonar", desc: "Underwater sensors" },
+  { icon: "🏗️", name: "Photogrammetry", desc: "Multi-image surface reconstruction" },
+  { icon: "🛰️", name: "Satellite Imagery", desc: "High-resolution satellite data" },
 ];
 
-const processingTimes = [
-  { input: "18 images", volume: "Small area", time: "~3 min" },
-  { input: "150 images", volume: "Medium area", time: "~20 min" },
-  { input: "1,000 images", volume: "Large area", time: "~90 min" },
-  { input: "10 min video", volume: "Standard", time: "~15 min" },
-  { input: "5 min LiDAR", volume: "Standard", time: "~20 min" },
-  { input: "15 min LiDAR", volume: "Dense environment", time: "~45 min" },
-];
 
 const interiorFeatures = [
   { title: "Multi-Level Mapping", body: "Simultaneously models ground, sub-level, and deep infrastructure in a single layered output." },
@@ -52,15 +46,15 @@ const underwaterFeatures = [
 const underwaterUseCases = ["Port Security", "Maritime ISR", "Wreck Survey", "Hull Inspection", "UUV Operations"];
 
 const comparisonRows = [
-  { capability: "Outdoor / Aerial 3D Mapping",        mm: true,  dd: true,  pix: true,  bentley: true  },
-  { capability: "Interior & Subterranean Mapping",    mm: true,  dd: false, pix: "Partial", bentley: "Partial" },
-  { capability: "Underwater / Bathymetric Mapping",   mm: true,  dd: false, pix: false, bentley: false },
-  { capability: "Fully Offline Processing",           mm: true,  dd: false, pix: "Partial", bentley: false },
-  { capability: "Entirely Automated Pipeline",        mm: true,  dd: true,  pix: "Partial", bentley: false },
-  { capability: "LiDAR + Point Cloud Support",        mm: true,  dd: "Partial", pix: true, bentley: true },
-  { capability: "Non-Proprietary File Output",        mm: true,  dd: false, pix: "Partial", bentley: false },
-  { capability: "High-Quality 3D Tiles",              mm: true,  dd: "Partial", pix: true, bentley: true },
-  { capability: "ARTAK / MR Platform Integration",    mm: true,  dd: false, pix: false, bentley: false },
+  { capability: "Outdoor / Aerial 3D Mapping",       desc: "Full photogrammetric reconstruction from drone, satellite, or ground imagery" },
+  { capability: "Interior & Subterranean Mapping",   desc: "Multi-level indoor and below-ground environments including tunnels and bunkers" },
+  { capability: "Underwater / Bathymetric Mapping",  desc: "Seafloor terrain, submerged structures, and maritime environments via sonar or EO" },
+  { capability: "Fully Offline Processing",          desc: "No internet connection required — process and deploy from any location on earth" },
+  { capability: "Entirely Automated Pipeline",       desc: "One-click processing from raw sensor data to explorable 3D model" },
+  { capability: "LiDAR + Point Cloud Support",       desc: "Native ingestion of LiDAR scans, dense point clouds, and mesh data" },
+  { capability: "Non-Proprietary File Output",       desc: "Open formats (OBJ, GLB, Cesium 3D Tiles) viewable on any device or platform" },
+  { capability: "High-Quality 3D Tiles",             desc: "Cesium-compatible tilesets for streaming into GIS, ATAK, and web platforms" },
+  { capability: "ARTAK / MR Platform Integration",   desc: "Direct export into ARTAK for immersive AR/VR mission planning and briefing" },
 ];
 
 const kits = [
@@ -100,11 +94,6 @@ const fadeUp = {
   visible: (i) => ({ opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.08 } }),
 };
 
-function CompCell({ val }) {
-  if (val === true)  return <Check size={16} className="text-[#FF0B1B] mx-auto" />;
-  if (val === false) return <X size={16} className="text-zinc-700 mx-auto" />;
-  return <Minus size={14} className="text-zinc-500 mx-auto" />;
-}
 
 export default function MapMaker() {
   return (
@@ -265,27 +254,6 @@ export default function MapMaker() {
                 ))}
               </div>
 
-              <div className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase mb-3">Processing Time Reference</div>
-              <div className="border border-zinc-800 overflow-hidden">
-                <table className="w-full">
-                  <thead>
-                    <tr className="bg-[#0A0A0A] border-b border-zinc-800">
-                      <th className="text-left px-4 py-2.5 font-mono text-[9px] tracking-[0.15em] text-zinc-500 uppercase">Input</th>
-                      <th className="text-left px-4 py-2.5 font-mono text-[9px] tracking-[0.15em] text-zinc-500 uppercase">Volume</th>
-                      <th className="text-left px-4 py-2.5 font-mono text-[9px] tracking-[0.15em] text-[#FF0B1B] uppercase">Time</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {processingTimes.map((row, i) => (
-                      <tr key={i} className="border-b border-zinc-800/50 last:border-0 hover:bg-zinc-800/20">
-                        <td className="px-4 py-2.5 text-xs text-zinc-400">{row.input}</td>
-                        <td className="px-4 py-2.5 text-xs text-zinc-600">{row.volume}</td>
-                        <td className="px-4 py-2.5 font-mono text-xs text-[#FF0B1B] font-bold">{row.time}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
             </motion.div>
           </div>
         </div>
@@ -466,36 +434,19 @@ export default function MapMaker() {
             </p>
           </motion.div>
 
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={1} className="overflow-x-auto border border-zinc-800">
-            <table className="w-full min-w-[700px]">
-              <thead>
-                <tr className="border-b border-zinc-800 bg-[#050505]">
-                  <th className="text-left px-5 py-4 font-mono text-[10px] tracking-[0.15em] text-zinc-600 uppercase">Capability</th>
-                  <th className="px-5 py-4 font-mono text-[10px] tracking-[0.15em] text-[#FF0B1B] uppercase text-center bg-[#FF0B1B]/5 border-x border-[#FF0B1B]/20">Map Maker</th>
-                  <th className="px-5 py-4 font-mono text-[10px] tracking-[0.15em] text-zinc-500 uppercase text-center">Drone Deploy</th>
-                  <th className="px-5 py-4 font-mono text-[10px] tracking-[0.15em] text-zinc-500 uppercase text-center">Pix4D</th>
-                  <th className="px-5 py-4 font-mono text-[10px] tracking-[0.15em] text-zinc-500 uppercase text-center">Bentley iTwin</th>
-                </tr>
-              </thead>
-              <tbody>
-                {comparisonRows.map((row, i) => (
-                  <tr key={i} className="border-b border-zinc-800/50 last:border-0 hover:bg-zinc-800/10">
-                    <td className="px-5 py-3.5 font-mono text-xs text-zinc-400 tracking-wide">{row.capability}</td>
-                    <td className="px-5 py-3.5 text-center bg-[#FF0B1B]/5 border-x border-[#FF0B1B]/10">
-                      <CompCell val={row.mm} />
-                    </td>
-                    <td className="px-5 py-3.5 text-center"><CompCell val={row.dd} /></td>
-                    <td className="px-5 py-3.5 text-center"><CompCell val={row.pix} /></td>
-                    <td className="px-5 py-3.5 text-center"><CompCell val={row.bentley} /></td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <div className="flex items-center gap-6 px-5 py-3 border-t border-zinc-800 bg-[#050505]">
-              <div className="flex items-center gap-2"><Check size={12} className="text-[#FF0B1B]" /><span className="font-mono text-[9px] text-zinc-500">Full support</span></div>
-              <div className="flex items-center gap-2"><Minus size={12} className="text-zinc-500" /><span className="font-mono text-[9px] text-zinc-500">Partial</span></div>
-              <div className="flex items-center gap-2"><X size={12} className="text-zinc-700" /><span className="font-mono text-[9px] text-zinc-500">Not supported</span></div>
-            </div>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={1} className="space-y-px bg-zinc-800">
+            {comparisonRows.map((row, i) => (
+              <div key={i} className="grid grid-cols-[1fr_auto] items-center gap-8 bg-[#0A0A0A] px-8 py-5 hover:bg-[#0D0D0D] transition-colors group">
+                <div>
+                  <div className="font-heading text-sm font-bold text-white uppercase tracking-wide mb-1">{row.capability}</div>
+                  <div className="font-mono text-xs text-zinc-500 leading-relaxed">{row.desc}</div>
+                </div>
+                <div className="flex items-center gap-2 flex-shrink-0">
+                  <Check size={16} className="text-[#FF0B1B]" />
+                  <span className="font-mono text-[10px] text-[#FF0B1B] tracking-[0.1em] uppercase">Supported</span>
+                </div>
+              </div>
+            ))}
           </motion.div>
         </div>
       </section>
