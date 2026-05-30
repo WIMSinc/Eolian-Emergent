@@ -3,8 +3,6 @@ import { motion } from "framer-motion";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
 import axios from "axios";
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
-
 export default function ContactSection() {
   const [form, setForm] = useState({
     name: "",
@@ -23,7 +21,7 @@ export default function ContactSection() {
     e.preventDefault();
     setStatus("sending");
     try {
-      await axios.post(`${API}/contact`, form);
+      await axios.post(`/api/contact`, form);
       setStatus("success");
       setForm({ name: "", email: "", phone: "", organization: "", message: "" });
       setTimeout(() => setStatus("idle"), 4000);

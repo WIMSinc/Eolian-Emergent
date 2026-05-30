@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Download, X, Send, CheckCircle, Loader2 } from "lucide-react";
 import axios from "axios";
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 export default function CatalogModal({ open, onClose }) {
   const [form, setForm] = useState({ name: "", email: "", phone: "", organization: "" });
@@ -13,7 +12,7 @@ export default function CatalogModal({ open, onClose }) {
     e.preventDefault();
     setStatus("sending");
     try {
-      const { data } = await axios.post(`${API}/catalog-request`, form);
+      const { data } = await axios.post(`/api/catalog-request`, form);
       setStatus("success");
       setTimeout(() => { window.open(data.download_url, "_blank"); }, 500);
     } catch {
