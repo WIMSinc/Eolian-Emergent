@@ -141,8 +141,8 @@ export default function MapMaker() {
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={1} className="relative">
               <div className="relative border border-zinc-800 overflow-hidden aspect-[4/3]">
                 <img
-                  src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1200&q=80"
-                  alt="3D Digital Twin aerial view"
+                  src="/mapmaker-storyboard.jpeg"
+                  alt="Map Maker 3D digital twin — campus aerial"
                   className="w-full h-full object-cover opacity-50"
                   loading="lazy"
                 />
@@ -195,35 +195,19 @@ export default function MapMaker() {
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            {/* Visual: before / after split */}
+            {/* Visual: product image */}
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={1}>
-              <div className="relative border border-zinc-800 overflow-hidden aspect-[16/10]">
-                {/* Raw side */}
-                <div className="absolute inset-y-0 left-0 w-1/2 overflow-hidden">
-                  <img
-                    src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800&q=80"
-                    alt="Raw aerial imagery"
-                    className="w-[200%] h-full object-cover opacity-60"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-zinc-900/40" />
-                  <div className="absolute top-3 left-3 font-mono text-[9px] tracking-[0.15em] text-amber-400 border border-amber-400/30 bg-[#050505]/80 px-2 py-0.5">RAW DATA</div>
-                </div>
-                {/* Digital twin side */}
-                <div className="absolute inset-y-0 right-0 w-1/2 overflow-hidden">
-                  <img
-                    src="https://images.unsplash.com/photo-1565008576549-57569a49371d?w=800&q=80"
-                    alt="3D digital twin model"
-                    className="w-[200%] h-full object-cover -translate-x-1/2 opacity-70"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-[#FF0B1B]/5" />
-                  <div className="absolute top-3 right-3 font-mono text-[9px] tracking-[0.15em] text-[#FF0B1B] border border-[#FF0B1B]/30 bg-[#050505]/80 px-2 py-0.5">DIGITAL TWIN</div>
-                </div>
-                {/* Divider */}
-                <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-px bg-[#FF0B1B] shadow-[0_0_12px_rgba(255,11,27,0.5)]">
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 border-2 border-[#FF0B1B] bg-[#050505] rounded-full" />
-                </div>
+              <div className="relative border border-zinc-800 overflow-hidden">
+                <img
+                  src="/mapmaker-example.png"
+                  alt="Map Maker 3D reconstruction — building exterior with data panel"
+                  className="w-full h-auto object-contain"
+                  loading="lazy"
+                />
+                <div className="absolute top-0 left-0 w-5 h-5 border-t-2 border-l-2 border-[#FF0B1B]" />
+                <div className="absolute top-0 right-0 w-5 h-5 border-t-2 border-r-2 border-[#FF0B1B]" />
+                <div className="absolute bottom-0 left-0 w-5 h-5 border-b-2 border-l-2 border-[#FF0B1B]" />
+                <div className="absolute bottom-0 right-0 w-5 h-5 border-b-2 border-r-2 border-[#FF0B1B]" />
               </div>
 
               {/* Pipeline */}
@@ -279,25 +263,23 @@ export default function MapMaker() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Visual */}
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={1}>
-              <div className="relative border border-zinc-800 overflow-hidden aspect-[4/3]">
+              <div className="relative border border-zinc-800 overflow-hidden mb-3">
+                <div className="absolute top-3 left-3 z-10 font-mono text-[9px] text-[#FF0B1B] border border-[#FF0B1B]/30 bg-[#050505]/80 px-2 py-0.5 tracking-[0.15em]">INTERIOR // MULTI-LEVEL</div>
                 <img
-                  src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80"
-                  alt="Interior LiDAR scan — multi-floor structure"
-                  className="w-full h-full object-cover opacity-40"
+                  src="/mapmaker-lidar-breakdown.png"
+                  alt="Interior LiDAR scan — layered floor plan breakdown"
+                  className="w-full h-auto object-contain bg-white"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#050505]/20 to-[#050505]/80" />
-                {/* Layer labels */}
-                <div className="absolute right-4 top-[18%] flex items-center gap-2">
-                  <div className="font-mono text-[9px] text-[#FF0B1B] tracking-[0.15em] uppercase border-l-2 border-[#FF0B1B] pl-2">Ground Level</div>
-                </div>
-                <div className="absolute right-4 top-[43%] flex items-center gap-2">
-                  <div className="font-mono text-[9px] text-zinc-400 tracking-[0.15em] uppercase border-l-2 border-zinc-600 pl-2">Sub-Level 1</div>
-                </div>
-                <div className="absolute right-4 top-[66%] flex items-center gap-2">
-                  <div className="font-mono text-[9px] text-zinc-600 tracking-[0.15em] uppercase border-l-2 border-zinc-700 pl-2">Sub-Level 2</div>
-                </div>
-                <div className="absolute top-3 left-3 font-mono text-[9px] text-[#FF0B1B] border border-[#FF0B1B]/30 bg-[#050505]/80 px-2 py-0.5 tracking-[0.15em]">GPS-DENIED READY</div>
+              </div>
+              <div className="relative border border-zinc-800 overflow-hidden">
+                <div className="absolute top-3 left-3 z-10 font-mono text-[9px] text-[#FF0B1B] border border-[#FF0B1B]/30 bg-[#050505]/80 px-2 py-0.5 tracking-[0.15em]">SUBTERRANEAN // TUNNEL SCAN</div>
+                <img
+                  src="/mapmaker-lidar-tunnel.jpg"
+                  alt="LiDAR tunnel scan — subterranean environment"
+                  className="w-full h-48 object-cover"
+                  loading="lazy"
+                />
               </div>
 
               {/* Use case tags */}
@@ -389,8 +371,8 @@ export default function MapMaker() {
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={2}>
               <div className="relative border border-zinc-800 overflow-hidden aspect-[16/10]">
                 <img
-                  src="https://images.unsplash.com/photo-1682687982468-4584ff3c5ad7?w=900&q=80"
-                  alt="Underwater mapping sonar scan"
+                  src="/mapmaker-underwater.png"
+                  alt="Map Maker underwater 3D scan"
                   className="w-full h-full object-cover opacity-50"
                   loading="lazy"
                 />
