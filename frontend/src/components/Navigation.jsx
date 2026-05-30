@@ -28,9 +28,9 @@ const navLinks = [
   { label: "ABOUT", to: "/about", hasDropdown: true },
   { label: "ARTAK", to: "/artak", hasDropdown: true },
   { label: "MAP MAKER", to: "/mapmaker" },
+  { label: "SERVICES", to: "/services" },
   { label: "THE LAB", to: "/lab" },
   { label: "TEAM", to: "/team" },
-  { label: "SERVICES", to: "/services" },
   { label: "SUPPORT", to: "/support" },
   { label: "CONTACT", to: "/#contact" },
 ];

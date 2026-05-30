@@ -5,6 +5,7 @@ import ArtakFeaturesSection from "@/components/ArtakFeaturesSection";
 import PlatformSection from "@/components/PlatformSection";
 import UseCasesSection from "@/components/UseCasesSection";
 import CaseStudiesSection from "@/components/CaseStudiesSection";
+import VideoSection from "@/components/VideoSection";
 import ContactSection from "@/components/ContactSection";
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       <PlatformSection />
       <UseCasesSection />
       <CaseStudiesSection />
+      <VideoSection />
       <ContactSection />
     </>
   );

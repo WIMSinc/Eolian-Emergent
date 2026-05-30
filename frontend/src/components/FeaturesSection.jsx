@@ -76,7 +76,7 @@ export default function FeaturesSection() {
       <div
         className="absolute inset-0 opacity-[0.04]"
         style={{
-          backgroundImage: `url(https://images.unsplash.com/photo-1651505942687-efc26cb528ba?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MTJ8MHwxfHNlYXJjaHwxfHxodWQlMjBhYnN0cmFjdHxlbnwwfHx8fDE3NzYyNjc3MTZ8MA&ixlib=rb-4.1.0&q=85)`,
+          backgroundImage: `url(/artak-c2.png)`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           filter: "blur(60px)",

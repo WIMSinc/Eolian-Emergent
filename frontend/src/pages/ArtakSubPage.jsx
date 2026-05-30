@@ -17,7 +17,7 @@ const useCaseData = {
     titleAccent: "& Emergency Management",
     subtitle: "Empower Your Emergency Management",
     heroDesc: "Discover how ARTAK revolutionizes disaster response and emergency management with cutting-edge AR/VR technology, providing real-time insights and strategic advantages.",
-    image: "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=1200&q=80",
+    image: "/artak-in-action.png",
     body: "When crisis strikes, chaos often follows. Traditional tools and dashboards can't keep up with the speed or complexity of natural disasters — but ARTAK can. Through real-time geospatial visualization and immersive 3D command environments, ARTAK helps emergency management teams coordinate across agencies, track assets live, and visualize unfolding events with precision.",
     capabilities: [
       "Live drone and satellite feeds",
@@ -36,7 +36,7 @@ const useCaseData = {
     titleAccent: "& First Responders",
     subtitle: "Empower Your First Responders",
     heroDesc: "Every second matters. ARTAK integrates UAV data, terrain models, and team tracking into a shared 3D environment — enabling crews to visualize hazards, optimize routes, and train in realistic VR scenarios before entering the field.",
-    image: "https://images.unsplash.com/photo-1773839420967-b50018fc0505?w=1200&q=80",
+    image: "/artak-overview.jpg",
     body: "In Search and Rescue, every second counts. ARTAK gives SAR teams total operational awareness, fusing terrain data, GPS tracking, and drone intelligence into a single shared mission view. Commanders can see the terrain in full 3D, simulate rescue routes in VR before deployment, and direct field teams in real-time with AR overlays that highlight hazards, routes, and last-known locations.",
     capabilities: [
       "Integrated UAV and ground team tracking",
@@ -55,7 +55,7 @@ const useCaseData = {
     titleAccent: "& Protective Command",
     subtitle: "Immersive Command for Modern Security Operations",
     heroDesc: "In an age of increasing complexity, the security landscape demands precision, coordination, and adaptability. ARTAK gives protective teams complete operational awareness in one immersive, real-time environment.",
-    image: "https://images.unsplash.com/photo-1737502483541-92e91801cfaf?w=1200&q=80",
+    image: "/artak-c2.png",
     body: "Protect what matters most — people, assets, and critical infrastructure — with ARTAK's immersive command platform. From dignitary protection and large-scale event security to infrastructure surveillance and tactical coordination, ARTAK empowers security teams to operate with unmatched situational awareness, real-time intelligence, and coordinated response.",
     capabilities: [
       "High-value individual protection (executives, politicians, diplomats)",
@@ -76,7 +76,7 @@ const useCaseData = {
     titleAccent: "& Law Enforcement",
     subtitle: "Empower Your Law Enforcement Officers",
     heroDesc: "For urban operations, crowd control, or tactical response, ARTAK provides a shared operational view that improves decision-making and reduces risk. Officers can rehearse complex scenarios in XR and access real-time overlays during live incidents.",
-    image: "https://images.unsplash.com/photo-1700774607019-dfa5907a26fd?w=1200&q=80",
+    image: "/artak-roc-drill.jpg",
     body: "Modern policing demands more than dispatch and radio coordination — it requires total situational awareness. ARTAK brings this to life with 3D operational maps, immersive training, and field AR guidance for officers on the move. Whether managing a large-scale public event, coordinating a tactical response, or training for active shooter situations, ARTAK gives law enforcement leaders the tools to visualize, plan, and execute with confidence.",
     capabilities: [
       "3D incident management for crowd control or emergency events",
@@ -95,7 +95,7 @@ const useCaseData = {
     titleAccent: "& Emergency Services",
     subtitle: "Empower Your Fire Fighters",
     heroDesc: "ARTAK gives fire commanders complete situational awareness — tracking crews, visualizing structure layouts, and modeling wildfire spread in 3D. Through AR and VR, teams can prepare, respond, and review every mission with confidence.",
-    image: "https://images.unsplash.com/photo-1542621334-a254cf47733d?w=1200&q=80",
+    image: "/artak-mission-planning.jpg",
     body: "Wildfires and structural fires demand real-time coordination across multiple teams and jurisdictions. ARTAK brings clarity to the fireground with immersive 3D fire command visualization, integrated data feeds, and AR crew tracking. Incident commanders can view structure layouts, track crews inside buildings, or monitor wildfire spread using live drone imagery and predictive overlays.",
     capabilities: [
       "Pre-plan high-risk sites using 3D building models",
@@ -114,7 +114,7 @@ const useCaseData = {
     titleAccent: "& Aerospace Coordination",
     subtitle: "Empower Your Space Domain Operations",
     heroDesc: "From orbital mission planning to ground-station coordination, ARTAK enables teams to visualize assets, trajectories, and contingencies in immersive 3D. It brings real-time command awareness to an increasingly complex operational domain.",
-    image: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1200&q=80",
+    image: "/artak-xr-sdve.jpg",
     body: "As space operations become increasingly crowded and complex, ARTAK offers a new frontier in orbital visualization and mission command. Space operations teams can use ARTAK to visualize trajectories, monitor orbital assets, and simulate mission scenarios in VR. Whether managing satellites, coordinating ground communications, or responding to anomalies, ARTAK provides a unified, immersive command environment that enhances safety and decision speed.",
     capabilities: [
       "3D orbital visualization and trajectory mapping",
@@ -133,7 +133,7 @@ const useCaseData = {
     titleAccent: "Human-Autonomy Debrief",
     subtitle: "Collaborative Human Autonomy Operational Review Debriefing",
     heroDesc: "As Autonomous Collaborative Platforms take on greater tactical responsibility, traditional after-action review tools can no longer capture what actually happened. CHORD extends ARTAK to log, correlate, and reconstruct the full human-autonomy decision chain — giving warfighters and commanders the auditability they need to understand, trust, and refine autonomous systems.",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80",
+    image: "/artak-dhs-ov1.png",
     body: "The Department of the Air Force is undergoing a fundamental shift toward operations that integrate Autonomous Collaborative Platforms (ACPs) alongside human operators. Existing mission debriefing approaches — manual, verbal, two-dimensional, and human-centric — are no longer sufficient to capture, reconstruct, and explain mission outcomes when autonomy is in the loop. CHORD (Collaborative Human Autonomy Operational Review Debriefing) addresses this gap by extending ARTAK's proven mission planning and C2 platform with a Unified Decision Graph that fuses human and ACP decision chains into a single time-aligned, causally-linked representation. Built on a six-layer service-oriented architecture and exposed through ARTAK's multi-modal interface, CHORD enables warfighters to interrogate what decisions were made, when they occurred, why — and how human-machine interactions shaped mission outcomes.",
     capabilities: [
       "Unified Decision Graph fusing human and ACP decision chains into a time-aligned, causally-linked narrative",
@@ -156,7 +156,7 @@ const useCaseData = {
     titleAccent: "Chemical-Biological Operations",
     subtitle: "AR Situational Awareness for CB Contested Environments",
     heroDesc: "Toxic agents are invisible. CB sensors generate alerts that are nearly impossible to interpret in MOPP gear. CB-SIGHT changes that — projecting chemical and biological threat data directly into the warfighter's heads-up field of view, so operators can stay eyes-out and mission-focused even in the most hazardous environments.",
-    image: "https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=1200&q=80",
+    image: "/artak-mission-planning.jpg",
     body: "Warfighters operating in Chemical and Biological (CB) contested environments face extreme challenges in situational awareness. Today's solutions force a 'heads down, eyes down' posture — requiring operators to look at EUDs that are difficult to manipulate in protective gloves while wearing an M50 mask. CB-SIGHT is Eolian's response: a clip-on, low-SWaP tactical AR HMI that overlays critical CB hazard information directly onto the warfighter's real-world view in real time. Integrating with existing CB sensors, Nett Warrior EUDs, and the ATAK ecosystem, CB-SIGHT fuses distributed sensor data across the entire operational team — so every warfighter and command post sees the same common operating picture simultaneously. Developed with NT Concepts and Kopin Corporation, and engineered for MOPP Level 3 and 4 compatibility, CB-SIGHT leverages lessons learned from Army IVAS to deliver a carefully designed, minimally intrusive interface that enhances lethality without adding cognitive burden.",
     capabilities: [
       "Real-time AR overlay of CB hazard zones, agent type, concentration, and safe maneuver routes on the warfighter's HUD",
