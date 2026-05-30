@@ -6,7 +6,7 @@ const stats = [
   { value: "6", label: "Continents Deployed" },
   { value: "100%", label: "Offline Capable" },
   { value: "<20min", label: "Raw Data to 3D Model" },
-  { value: "3", label: "Domains Covered" },
+  { value: "ALL", label: "Domains Covered" },
 ];
 
 const inputTypes = [
@@ -115,7 +115,7 @@ export default function MapMaker() {
                 The Digital<br /><span className="text-[#FF0B1B]">Twin</span><br />Advantage
               </h1>
               <p className="text-base md:text-lg text-zinc-400 max-w-xl leading-relaxed mb-8">
-                Map Maker transforms raw sensor data — drone imagery, LiDAR, video, sonar — into photorealistic 3D digital twins in minutes, not months. Fully offline. Fully automated. Fully yours.
+                Map Maker transforms raw sensor data — drone imagery, LiDAR, video, sonar, satellite — into photorealistic 3D digital twins in minutes, not months. Fully offline. Fully automated. Fully yours.
               </p>
               <div className="flex gap-4 flex-wrap">
                 <a href="#kits" className="inline-flex items-center gap-2 bg-[#FF0B1B] text-white font-mono uppercase text-xs tracking-widest px-6 py-3 hover:bg-[#D90412] transition-colors">
