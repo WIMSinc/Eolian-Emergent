@@ -16,6 +16,7 @@ import AboutAwards from "@/pages/AboutAwards";
 import AboutIP from "@/pages/AboutIP";
 import ArtakSubPage from "@/pages/ArtakSubPage";
 import Team from "@/pages/Team";
+import Services from "@/pages/Services";
 import AdminLogin from "@/pages/AdminLogin";
 import AdminDashboard from "@/pages/AdminDashboard";
 import Terms from "@/pages/Terms";
@@ -55,6 +56,7 @@ function App() {
           <Route path="/lab" element={<Lab />} />
           <Route path="/support" element={<Support />} />
           <Route path="/team" element={<Team />} />
+          <Route path="/services" element={<Services />} />
           <Route path="/admin" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/terms" element={<Terms />} />

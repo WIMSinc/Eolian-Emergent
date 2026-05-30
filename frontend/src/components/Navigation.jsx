@@ -30,6 +30,7 @@ const navLinks = [
   { label: "MAP MAKER", to: "/mapmaker" },
   { label: "THE LAB", to: "/lab" },
   { label: "TEAM", to: "/team" },
+  { label: "SERVICES", to: "/services" },
   { label: "SUPPORT", to: "/support" },
   { label: "CONTACT", to: "/#contact" },
 ];
