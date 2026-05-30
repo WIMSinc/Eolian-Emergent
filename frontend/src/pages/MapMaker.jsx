@@ -1,3 +1,4 @@
+import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Check } from "lucide-react";
@@ -98,6 +99,7 @@ const fadeUp = {
 export default function MapMaker() {
   return (
     <div data-testid="mapmaker-page">
+      <SEO title="Map Maker — 3D Digital Twin Creation" description="ARTAK Map Maker transforms raw sensor data — drone imagery, LiDAR, video, sonar, satellite — into photorealistic 3D digital twins in minutes." path="/mapmaker" />
 
       {/* ── Hero ── */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-0">

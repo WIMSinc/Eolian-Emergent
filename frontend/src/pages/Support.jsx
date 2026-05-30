@@ -1,3 +1,4 @@
+import SEO from "@/components/SEO";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Phone, Ticket, FileText, Download, ChevronDown, ArrowRight, Shield, Headset, Wifi, RefreshCw, Lock } from "lucide-react";
@@ -60,6 +61,7 @@ export default function Support() {
 
   return (
     <div data-testid="support-page">
+      <SEO title="Support" description="Mission-critical support for ARTAK deployments. Submit tickets, access documentation, FAQs, and 24/7 emergency hotline." path="/support" />
       {/* Hero */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
         <div className="absolute inset-0 tactical-grid opacity-30" />

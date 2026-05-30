@@ -1,3 +1,4 @@
+import SEO from "@/components/SEO";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -60,6 +61,7 @@ function BulletList({ items }) {
 export default function Services() {
   return (
     <div data-testid="services-page">
+      <SEO title="Services" description="EolianVR offers ARTAK platform licensing, custom AR/VR/MR development, systems integration, immersive training, and professional government contracting services." path="/services" />
 
       {/* Hero */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28">

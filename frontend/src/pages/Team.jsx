@@ -1,3 +1,4 @@
+import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { User } from "lucide-react";
 
@@ -46,6 +47,7 @@ function MemberCard({ member, index }) {
 export default function Team() {
   return (
     <div data-testid="team-page">
+      <SEO title="Our Team" description="Meet the EolianVR leadership team — experts in AR/VR, defense technology, and immersive command & control systems." path="/team" />
       {/* Hero */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="absolute inset-0 tactical-grid opacity-30" />
