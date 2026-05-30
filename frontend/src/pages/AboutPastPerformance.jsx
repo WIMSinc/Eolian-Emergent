@@ -34,9 +34,30 @@ const contracts = [
     label: "Original Prototype OTA",
     period: "April 2020",
     amount: "$2.4M",
-    items: [
-      "Foundation OTA from USSOCOM to develop ARTAK and DAVID (Data Aggregation for Intelligent Decisioning)",
-      "Foundation contract from which ARTAK was built and proven",
+    problemStatement: "Modern special operations forces operate in information-saturated environments where the critical challenge isn't a lack of data — it's the inability to aggregate it, make sense of it, and act on it faster than the adversary. In 2020, SOF commanders faced a fragmented landscape of siloed C2 tools, incompatible data formats, and systems that couldn't speak to each other — let alone present a coherent, real-time common operating picture to a geographically distributed force. Operators were making high-stakes decisions from 2D maps, disconnected intelligence feeds, and planning processes that hadn't fundamentally changed in decades. USSOCOM tasked EolianVR to solve this. The mandate was ambitious: build a data-agnostic aggregation and visualization engine capable of ingesting intelligence from any source, in any format, and rendering it in a unified, immersive, real-time decision environment accessible from the edge.",
+    programs: [
+      {
+        name: "ARTAK",
+        fullName: "Augmented Reality Tactical Awareness Kit",
+        desc: "ARTAK was purpose-built to answer USSOCOM's mandate — delivering a unified, immersive C2 platform capable of aggregating multi-domain intelligence and presenting it as a real-time, shared 3D common operating picture across AR, VR, and PC devices simultaneously. From its 2020 prototype foundation, ARTAK has since been deployed on 6 continents, validated across 10+ SOF exercises, and transitioned directly to a $10M production OTA — one of the rarest distinctions in the DoD acquisition process.",
+        items: [
+          "Data-agnostic ingestion engine — fuses ISR feeds, UAS imagery, ATAK PLI, and sensor data from any source",
+          "Immersive 3D common operating picture rendered across AR, VR, and PC simultaneously",
+          "Real-time collaborative planning environment accessible from the tactical edge",
+          "Foundation for ARTAK Map Maker — 3D digital twin generation from UAS-collected imagery",
+        ],
+      },
+      {
+        name: "DaVID",
+        fullName: "Data Aggregation and Visualization for Intelligent Decisioning",
+        desc: "The increasing technical complexity of future missions has driven a rapid rise in the volume, variety, and veracity of data across the SOCOM enterprise — from the tactical level to the acquisition shops. As a result, there are exponentially more complex and dynamic relationships within data that are difficult to identify, visualize, and communicate using current technology. Eolian was tasked with solving this problem at scale: ingesting 1,200 BAA RFP responses and creating an immersive, interactive 3D hypergraph that made those relationships visible and actionable — transforming an overwhelming acquisition data challenge into a navigable decision environment.",
+        items: [
+          "Ingested and structured 1,200 BAA RFP responses for SOCOM S&T acquisition analysis",
+          "Generated an immersive, interactive 3D hypergraph surfacing complex relationships within the data",
+          "Demonstrated that exponentially complex data sets can be rendered navigable through immersive visualization",
+          "Validated EolianVR's data aggregation architecture as applicable across tactical and enterprise acquisition contexts",
+        ],
+      },
     ],
   },
   {
@@ -292,14 +313,45 @@ export default function AboutPastPerformance() {
                   </div>
                   <div className="font-heading text-2xl font-bold text-white">{c.amount}</div>
                 </div>
-                <ul className="space-y-2">
-                  {c.items.map((item, j) => (
-                    <li key={j} className="flex items-start gap-3 text-sm text-zinc-400 leading-relaxed">
-                      <div className="w-1.5 h-1.5 bg-[#FF0B1B] mt-1.5 flex-shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+
+                {c.problemStatement && (
+                  <div className="mb-8 border-l-2 border-zinc-700 pl-5">
+                    <div className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase mb-2">The Problem USSOCOM Needed Solved</div>
+                    <p className="text-sm text-zinc-400 leading-relaxed">{c.problemStatement}</p>
+                  </div>
+                )}
+
+                {c.programs ? (
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-zinc-800">
+                    {c.programs.map((prog, j) => (
+                      <div key={j} className="bg-[#0D0D0D] p-6">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="font-heading text-base font-bold text-white uppercase tracking-tight">{prog.name}</span>
+                          <span className="w-px h-3 bg-zinc-700" />
+                          <span className="font-mono text-[10px] text-zinc-500 tracking-wide">{prog.fullName}</span>
+                        </div>
+                        <p className="text-sm text-zinc-400 leading-relaxed mb-4">{prog.desc}</p>
+                        <ul className="space-y-2">
+                          {prog.items.map((item, k) => (
+                            <li key={k} className="flex items-start gap-3 text-xs text-zinc-500 leading-relaxed">
+                              <div className="w-1 h-1 bg-[#FF0B1B] mt-1.5 flex-shrink-0" />
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <ul className="space-y-2">
+                    {c.items.map((item, j) => (
+                      <li key={j} className="flex items-start gap-3 text-sm text-zinc-400 leading-relaxed">
+                        <div className="w-1.5 h-1.5 bg-[#FF0B1B] mt-1.5 flex-shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </motion.div>
             ))}
           </div>
