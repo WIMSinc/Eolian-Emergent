@@ -1,3 +1,4 @@
+import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, FileText, Shield, ExternalLink, Lock } from "lucide-react";
@@ -46,6 +47,7 @@ const fadeUp = {
 export default function AboutIP() {
   return (
     <div data-testid="ip-page">
+      <SEO title="Intellectual Property" description="EolianVR's intellectual property portfolio including patents, trademarks, and proprietary technology across AR/VR and defense platforms." path="/about/intellectual-property" />
       {/* Hero */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="absolute inset-0 tactical-grid opacity-30" />

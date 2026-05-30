@@ -1,3 +1,4 @@
+import SEO from "@/components/SEO";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -193,6 +194,7 @@ export default function ArtakSubPage() {
 
   return (
     <div data-testid={`artak-subpage-${slug}`}>
+      <SEO title={data.title + ' — ' + data.titleAccent} description={data.heroDesc} path={'/artak/' + slug} />
       {/* Hero */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
         <div className="absolute inset-0 tactical-grid opacity-30" />

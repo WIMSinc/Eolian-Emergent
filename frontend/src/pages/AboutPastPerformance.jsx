@@ -1,3 +1,4 @@
+import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
@@ -270,6 +271,7 @@ const fadeUp = {
 export default function AboutPastPerformance() {
   return (
     <div data-testid="past-performance-page">
+      <SEO title="Past Performance" description="EolianVR's past performance across USSOCOM, DoD, and public safety — government contracts, SOF exercises, and formal technology assessments." path="/about/past-performance" />
       {/* Hero */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="absolute inset-0 tactical-grid opacity-30" />

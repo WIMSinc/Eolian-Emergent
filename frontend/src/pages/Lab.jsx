@@ -1,3 +1,4 @@
+import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { FlaskConical, Download, ArrowRight } from "lucide-react";
@@ -26,6 +27,7 @@ const fadeUp = {
 export default function Lab() {
   return (
     <div data-testid="lab-page">
+      <SEO title="The Lab" description="EolianVR's innovation lab — experiments, research, and prototype testing for next-generation AR/VR defense and public safety applications." path="/lab" />
       {/* Hero */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="absolute inset-0 tactical-grid opacity-30" />
