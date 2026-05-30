@@ -1,3 +1,4 @@
+import SEO from "@/components/SEO";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Trophy, Star, DollarSign, Award } from "lucide-react";
@@ -55,6 +56,7 @@ const fadeUp = {
 export default function AboutAwards() {
   return (
     <div data-testid="awards-page">
+      <SEO title="Awards & Recognition" description="EolianVR's awards and recognition in defense technology, AR/VR innovation, and immersive command & control." path="/about/awards" />
       {/* Hero */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="absolute inset-0 tactical-grid opacity-30" />

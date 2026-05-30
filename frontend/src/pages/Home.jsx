@@ -1,3 +1,4 @@
+import SEO, { organizationSchema, websiteSchema } from "@/components/SEO";
 import HeroSection from "@/components/HeroSection";
 import ProductSection from "@/components/ProductSection";
 import FeaturesSection from "@/components/FeaturesSection";
@@ -11,6 +12,7 @@ import ContactSection from "@/components/ContactSection";
 export default function Home() {
   return (
     <>
+      <SEO jsonLd={[organizationSchema, websiteSchema]} />
       <HeroSection />
       <ProductSection />
       <FeaturesSection />

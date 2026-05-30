@@ -1,3 +1,4 @@
+import SEO from "@/components/SEO";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -69,6 +70,7 @@ const fadeUp = {
 export default function About() {
   return (
     <div data-testid="about-page">
+      <SEO title="About EolianVR" description="Learn about EolianVR, Inc. — pioneers in AR/VR solutions for defense, government, and enterprise. Our mission, values, NAICS codes, and capabilities." path="/about" />
       {/* Hero */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="absolute inset-0 tactical-grid opacity-30" />
