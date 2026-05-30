@@ -15,8 +15,8 @@ export default function Home() {
       <SEO jsonLd={[organizationSchema, websiteSchema]} />
       <HeroSection />
       <ProductSection />
-      <FeaturesSection />
       <ArtakFeaturesSection />
+      <FeaturesSection />
       <PlatformSection />
       <UseCasesSection />
       <CaseStudiesSection />

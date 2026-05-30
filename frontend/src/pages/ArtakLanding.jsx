@@ -69,11 +69,11 @@ export default function ArtakLanding() {
       {/* Product overview */}
       <ProductSection />
 
-      {/* Block 2 Release / Features */}
-      <FeaturesSection />
-
       {/* Platform Features */}
       <ArtakFeaturesSection />
+
+      {/* Block 2 Release / Features */}
+      <FeaturesSection />
 
       {/* Deployable Everywhere / Platforms */}
       <PlatformSection />
