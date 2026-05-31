@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import * as Sentry from "@sentry/react";
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import { HelmetProvider } from "react-helmet-async";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
@@ -17,10 +18,12 @@ Sentry.init({
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <HelmetProvider>
-      <App />
-      <Analytics />
-      <SpeedInsights />
-    </HelmetProvider>
+    <GoogleReCaptchaProvider reCaptchaKey="6LcdWQYtAAAAAPjj1T6Peg9r65VoByp4wjyVP0fj">
+      <HelmetProvider>
+        <App />
+        <Analytics />
+        <SpeedInsights />
+      </HelmetProvider>
+    </GoogleReCaptchaProvider>
   </React.StrictMode>,
 );

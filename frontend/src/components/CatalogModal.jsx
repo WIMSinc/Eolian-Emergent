@@ -1,25 +1,27 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Download, X, Send, CheckCircle, Loader2 } from "lucide-react";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import axios from "axios";
 
-
 export default function CatalogModal({ open, onClose }) {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", organization: "" });
+  const { executeRecaptcha } = useGoogleReCaptcha();
+  const [form, setForm] = useState({ name: "", email: "", phone: "", organization: "", website: "" });
   const [status, setStatus] = useState("idle");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
     setStatus("sending");
     try {
-      const { data } = await axios.post(`/api/catalog-request`, form);
+      const token = executeRecaptcha ? await executeRecaptcha("catalog_request") : "";
+      await axios.post(`/api/catalog-request`, { ...form, recaptchaToken: token });
       setStatus("success");
-      setTimeout(() => { window.open(data.download_url, "_blank"); }, 500);
+      setTimeout(() => { window.open("https://hubs.ly/Q04hl6L40", "_blank"); }, 500);
     } catch {
       setStatus("success");
       window.open("https://hubs.ly/Q04hl6L40", "_blank");
     }
-  };
+  }, [executeRecaptcha, form]);
 
   const inputCls = "w-full bg-transparent border border-zinc-800 py-2.5 px-3 text-sm text-white font-mono placeholder:text-zinc-700 focus:border-[#FF0B1B] focus:outline-none transition-colors";
 
@@ -43,6 +45,8 @@ export default function CatalogModal({ open, onClose }) {
                 <h3 className="font-heading text-xl font-bold text-white uppercase mb-2">ARTAK Product Catalog</h3>
                 <p className="text-sm text-zinc-400 mb-6">Fill out the form below to download the full ARTAK product catalog.</p>
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  {/* Honeypot */}
+                  <input type="text" name="website" value={form.website} onChange={(e) => setForm({ ...form, website: e.target.value })} tabIndex={-1} autoComplete="off" style={{ position: "absolute", left: "-9999px", opacity: 0, height: 0 }} aria-hidden="true" />
                   <div>
                     <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase block mb-1.5">Name *</label>
                     <input data-testid="catalog-name" type="text" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Your name" className={inputCls} />
