@@ -1,37 +1,39 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import axios from "axios";
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
-
 export default function ContactSection() {
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [form, setForm] = useState({
     name: "",
     email: "",
     phone: "",
     organization: "",
     message: "",
+    website: "", // honeypot — never shown to users
   });
-  const [status, setStatus] = useState("idle"); // idle | sending | success | error
+  const [status, setStatus] = useState("idle");
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
     setStatus("sending");
     try {
-      await axios.post(`${API}/contact`, form);
+      const token = executeRecaptcha ? await executeRecaptcha("contact_form") : "";
+      await axios.post(`/api/contact`, { ...form, recaptchaToken: token });
       setStatus("success");
-      setForm({ name: "", email: "", phone: "", organization: "", message: "" });
+      setForm({ name: "", email: "", phone: "", organization: "", message: "", website: "" });
       setTimeout(() => setStatus("idle"), 4000);
     } catch {
       setStatus("error");
       setTimeout(() => setStatus("idle"), 4000);
     }
-  };
+  }, [executeRecaptcha, form]);
 
   const inputClass =
     "w-full bg-transparent border-b border-zinc-800 py-3 px-0 text-sm text-white font-mono placeholder:text-zinc-600 focus:border-[#FF0B1B] focus:outline-none transition-colors duration-300";
@@ -42,12 +44,10 @@ export default function ContactSection() {
       data-testid="contact-section"
       className="relative py-24 md:py-32"
     >
-      {/* Subtle grid bg */}
       <div className="absolute inset-0 tactical-grid opacity-50" />
 
       <div className="relative max-w-[1400px] mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
-          {/* Left side */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -70,7 +70,6 @@ export default function ContactSection() {
             </p>
           </motion.div>
 
-          {/* Right side - Form */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -78,6 +77,18 @@ export default function ContactSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Honeypot — hidden from real users */}
+              <input
+                type="text"
+                name="website"
+                value={form.website}
+                onChange={handleChange}
+                tabIndex={-1}
+                autoComplete="off"
+                style={{ position: "absolute", left: "-9999px", opacity: 0, height: 0 }}
+                aria-hidden="true"
+              />
+
               <div>
                 <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase block mb-2">
                   Name *
@@ -163,17 +174,11 @@ export default function ContactSection() {
                 {status === "sending" ? (
                   "Transmitting..."
                 ) : status === "success" ? (
-                  <>
-                    <CheckCircle size={16} /> Message Sent
-                  </>
+                  <><CheckCircle size={16} /> Message Sent</>
                 ) : status === "error" ? (
-                  <>
-                    <AlertCircle size={16} /> Error — Try Again
-                  </>
+                  <><AlertCircle size={16} /> Error — Try Again</>
                 ) : (
-                  <>
-                    <Send size={16} /> Submit Message
-                  </>
+                  <><Send size={16} /> Submit Message</>
                 )}
               </button>
             </form>

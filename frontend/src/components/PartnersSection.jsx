@@ -7,7 +7,7 @@ const partners = [
   { name: "Unity", sub: "3D Engine" },
   { name: "TAK", sub: "ATAK / WinTAK" },
   { name: "PIX4D", sub: "Photogrammetry" },
-  { name: "Reveal", sub: "Farsight" },
+  { name: "Nvidia", sub: "Inception Program" },
   { name: "SAM.GOV", sub: "Federal Procurement" },
 ];
 

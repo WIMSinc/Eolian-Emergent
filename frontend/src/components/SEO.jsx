@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 
 const SITE = "EolianVR";
 const DEFAULT_DESC = "EolianVR delivers Augmented Reality and Virtual Reality solutions for defense, government, and enterprise. ARTAK platform for command & control, 3D mission planning, and situational awareness.";
-const DEFAULT_IMG = "https://images.unsplash.com/photo-1588336443962-49d88df004a1?w=1200&q=80";
+const DEFAULT_IMG = "https://www.eolianvr.com/artak-overview.jpg";
 const SITE_URL = "https://www.eolianvr.com";
 
 export default function SEO({ title, description = DEFAULT_DESC, image = DEFAULT_IMG, path = "", noindex = false, type = "website", jsonLd = null }) {

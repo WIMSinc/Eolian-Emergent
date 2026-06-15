@@ -4,6 +4,10 @@ from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
+import smtplib
+import asyncio
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict
 from typing import List, Optional
@@ -124,6 +128,52 @@ class LoginRequest(BaseModel):
     email: str
     password: str
 
+class CatalogRequest(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    name: str
+    email: str
+    phone: str = ""
+    organization: str = ""
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class CatalogRequestCreate(BaseModel):
+    name: str
+    email: str
+    phone: str = ""
+    organization: str = ""
+
+
+# ─── Email helper ─────────────────────────────────────────
+
+def _send_email_sync(subject: str, body: str):
+    smtp_host = os.environ.get("SMTP_HOST", "")
+    smtp_port = int(os.environ.get("SMTP_PORT", "587"))
+    smtp_user = os.environ.get("SMTP_USER", "")
+    smtp_pass = os.environ.get("SMTP_PASS", "")
+    notify_email = os.environ.get("NOTIFY_EMAIL", "mike@eolianvr.com")
+
+    if not smtp_host or not smtp_user or not smtp_pass:
+        logger.warning("SMTP not configured — skipping email notification")
+        return
+
+    msg = MIMEMultipart("alternative")
+    msg["Subject"] = subject
+    msg["From"] = smtp_user
+    msg["To"] = notify_email
+    msg.attach(MIMEText(body, "plain"))
+
+    with smtplib.SMTP(smtp_host, smtp_port) as server:
+        server.starttls()
+        server.login(smtp_user, smtp_pass)
+        server.sendmail(smtp_user, notify_email, msg.as_string())
+
+async def send_notification_email(subject: str, body: str):
+    try:
+        await asyncio.to_thread(_send_email_sync, subject, body)
+    except Exception as exc:
+        logger.error("Email notification failed: %s", exc)
+
 
 # ─── Public endpoints ────────────────────────────────────
 
@@ -153,6 +203,33 @@ async def create_contact_submission(input: ContactSubmissionCreate):
     doc = obj.model_dump()
     doc['timestamp'] = doc['timestamp'].isoformat()
     await db.contact_submissions.insert_one(doc)
+    body = (
+        f"New contact form submission from {obj.name}\n\n"
+        f"Name: {obj.name}\n"
+        f"Email: {obj.email}\n"
+        f"Phone: {obj.phone or 'N/A'}\n"
+        f"Organization: {obj.organization or 'N/A'}\n\n"
+        f"Message:\n{obj.message}\n\n"
+        f"Submitted: {obj.timestamp.strftime('%Y-%m-%d %H:%M UTC')}"
+    )
+    asyncio.create_task(send_notification_email("[EolianVR] New Contact Form Submission", body))
+    return obj
+
+@api_router.post("/catalog-request", response_model=CatalogRequest)
+async def create_catalog_request(input: CatalogRequestCreate):
+    obj = CatalogRequest(**input.model_dump())
+    doc = obj.model_dump()
+    doc['timestamp'] = doc['timestamp'].isoformat()
+    await db.catalog_requests.insert_one(doc)
+    body = (
+        f"New catalog download request from {obj.name}\n\n"
+        f"Name: {obj.name}\n"
+        f"Email: {obj.email}\n"
+        f"Phone: {obj.phone or 'N/A'}\n"
+        f"Organization: {obj.organization or 'N/A'}\n\n"
+        f"Submitted: {obj.timestamp.strftime('%Y-%m-%d %H:%M UTC')}"
+    )
+    asyncio.create_task(send_notification_email("[EolianVR] New Catalog Download Request", body))
     return obj
 
 @api_router.get("/contact", response_model=List[ContactSubmission])

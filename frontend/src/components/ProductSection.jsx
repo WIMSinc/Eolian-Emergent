@@ -8,8 +8,7 @@ const panels = [
     subtitle: "ARTAK Block 2 Out Now",
     description:
       "ARTAK is a multi-domain joint planning and command & control platform. It synchronizes planning and C2 activities across echelons, domains, and warfighting functions by bringing command and staff together into a single digital decision environment. ARTAK software is device agnostic, running across AR, VR, Tablet, Phone, Laptop, and PC.",
-    image:
-      "https://images.unsplash.com/photo-1588336443962-49d88df004a1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w7NTY2ODh8MHwxfHNlYXJjaHwxfHxhdWdtZW50ZWQlMjByZWFsaXR5JTIwaGVhZHNldCUyMGRhcmt8ZW58MHx8fHwxNzc2MjY3NjkwfDA&ixlib=rb-4.1.0&q=85",
+    image: "/artak-overview.jpg",
     icon: Shield,
     span: "md:col-span-7",
   },
@@ -19,8 +18,7 @@ const panels = [
     subtitle: "NextGen C2 / JADC2 Across Echelons",
     description:
       "ARTAK is built to serve as command's heads-up display and allow for more informed decision making. Users create a session, observe the location of concern, engage with data layers, and watch their lanes. As intel becomes available it populates in real-time on the session map, alerting all users to the changing environment and enabling instantaneous understanding of the operational state.",
-    image:
-      "https://images.unsplash.com/photo-1737502483541-92e91801cfaf?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzN8MHwxfHNlYXJjaHwxfHxtaWxpdGFyeSUyMHRhY3RpY2FsJTIwY29tbWFuZCUyMGNlbnRlciUyMGRhcmt8ZW58MHx8fHwxNzc2MjY3OTc5fDA&ixlib=rb-4.1.0&q=85",
+    image: "/artak-c2.png",
     icon: Crosshair,
     span: "md:col-span-5",
   },
@@ -30,8 +28,7 @@ const panels = [
     subtitle: "Enhancing Collaboration Across Partner Forces",
     description:
       "ARTAK deployed in preparation for and during NATO SOF 2025 to increase the efficiency and precision of planning, briefing, and rehearsal activities across both US and Partner Forces. The shared understanding and enhanced situational awareness provided by ARTAK helped enable successful execution of training missions.",
-    image:
-      "https://images.unsplash.com/photo-1759167625071-069dc252702f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA0MTJ8MHwxfHNlYXJjaHwyfHxhdWdtZW50ZWQlMjByZWFsaXR5JTIwVlIlMjBoZWFkc2V0JTIwbWlsaXRhcnklMjBkYXJrfGVufDB8fHx8MTc3NjI2Nzk4NXww&ixlib=rb-4.1.0&q=85",
+    image: "/artak-mission-planning.jpg",
     icon: Globe,
     span: "md:col-span-6",
   },
@@ -41,8 +38,7 @@ const panels = [
     subtitle: "90 Min Joint ROC Drill Conducted in ARTAK",
     description:
       "ARTAK used to conduct a 90 minute rehearsal of concepts (ROC) drill during a joint exercise — the largest and longest brief ever conducted by a customer in ARTAK. Prior to the ROC Drill, key leaders collaborated using a realistic 3D map of the area of interest to develop the mission plan.",
-    image:
-      "https://images.unsplash.com/photo-1773839420967-b50018fc0505?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA0MTJ8MHwxfHNlYXJjaHwxfHxhdWdtZW50ZWQlMjByZWFsaXR5JTIwVlIlMjBoZWFkc2V0JTIwbWlsaXRhcnklMjBkYXJrfGVufDB8fHx8MTc3NjI2Nzk4NXww&ixlib=rb-4.1.0&q=85",
+    image: "/artak-roc-drill.jpg",
     icon: Radio,
     span: "md:col-span-6",
   },

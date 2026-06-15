@@ -59,7 +59,7 @@ export default function Footer() {
                 to={link.to}
                 data-testid={`footer-link-${link.label.toLowerCase()}`}
                 onClick={(e) => handleClick(e, link.label.toLowerCase())}
-                className="font-mono text-base text-zinc-300 hover:text-white transition-colors tracking-wider uppercase"
+                className="font-mono text-sm text-white hover:text-[#FF0B1B] transition-colors tracking-wider uppercase"
               >
                 {link.label}
               </Link>
@@ -72,10 +72,10 @@ export default function Footer() {
               &copy; {new Date().getFullYear()} EolianVR, Inc. All rights reserved.
             </div>
             <div className="flex gap-4 justify-end">
-              <Link to="/terms" data-testid="footer-link-terms" className="font-mono text-xs text-zinc-400 hover:text-white transition-colors tracking-wider uppercase">
+              <Link to="/terms" data-testid="footer-link-terms" className="font-mono text-xs text-zinc-300 hover:text-white transition-colors tracking-wider uppercase">
                 Terms & Conditions
               </Link>
-              <Link to="/privacy" data-testid="footer-link-privacy" className="font-mono text-xs text-zinc-400 hover:text-white transition-colors tracking-wider uppercase">
+              <Link to="/privacy" data-testid="footer-link-privacy" className="font-mono text-xs text-zinc-300 hover:text-white transition-colors tracking-wider uppercase">
                 Privacy Policy
               </Link>
             </div>
