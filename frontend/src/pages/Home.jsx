@@ -3,7 +3,6 @@ import HeroSection from "@/components/HeroSection";
 import ProductSection from "@/components/ProductSection";
 import ArtakFeaturesSection from "@/components/ArtakFeaturesSection";
 import FeaturesSection from "@/components/FeaturesSection";
-import ArtakFeaturesSection from "@/components/ArtakFeaturesSection";
 import PlatformSection from "@/components/PlatformSection";
 import UseCasesSection from "@/components/UseCasesSection";
 import CaseStudiesSection from "@/components/CaseStudiesSection";
