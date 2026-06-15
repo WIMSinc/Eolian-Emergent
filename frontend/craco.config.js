@@ -15,6 +15,7 @@ Module._load = function (request, parent, isMain) {
 
 const path = require("path");
 require("dotenv").config();
+const { sentryWebpackPlugin } = require("@sentry/webpack-plugin");
 
 const config = {
   enableHealthCheck: process.env.ENABLE_HEALTH_CHECK === "true",
@@ -64,6 +65,18 @@ let webpackConfig = {
       if (config.enableHealthCheck && healthPluginInstance) {
         webpackConfig.plugins.push(healthPluginInstance);
       }
+
+      if (process.env.SENTRY_AUTH_TOKEN) {
+        webpackConfig.devtool = "source-map";
+        webpackConfig.plugins.push(
+          sentryWebpackPlugin({
+            org: process.env.SENTRY_ORG,
+            project: process.env.SENTRY_PROJECT,
+            authToken: process.env.SENTRY_AUTH_TOKEN,
+          })
+        );
+      }
+
       return webpackConfig;
     },
   },
