@@ -4,11 +4,18 @@ import { ChevronDown } from "lucide-react";
 import TacticalCanvas from "./TacticalCanvas";
 
 const VIDEO_SRC = "/hero-bg-terrain.mp4";
-const POSTER_IMG = "https://images.pexels.com/videos/28649481/pexels-photo-28649481.jpeg?auto=compress&cs=tinysrgb&w=1920";
+const POSTER_IMG = "/hero-poster.webp";
 
 export default function HeroSection() {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const videoRef = useRef(null);
+  const [skipVideo] = useState(() => {
+    if (typeof window === "undefined") return false;
+    const isSmallScreen = window.matchMedia("(max-width: 768px)").matches;
+    const saveData = navigator.connection?.saveData;
+    const slowConnection = ["slow-2g", "2g", "3g"].includes(navigator.connection?.effectiveType);
+    return isSmallScreen || saveData || slowConnection;
+  });
 
   const scrollToArtak = () => {
     const el = document.querySelector("#artak");
@@ -31,26 +38,28 @@ export default function HeroSection() {
 
       {/* Video background */}
       <div className="absolute inset-0 z-[1]">
-        <video
-          ref={videoRef}
-          data-testid="hero-video-bg"
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster={POSTER_IMG}
-          onCanPlay={() => {
-            setVideoLoaded(true);
-            videoRef.current?.play().catch(() => {});
-          }}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-            videoLoaded ? "opacity-30" : "opacity-0"
-          }`}
-        >
-          <source src={VIDEO_SRC} type="video/mp4" />
-        </video>
-        {/* Poster fallback while video loads */}
-        {!videoLoaded && (
+        {!skipVideo && (
+          <video
+            ref={videoRef}
+            data-testid="hero-video-bg"
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={POSTER_IMG}
+            onCanPlay={() => {
+              setVideoLoaded(true);
+              videoRef.current?.play().catch(() => {});
+            }}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+              videoLoaded ? "opacity-30" : "opacity-0"
+            }`}
+          >
+            <source src={VIDEO_SRC} type="video/mp4" />
+          </video>
+        )}
+        {/* Poster fallback while video loads, or permanently on mobile/slow connections */}
+        {(skipVideo || !videoLoaded) && (
           <div
             className="absolute inset-0 bg-cover bg-center opacity-20"
             style={{ backgroundImage: `url(${POSTER_IMG})` }}

@@ -63,21 +63,21 @@ const kits = [
     name: "Offline Processing Kit",
     tier: "Software + Laptop",
     price: "Contact for Pricing",
-    img: "/mapmaker-kit-processing.png",
+    img: "/mapmaker-kit-processing.webp",
     features: ["High-performance laptop", "Map Maker Core software", "On-site training included", "24/7 tech support"],
   },
   {
     name: "Interior & Sub-T Collection Kit",
     tier: "LiDAR + Processing",
     price: "$114,688",
-    img: "/mapmaker-kit-lidar.png",
+    img: "/mapmaker-kit-lidar.webp",
     features: ["Laptop + Map Maker software", "Handheld LiDAR sensor", "GPS-denied capable", "On-site training & 24/7 support"],
   },
   {
     name: "Outdoor Collection & Processing Kit",
     tier: "UAS + Processing",
     price: "$149,240",
-    img: "/mapmaker-kit-uav.png",
+    img: "/mapmaker-kit-uav.webp",
     featured: true,
     features: ["Laptop + Map Maker software", "2× Blue UAS-approved UAVs", "Photogrammetry + video", "On-site training & 24/7 support"],
   },
@@ -85,7 +85,7 @@ const kits = [
     name: "Complete Collection & Processing Kit",
     tier: "Full Spectrum",
     price: "$207,760",
-    img: "/mapmaker-kit-complete.png",
+    img: "/mapmaker-kit-complete.webp",
     features: ["Laptop + Map Maker software", "Handheld LiDAR sensor", "2× Blue UAS-approved UAVs", "On-site training & 24/7 support"],
   },
 ];
@@ -143,7 +143,7 @@ export default function MapMaker() {
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={1} className="relative">
               <div className="relative border border-zinc-800 overflow-hidden aspect-[4/3]">
                 <img
-                  src="/mapmaker-storyboard.jpeg"
+                  src="/mapmaker-storyboard.webp"
                   alt="Map Maker 3D digital twin — campus aerial"
                   className="w-full h-full object-cover opacity-50"
                   loading="lazy"
@@ -201,7 +201,7 @@ export default function MapMaker() {
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={1}>
               <div className="relative border border-zinc-800 overflow-hidden">
                 <img
-                  src="/mapmaker-example.png"
+                  src="/mapmaker-example.webp"
                   alt="Map Maker 3D reconstruction — building exterior with data panel"
                   className="w-full h-auto object-contain"
                   loading="lazy"
@@ -268,7 +268,7 @@ export default function MapMaker() {
               <div className="relative border border-zinc-800 overflow-hidden mb-3">
                 <div className="absolute top-3 left-3 z-10 font-mono text-[9px] text-[#FF0B1B] border border-[#FF0B1B]/30 bg-[#050505]/80 px-2 py-0.5 tracking-[0.15em]">INTERIOR // MULTI-LEVEL</div>
                 <img
-                  src="/mapmaker-lidar-breakdown.png"
+                  src="/mapmaker-lidar-breakdown.webp"
                   alt="Interior LiDAR scan — layered floor plan breakdown"
                   className="w-full h-auto object-contain bg-white"
                   loading="lazy"
@@ -277,7 +277,7 @@ export default function MapMaker() {
               <div className="relative border border-zinc-800 overflow-hidden">
                 <div className="absolute top-3 left-3 z-10 font-mono text-[9px] text-[#FF0B1B] border border-[#FF0B1B]/30 bg-[#050505]/80 px-2 py-0.5 tracking-[0.15em]">SUBTERRANEAN // TUNNEL SCAN</div>
                 <img
-                  src="/mapmaker-lidar-tunnel.jpg"
+                  src="/mapmaker-lidar-tunnel.webp"
                   alt="LiDAR tunnel scan — subterranean environment"
                   className="w-full h-48 object-cover"
                   loading="lazy"
@@ -373,7 +373,7 @@ export default function MapMaker() {
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={2}>
               <div className="relative border border-zinc-800 overflow-hidden aspect-[16/10]">
                 <img
-                  src="/mapmaker-underwater.png"
+                  src="/mapmaker-underwater.webp"
                   alt="Map Maker underwater 3D scan"
                   className="w-full h-full object-cover opacity-50"
                   loading="lazy"

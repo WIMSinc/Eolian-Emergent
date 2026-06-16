@@ -102,7 +102,7 @@ export default function Navigation() {
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex items-center justify-between h-20 md:h-24">
         {/* Logo */}
         <Link to="/" data-testid="nav-logo" className="flex items-center gap-2 group">
-          <img src="/eolian-logo-white.png" alt="Eolian" className="h-12 md:h-14 w-auto" />
+          <img src="/eolian-logo-white.webp" alt="Eolian" className="h-12 md:h-14 w-auto" />
         </Link>
 
         {/* Desktop Links */}

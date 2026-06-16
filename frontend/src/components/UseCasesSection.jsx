@@ -8,7 +8,7 @@ const useCases = [
     sysLabel: "[UC.01]",
     title: "Disaster Response & Emergency Management",
     desc: "In times of chaos, ARTAK transforms fragmented operations into a unified mission picture. Real-time drone feeds, IoT data, and geospatial overlays help command centers coordinate faster, deploy smarter, and save more lives.",
-    image: "/artak-in-action.png",
+    image: "/artak-in-action.webp",
     slug: "disaster-response",
   },
   {
@@ -16,7 +16,7 @@ const useCases = [
     sysLabel: "[UC.02]",
     title: "Search & Rescue / First Responders",
     desc: "Every second matters. ARTAK integrates UAV data, terrain models, and team tracking into a shared 3D environment — enabling crews to visualize hazards, optimize routes, and train in realistic VR scenarios before entering the field.",
-    image: "/artak-overview.jpg",
+    image: "/artak-overview.webp",
     slug: "search-rescue",
   },
   {
@@ -24,7 +24,7 @@ const useCases = [
     sysLabel: "[UC.03]",
     title: "Security & Protection Services",
     desc: "Whether providing security for individuals, events, or facilities, ARTAK delivers a fused operational picture — combining radar, drone, and sensor data in a single spatial interface. Agencies gain 360-degree visibility over wide or remote regions.",
-    image: "/artak-c2.png",
+    image: "/artak-c2.webp",
     slug: "security-protection",
   },
   {
@@ -32,7 +32,7 @@ const useCases = [
     sysLabel: "[UC.04]",
     title: "Police & Law Enforcement",
     desc: "For urban operations, crowd control, or tactical response, ARTAK provides a shared operational view that improves decision-making and reduces risk. Officers can rehearse complex scenarios in VR and access real-time overlays during live incidents.",
-    image: "/artak-roc-drill.jpg",
+    image: "/artak-roc-drill.webp",
     slug: "police-law-enforcement",
   },
   {
@@ -40,7 +40,7 @@ const useCases = [
     sysLabel: "[UC.05]",
     title: "Fire & Emergency Services",
     desc: "ARTAK gives fire commanders complete situational awareness — tracking crews, visualizing structure layouts, and modeling wildfire spread in 3D. Through AR and VR, teams can prepare, respond, and review every mission with confidence.",
-    image: "/artak-mission-planning.jpg",
+    image: "/artak-mission-planning.webp",
     slug: "fire-emergency",
   },
   {
@@ -48,7 +48,7 @@ const useCases = [
     sysLabel: "[UC.06]",
     title: "Space & Aerospace Operations",
     desc: "From orbital mission planning to ground-station coordination, ARTAK enables teams to visualize assets, trajectories, and contingencies in immersive 3D. It brings real-time command awareness to an increasingly complex operational domain.",
-    image: "/artak-xr-sdve.jpg",
+    image: "/artak-xr-sdve.webp",
     slug: "space-aerospace",
   },
 ];

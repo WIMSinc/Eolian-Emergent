@@ -31,7 +31,7 @@ export default function SEO({ title, description = DEFAULT_DESC, image = DEFAULT
 }
 
 export const organizationSchema = {
-  "@context": "https://schema.org", "@type": "Organization", name: "EolianVR, Inc.", url: SITE_URL, logo: `${SITE_URL}/eolian-logo-white.png`,
+  "@context": "https://schema.org", "@type": "Organization", name: "EolianVR, Inc.", url: SITE_URL, logo: `${SITE_URL}/eolian-logo-white.webp`,
   description: "EolianVR develops AR, VR, MR, AI/ML, and 3D Animation solutions for enterprise and government.",
   foundingDate: "2017", industry: "Defense Technology",
   contactPoint: { "@type": "ContactPoint", telephone: "+1-888-811-5339", contactType: "customer service" },
@@ -43,7 +43,7 @@ export function articleSchema({ title, description, image, slug, published }) {
     "@context": "https://schema.org", "@type": "Article", headline: title, description, image: image || DEFAULT_IMG,
     url: `${SITE_URL}/news/${slug}`, datePublished: published, dateModified: published,
     author: { "@type": "Organization", name: "EolianVR, Inc.", url: SITE_URL },
-    publisher: { "@type": "Organization", name: "EolianVR, Inc.", logo: { "@type": "ImageObject", url: `${SITE_URL}/eolian-logo-white.png` } },
+    publisher: { "@type": "Organization", name: "EolianVR, Inc.", logo: { "@type": "ImageObject", url: `${SITE_URL}/eolian-logo-white.webp` } },
     mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/news/${slug}` },
   };
 }

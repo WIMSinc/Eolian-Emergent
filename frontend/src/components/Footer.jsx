@@ -32,7 +32,7 @@ export default function Footer() {
           {/* Logo + tagline */}
           <div>
             <div className="flex items-center gap-3 mb-3">
-              <img src="/eolian-logo-white.png" alt="Eolian" className="h-10 w-auto opacity-80" />
+              <img src="/eolian-logo-white.webp" alt="Eolian" className="h-10 w-auto opacity-80" />
             </div>
             <p className="font-mono text-sm text-zinc-300 tracking-wider">
               AR & VR Solutions for Defense & Enterprise
