@@ -87,14 +87,23 @@
                     }),
                     (e.__SV = 1));
             })(document, window.posthog || []);
-            posthog.init("phc_xAvL2Iq4tFmANRE7kzbKwaSqp1HJjN7x48s3vr0CMjs", {
-                api_host: "https://us.i.posthog.com",
-                person_profiles: "identified_only",
-                session_recording: {
-                    recordCrossOriginIframes: true,
-                    capturePerformance: false,
-                },
-            });
+            window.__initPosthog = function () {
+                posthog.init("phc_xAvL2Iq4tFmANRE7kzbKwaSqp1HJjN7x48s3vr0CMjs", {
+                    api_host: "https://us.i.posthog.com",
+                    person_profiles: "identified_only",
+                    disable_session_recording: true,
+                    disable_surveys: true,
+                    autocapture: false,
+                    capture_dead_clicks: false,
+                    capture_pageleave: false,
+                    capture_performance: false,
+                });
+            };
+            if ("requestIdleCallback" in window) {
+                requestIdleCallback(window.__initPosthog, { timeout: 5000 });
+            } else {
+                setTimeout(window.__initPosthog, 4000);
+            }
         </script>
     </body>
 </html>

@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import { HelmetProvider } from "react-helmet-async";
 import { Analytics } from "@vercel/analytics/react";
 import "@/index.css";
 import App from "@/App";
+import LazyRecaptchaProvider from "@/components/LazyRecaptchaProvider";
 
 const initSentry = () =>
   import("@sentry/react").then((Sentry) => {
@@ -25,14 +25,11 @@ if (typeof window !== "undefined") {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <GoogleReCaptchaProvider
-      reCaptchaKey="6LcdWQYtAAAAAPjj1T6Peg9r65VoByp4wjyVP0fj"
-      scriptProps={{ async: true, defer: true, appendTo: "body" }}
-    >
+    <LazyRecaptchaProvider>
       <HelmetProvider>
         <App />
         <Analytics />
       </HelmetProvider>
-    </GoogleReCaptchaProvider>
+    </LazyRecaptchaProvider>
   </React.StrictMode>,
 );
