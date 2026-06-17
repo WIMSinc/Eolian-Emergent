@@ -70,10 +70,12 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-[#FF0B1B]/5 mix-blend-color" />
       </div>
 
-      {/* Tactical canvas overlay on top of video */}
-      <div className="absolute inset-0 z-[2]">
-        <TacticalCanvas />
-      </div>
+      {/* Tactical canvas overlay — skipped on mobile/slow connections to reduce TBT */}
+      {!skipVideo && (
+        <div className="absolute inset-0 z-[2]">
+          <TacticalCanvas />
+        </div>
+      )}
 
       {/* Gradient overlays */}
       <div className="absolute inset-0 z-[3] bg-gradient-to-b from-[#050505]/80 via-[#050505]/40 to-[#050505]/90" />
