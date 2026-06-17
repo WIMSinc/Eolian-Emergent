@@ -88,7 +88,7 @@ export default function FeaturesSection() {
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-px bg-[#FF0B1B]" />
-            <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">
+            <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">
               Capabilities // Block 2
             </span>
           </div>

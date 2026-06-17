@@ -111,7 +111,7 @@ export default function MapMaker() {
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={0}>
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-8 h-px bg-[#FF0B1B]" />
-                <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Product // Map Maker Platform</span>
+                <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">Product // Map Maker Platform</span>
               </div>
               <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-white leading-[0.95] mb-6">
                 The Digital<br /><span className="text-[#FF0B1B]">Twin</span><br />Advantage
@@ -186,7 +186,7 @@ export default function MapMaker() {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={0} className="mb-12">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-px bg-[#FF0B1B]" />
-              <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Core Capability</span>
+              <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">Core Capability</span>
             </div>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase tracking-tight text-white">
               3D <span className="text-zinc-500">Reconstruction</span>
@@ -217,7 +217,7 @@ export default function MapMaker() {
                 {["Capture", "Process", "Generate", "Deploy"].map((step, i, arr) => (
                   <>
                     <div key={step} className="flex-1 text-center py-3">
-                      <div className="font-mono text-[10px] tracking-[0.15em] text-zinc-500 uppercase">{step}</div>
+                      <div className="font-mono text-[10px] tracking-[0.15em] text-zinc-400 uppercase">{step}</div>
                     </div>
                     {i < arr.length - 1 && (
                       <div key={`arrow-${i}`} className="text-[#FF0B1B] font-mono text-sm px-1">›</div>
@@ -229,7 +229,7 @@ export default function MapMaker() {
 
             {/* Inputs + time table */}
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={2}>
-              <div className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase mb-4">Supported Inputs</div>
+              <div className="font-mono text-[10px] tracking-[0.2em] text-zinc-400 uppercase mb-4">Supported Inputs</div>
               <div className="grid grid-cols-3 gap-px bg-zinc-800 mb-6">
                 {inputTypes.map((t, i) => (
                   <div key={i} className="bg-[#0A0A0A] p-4 text-center hover:bg-[#0D0D0D] transition-colors group">
@@ -252,7 +252,7 @@ export default function MapMaker() {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={0} className="mb-12">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-px bg-[#FF0B1B]" />
-              <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Below Ground & Inside Structures</span>
+              <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">Below Ground & Inside Structures</span>
             </div>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase tracking-tight text-white">
               Interior & <span className="text-zinc-500">Subterranean</span> Mapping
@@ -287,7 +287,7 @@ export default function MapMaker() {
               {/* Use case tags */}
               <div className="flex flex-wrap gap-2 mt-4">
                 {interiorUseCases.map((tag, i) => (
-                  <span key={i} className="font-mono text-[9px] tracking-[0.1em] text-zinc-500 uppercase border border-zinc-800 px-2 py-1 bg-[#050505]">{tag}</span>
+                  <span key={i} className="font-mono text-[9px] tracking-[0.1em] text-zinc-400 uppercase border border-zinc-800 px-2 py-1 bg-[#050505]">{tag}</span>
                 ))}
               </div>
             </motion.div>
@@ -317,8 +317,8 @@ export default function MapMaker() {
                 <table className="w-full">
                   <thead>
                     <tr className="bg-[#0A0A0A] border-b border-zinc-800">
-                      <th className="text-left px-4 py-2.5 font-mono text-[9px] tracking-[0.15em] text-zinc-500 uppercase">Sensor</th>
-                      <th className="text-left px-4 py-2.5 font-mono text-[9px] tracking-[0.15em] text-zinc-500 uppercase">Capture</th>
+                      <th className="text-left px-4 py-2.5 font-mono text-[9px] tracking-[0.15em] text-zinc-400 uppercase">Sensor</th>
+                      <th className="text-left px-4 py-2.5 font-mono text-[9px] tracking-[0.15em] text-zinc-400 uppercase">Capture</th>
                       <th className="text-left px-4 py-2.5 font-mono text-[9px] tracking-[0.15em] text-[#FF0B1B] uppercase">Output</th>
                     </tr>
                   </thead>
@@ -345,7 +345,7 @@ export default function MapMaker() {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={0} className="mb-12">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-px bg-[#FF0B1B]" />
-              <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Maritime & Subsurface</span>
+              <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">Maritime & Subsurface</span>
             </div>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase tracking-tight text-white">
               Underwater <span className="text-zinc-500">Mapping</span>
@@ -392,7 +392,7 @@ export default function MapMaker() {
               </div>
               <div className="flex flex-wrap gap-2 mt-4">
                 {underwaterUseCases.map((tag, i) => (
-                  <span key={i} className="font-mono text-[9px] tracking-[0.1em] text-zinc-500 uppercase border border-zinc-800 px-2 py-1">{tag}</span>
+                  <span key={i} className="font-mono text-[9px] tracking-[0.1em] text-zinc-400 uppercase border border-zinc-800 px-2 py-1">{tag}</span>
                 ))}
               </div>
             </motion.div>
@@ -407,7 +407,7 @@ export default function MapMaker() {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={0} className="mb-12 text-center">
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-8 h-px bg-[#FF0B1B]" />
-              <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Competitive Landscape</span>
+              <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">Competitive Landscape</span>
               <div className="w-8 h-px bg-[#FF0B1B]" />
             </div>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase tracking-tight text-white">
@@ -442,7 +442,7 @@ export default function MapMaker() {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={0} className="mb-12 text-center">
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-8 h-px bg-[#FF0B1B]" />
-              <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Pre-Configured Solutions</span>
+              <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">Pre-Configured Solutions</span>
               <div className="w-8 h-px bg-[#FF0B1B]" />
             </div>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase tracking-tight text-white">
@@ -499,7 +499,7 @@ export default function MapMaker() {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={0}>
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-8 h-px bg-[#FF0B1B]" />
-              <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Get Started</span>
+              <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">Get Started</span>
               <div className="w-8 h-px bg-[#FF0B1B]" />
             </div>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase tracking-tight text-white mb-4">

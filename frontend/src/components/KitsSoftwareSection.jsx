@@ -107,7 +107,7 @@ export default function KitsSoftwareSection() {
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-px bg-[#FF0B1B]" />
-            <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Acquire Online // Hardware Kits</span>
+            <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">Acquire Online // Hardware Kits</span>
           </div>
           <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase tracking-tight text-white">ARTAK Kits</h2>
           <p className="mt-4 text-sm text-zinc-400 max-w-2xl leading-relaxed">
@@ -172,7 +172,7 @@ export default function KitsSoftwareSection() {
           <div className="mb-10">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-px bg-[#FF0B1B]" />
-              <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Acquire Online // Software Packages</span>
+              <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">Acquire Online // Software Packages</span>
             </div>
             <h3 className="font-heading text-2xl font-bold uppercase tracking-tight text-white">Software Packages</h3>
             <p className="mt-3 text-sm text-zinc-400 max-w-xl">

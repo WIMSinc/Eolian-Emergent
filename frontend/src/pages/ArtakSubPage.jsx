@@ -207,7 +207,7 @@ export default function ArtakSubPage() {
           <div className="flex items-center gap-2 mb-6">
             <Link to="/artak" className="font-mono text-[10px] tracking-[0.2em] text-zinc-600 hover:text-white transition-colors uppercase">ARTAK</Link>
             <span className="text-zinc-700">/</span>
-            <span className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase">{data.title}</span>
+            <span className="font-mono text-[10px] tracking-[0.2em] text-zinc-400 uppercase">{data.title}</span>
           </div>
 
           <div className="flex items-center gap-3 mb-4">
@@ -218,7 +218,7 @@ export default function ArtakSubPage() {
           <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-white leading-[0.95] max-w-4xl">
             {data.title} <span className="text-zinc-500">{data.titleAccent}</span>
           </h1>
-          <p className="mt-4 font-mono text-xs tracking-[0.15em] text-zinc-500 uppercase">{data.subtitle}</p>
+          <p className="mt-4 font-mono text-xs tracking-[0.15em] text-zinc-400 uppercase">{data.subtitle}</p>
           <p className="mt-6 text-base md:text-lg text-zinc-400 max-w-2xl leading-relaxed">{data.heroDesc}</p>
         </div>
       </section>
@@ -228,13 +228,13 @@ export default function ArtakSubPage() {
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div>
-              <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase block mb-4">Overview // Mission Context</span>
+              <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase block mb-4">Overview // Mission Context</span>
               <p className="text-sm text-zinc-400 leading-relaxed mb-8">{data.body}</p>
               <p className="text-sm text-zinc-300 leading-relaxed italic border-l-2 border-[#FF0B1B] pl-4">{data.ctaText}</p>
             </div>
 
             <div>
-              <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase block mb-4">Key Capabilities</span>
+              <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase block mb-4">Key Capabilities</span>
               <div className="space-y-3">
                 {data.capabilities.map((cap, i) => (
                   <motion.div key={i} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="flex items-start gap-3 group">
@@ -257,7 +257,7 @@ export default function ArtakSubPage() {
             <div className="mb-8">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-8 h-px bg-[#FF0B1B]" />
-                <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">System // Anomaly Classification</span>
+                <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">System // Anomaly Classification</span>
               </div>
             </div>
             <div className="border border-zinc-800 overflow-hidden">
@@ -278,7 +278,7 @@ export default function ArtakSubPage() {
             <div className="mb-8">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-8 h-px bg-[#FF0B1B]" />
-                <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Live Demo // CHORD Insight Hub</span>
+                <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">Live Demo // CHORD Insight Hub</span>
               </div>
               <h2 className="font-heading text-2xl sm:text-3xl font-bold uppercase tracking-tight text-white">
                 Interactive Demo

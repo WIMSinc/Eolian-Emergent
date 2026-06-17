@@ -58,7 +58,7 @@ export default function AdminLogin() {
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase block mb-2">Email</label>
+              <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-400 uppercase block mb-2">Email</label>
               <input
                 type="email"
                 data-testid="admin-email-input"
@@ -70,7 +70,7 @@ export default function AdminLogin() {
               />
             </div>
             <div>
-              <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase block mb-2">Password</label>
+              <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-400 uppercase block mb-2">Password</label>
               <input
                 type="password"
                 data-testid="admin-password-input"

@@ -87,22 +87,23 @@ export default function HeroSection() {
         <div className="max-w-4xl">
           {/* System label */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ x: -20 }}
+            animate={{ x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex items-center gap-3 mb-8"
           >
             <div className="w-2 h-2 bg-[#FF0B1B] animate-pulse" />
-            <span className="font-mono text-xs tracking-[0.25em] text-zinc-500 uppercase">
+            <span className="font-mono text-xs tracking-[0.25em] text-zinc-400 uppercase">
               EolianVR, Inc. // Defense & Enterprise AR/VR
             </span>
           </motion.div>
 
-          {/* Main heading */}
+          {/* Main heading — rendered fully opaque on first paint so it qualifies
+              as the LCP element immediately (no JS-gated fade-in delay) */}
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            initial={{ y: 30 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
             className="font-heading text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black uppercase tracking-tighter text-white leading-[0.95]"
           >
             Enhanced Command
@@ -114,9 +115,9 @@ export default function HeroSection() {
 
           {/* Sub */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
+            initial={{ y: 20 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
             className="mt-6 text-base md:text-lg text-zinc-400 max-w-xl leading-relaxed"
           >
             Situational awareness at the edge. Multi-domain joint planning and

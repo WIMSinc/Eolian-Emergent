@@ -71,7 +71,7 @@ export default function Support() {
         <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-8 h-px bg-[#FF0B1B]" />
-            <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">ARTAK // Tactical Support Hub</span>
+            <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">ARTAK // Tactical Support Hub</span>
           </div>
           <h1 className="font-heading text-4xl sm:text-5xl lg:text-7xl font-black uppercase tracking-tighter text-white leading-[0.9] max-w-4xl">
             Support <span className="text-[#FF0B1B]">Hub</span>
@@ -160,7 +160,7 @@ export default function Support() {
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-px bg-[#FF0B1B]" />
-              <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Documentation // Operational Manuals</span>
+              <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">Documentation // Operational Manuals</span>
             </div>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase tracking-tight text-white">
               Operational Manuals
@@ -215,7 +215,7 @@ export default function Support() {
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-px bg-[#FF0B1B]" />
-              <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Reference // Knowledge Base & FAQ</span>
+              <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">Reference // Knowledge Base & FAQ</span>
             </div>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase tracking-tight text-white">
               Knowledge Base

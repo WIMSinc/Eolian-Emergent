@@ -77,7 +77,7 @@ export default function About() {
         <div className="relative max-w-[1400px] mx-auto px-6 md:px-12">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-px bg-[#FF0B1B]" />
-            <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Company // About</span>
+            <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">Company // About</span>
           </div>
           <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-white leading-[0.95] max-w-4xl">
             About <span className="text-[#FF0B1B]">Eolian</span>
@@ -134,7 +134,7 @@ export default function About() {
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-px bg-[#FF0B1B]" />
-              <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Solution // Platform</span>
+              <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">Solution // Platform</span>
             </div>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase tracking-tight text-white">
               Our Solution: <span className="text-[#FF0B1B]">ARTAK</span>
@@ -178,7 +178,7 @@ export default function About() {
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-8 h-px bg-[#FF0B1B]" />
-                <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Companion Software // Map Maker</span>
+                <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">Companion Software // Map Maker</span>
               </div>
               <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase tracking-tight text-white mb-6">
                 Map <span className="text-[#FF0B1B]">Maker</span>
@@ -219,7 +219,7 @@ export default function About() {
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-px bg-[#FF0B1B]" />
-              <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Company // Track Record</span>
+              <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">Company // Track Record</span>
             </div>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase tracking-tight text-white">
               Explore Our Record
@@ -235,7 +235,7 @@ export default function About() {
                   <div className="w-10 h-10 border border-zinc-800 flex items-center justify-center mb-5 group-hover:border-[#FF0B1B] transition-colors">
                     <item.icon size={16} className="text-zinc-600 group-hover:text-[#FF0B1B] transition-colors" />
                   </div>
-                  <span className="font-mono text-xs tracking-[0.15em] text-zinc-500 uppercase mb-2">{item.desc}</span>
+                  <span className="font-mono text-xs tracking-[0.15em] text-zinc-400 uppercase mb-2">{item.desc}</span>
                   <h3 className="font-heading text-xl font-bold text-white uppercase tracking-tight mb-3">{item.label}</h3>
                   <p className="text-xs text-zinc-500 leading-relaxed flex-1">{item.detail}</p>
                   <div className="flex items-center gap-2 mt-5 font-mono text-xs text-[#FF0B1B] tracking-wider uppercase group-hover:gap-3 transition-all">
@@ -255,7 +255,7 @@ export default function About() {
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-px bg-[#FF0B1B]" />
-              <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Principles // Values</span>
+              <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">Principles // Values</span>
             </div>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase tracking-tight text-white">Our Core Values</h2>
           </div>
@@ -279,7 +279,7 @@ export default function About() {
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
             <div>
-              <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase block mb-4">Federal // Procurement</span>
+              <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase block mb-4">Federal // Procurement</span>
               <h2 className="font-heading text-2xl sm:text-3xl font-bold uppercase tracking-tight text-white mb-4">Available on SAM.GOV</h2>
               <p className="text-sm text-zinc-400 leading-relaxed mb-6">
                 Eolian's services are available to Federal Agencies through SAM.GOV. We develop and sell a variety of products and services that utilize AR, VR, & AI to solve critical problems for government and enterprise customers.
@@ -291,7 +291,7 @@ export default function About() {
             <div className="bg-[#0A0A0A] border border-zinc-800 p-6 md:p-8">
               <div className="flex items-center gap-2 mb-6">
                 <div className="w-2 h-2 bg-[#FF0B1B]" />
-                <span className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase">NAICS Codes</span>
+                <span className="font-mono text-[10px] tracking-[0.2em] text-zinc-400 uppercase">NAICS Codes</span>
               </div>
               <div className="space-y-3">
                 {naics.map((code, i) => (

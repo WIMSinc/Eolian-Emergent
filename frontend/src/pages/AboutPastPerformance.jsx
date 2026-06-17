@@ -281,7 +281,7 @@ export default function AboutPastPerformance() {
           </Link>
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-px bg-[#FF0B1B]" />
-            <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Company // Track Record</span>
+            <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">Company // Track Record</span>
           </div>
           <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-white leading-[0.95] max-w-4xl">
             Forged by Elite Operators<span className="text-[#FF0B1B]">.</span>
@@ -298,7 +298,7 @@ export default function AboutPastPerformance() {
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-px bg-[#FF0B1B]" />
-              <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Contracts // Awards</span>
+              <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">Contracts // Awards</span>
             </div>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase tracking-tight text-white">Government Contracts</h2>
           </div>
@@ -318,7 +318,7 @@ export default function AboutPastPerformance() {
 
                 {c.problemStatement && (
                   <div className="mb-8 border-l-2 border-zinc-700 pl-5">
-                    <div className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase mb-2">The Problem USSOCOM Needed Solved</div>
+                    <div className="font-mono text-[10px] tracking-[0.2em] text-zinc-400 uppercase mb-2">The Problem USSOCOM Needed Solved</div>
                     <p className="text-sm text-zinc-400 leading-relaxed">{c.problemStatement}</p>
                   </div>
                 )}
@@ -366,7 +366,7 @@ export default function AboutPastPerformance() {
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-px bg-[#FF0B1B]" />
-              <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Operations // Field Exercises</span>
+              <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">Operations // Field Exercises</span>
             </div>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase tracking-tight text-white">
               SOF Field Exercises & Demonstrations
@@ -400,7 +400,7 @@ export default function AboutPastPerformance() {
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-px bg-[#FF0B1B]" />
-              <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Assessments // Independent Validation</span>
+              <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">Assessments // Independent Validation</span>
             </div>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase tracking-tight text-white">
               Formal Technology Assessments
@@ -469,7 +469,7 @@ export default function AboutPastPerformance() {
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
           <div className="flex items-center gap-3 mb-8">
             <div className="w-8 h-px bg-[#FF0B1B]" />
-            <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">By the Numbers</span>
+            <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">By the Numbers</span>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-px bg-zinc-800">
             {stats.map((s, i) => (
@@ -489,7 +489,7 @@ export default function AboutPastPerformance() {
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-8 h-px bg-[#FF0B1B]" />
-                <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Customers // Historical</span>
+                <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">Customers // Historical</span>
               </div>
               <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase tracking-tight text-white mb-6">Additional Customers</h2>
               <p className="text-sm text-zinc-400 leading-relaxed">

@@ -65,7 +65,7 @@ export default function ProductSection() {
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-px bg-[#FF0B1B]" />
-            <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">
+            <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">
               Product // ARTAK
             </span>
           </div>
@@ -116,7 +116,7 @@ export default function ProductSection() {
                 <h3 className="font-heading text-xl sm:text-2xl font-semibold text-white mb-2 tracking-normal">
                   {panel.title}
                 </h3>
-                <p className="font-mono text-xs tracking-wider text-zinc-500 uppercase mb-4">
+                <p className="font-mono text-xs tracking-wider text-zinc-400 uppercase mb-4">
                   {panel.subtitle}
                 </p>
                 <p className="text-sm text-zinc-400 leading-relaxed">

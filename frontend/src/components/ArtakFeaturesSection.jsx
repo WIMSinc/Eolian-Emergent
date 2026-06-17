@@ -26,7 +26,7 @@ export default function ArtakFeaturesSection() {
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-px bg-[#FF0B1B]" />
-            <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Platform // Features</span>
+            <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">Platform // Features</span>
           </div>
           <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase tracking-tight text-white">
             ARTAK Features

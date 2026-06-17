@@ -53,32 +53,32 @@ function PostForm({ post, onSave, onCancel, saving }) {
     <div className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase block mb-1.5">Title *</label>
+          <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-400 uppercase block mb-1.5">Title *</label>
           <input data-testid="post-form-title" value={form.title} onChange={(e) => handleTitleChange(e.target.value)} required className={inputCls} placeholder="Post title" />
         </div>
         <div>
-          <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase block mb-1.5">Slug *</label>
+          <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-400 uppercase block mb-1.5">Slug *</label>
           <input data-testid="post-form-slug" value={form.slug} onChange={(e) => setForm({ ...form, slug: e.target.value })} required className={inputCls} placeholder="url-friendly-slug" />
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase block mb-1.5">Category</label>
+          <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-400 uppercase block mb-1.5">Category</label>
           <select data-testid="post-form-category" value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} className={`${inputCls} bg-[#050505]`}>
             {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
           </select>
         </div>
         <div>
-          <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase block mb-1.5">Image URL</label>
+          <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-400 uppercase block mb-1.5">Image URL</label>
           <input data-testid="post-form-image" value={form.image} onChange={(e) => setForm({ ...form, image: e.target.value })} className={inputCls} placeholder="https://..." />
         </div>
       </div>
       <div>
-        <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase block mb-1.5">Excerpt *</label>
+        <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-400 uppercase block mb-1.5">Excerpt *</label>
         <textarea data-testid="post-form-excerpt" value={form.excerpt} onChange={(e) => setForm({ ...form, excerpt: e.target.value })} required rows={2} className={`${inputCls} resize-none`} placeholder="Brief summary..." />
       </div>
       <div>
-        <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase block mb-1.5">Content *</label>
+        <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-400 uppercase block mb-1.5">Content *</label>
         <div className="quill-dark-wrapper" data-testid="post-form-content-editor">
           <ReactQuill
             theme="snow"
@@ -187,7 +187,7 @@ export default function AdminDashboard() {
           <div>
             <div className="flex items-center gap-3 mb-2">
               <div className="w-2 h-2 bg-[#FF0B1B] animate-pulse" />
-              <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">
+              <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">
                 Admin // {user?.email}
               </span>
             </div>
@@ -242,7 +242,7 @@ export default function AdminDashboard() {
                 </div>
                 <div className="border border-zinc-800">
                   {/* Table header */}
-                  <div className="grid grid-cols-12 gap-4 px-4 py-3 bg-[#0A0A0A] border-b border-zinc-800 font-mono text-[10px] tracking-[0.15em] text-zinc-500 uppercase">
+                  <div className="grid grid-cols-12 gap-4 px-4 py-3 bg-[#0A0A0A] border-b border-zinc-800 font-mono text-[10px] tracking-[0.15em] text-zinc-400 uppercase">
                     <div className="col-span-5">Title</div>
                     <div className="col-span-2">Category</div>
                     <div className="col-span-2">Date</div>
@@ -258,7 +258,7 @@ export default function AdminDashboard() {
                           <p className="text-[10px] text-zinc-600 font-mono truncate mt-0.5">/{post.slug}</p>
                         </div>
                         <div className="col-span-2">
-                          <span className="font-mono text-[10px] tracking-wider text-zinc-500 uppercase flex items-center gap-1">
+                          <span className="font-mono text-[10px] tracking-wider text-zinc-400 uppercase flex items-center gap-1">
                             <Tag size={10} /> {post.category}
                           </span>
                         </div>
@@ -291,7 +291,7 @@ export default function AdminDashboard() {
         {tab === "contacts" && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <div className="border border-zinc-800">
-              <div className="grid grid-cols-12 gap-4 px-4 py-3 bg-[#0A0A0A] border-b border-zinc-800 font-mono text-[10px] tracking-[0.15em] text-zinc-500 uppercase">
+              <div className="grid grid-cols-12 gap-4 px-4 py-3 bg-[#0A0A0A] border-b border-zinc-800 font-mono text-[10px] tracking-[0.15em] text-zinc-400 uppercase">
                 <div className="col-span-2">Name</div>
                 <div className="col-span-3">Email</div>
                 <div className="col-span-2">Organization</div>

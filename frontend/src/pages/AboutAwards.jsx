@@ -66,7 +66,7 @@ export default function AboutAwards() {
           </Link>
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-px bg-[#FF0B1B]" />
-            <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Company // Recognition</span>
+            <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">Company // Recognition</span>
           </div>
           <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-white leading-[0.95] max-w-4xl">
             Awards &amp; <span className="text-[#FF0B1B]">Recognition</span>
@@ -94,7 +94,7 @@ export default function AboutAwards() {
                 <div className="w-10 h-10 border border-zinc-800 flex items-center justify-center mb-5 group-hover:border-[#FF0B1B] transition-colors">
                   <award.icon size={16} className="text-zinc-600 group-hover:text-[#FF0B1B] transition-colors" />
                 </div>
-                <span className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase mb-2">{award.category}</span>
+                <span className="font-mono text-[10px] tracking-[0.2em] text-zinc-400 uppercase mb-2">{award.category}</span>
                 <h3 className="font-heading text-base font-bold text-white uppercase tracking-tight mb-1">{award.title}</h3>
                 <div className="font-mono text-xs text-[#FF0B1B] tracking-wider mb-4">{award.years}</div>
                 <p className="text-xs text-zinc-500 leading-relaxed flex-1">{award.desc}</p>

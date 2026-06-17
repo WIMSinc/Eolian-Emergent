@@ -56,7 +56,7 @@ export default function ContactSection() {
           >
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-px bg-[#FF0B1B]" />
-              <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">
+              <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">
                 Contact // Inquiries
               </span>
             </div>
@@ -90,7 +90,7 @@ export default function ContactSection() {
               />
 
               <div>
-                <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase block mb-2">
+                <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-400 uppercase block mb-2">
                   Name *
                 </label>
                 <input
@@ -105,7 +105,7 @@ export default function ContactSection() {
                 />
               </div>
               <div>
-                <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase block mb-2">
+                <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-400 uppercase block mb-2">
                   Email Address *
                 </label>
                 <input
@@ -121,7 +121,7 @@ export default function ContactSection() {
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase block mb-2">
+                  <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-400 uppercase block mb-2">
                     Phone
                   </label>
                   <input
@@ -135,7 +135,7 @@ export default function ContactSection() {
                   />
                 </div>
                 <div>
-                  <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase block mb-2">
+                  <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-400 uppercase block mb-2">
                     Organization
                   </label>
                   <input
@@ -150,7 +150,7 @@ export default function ContactSection() {
                 </div>
               </div>
               <div>
-                <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase block mb-2">
+                <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-400 uppercase block mb-2">
                   Message *
                 </label>
                 <textarea

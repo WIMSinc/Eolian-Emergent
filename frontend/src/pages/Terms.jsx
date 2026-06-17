@@ -10,7 +10,7 @@ export default function Terms() {
         <div className="relative max-w-[900px] mx-auto px-6 md:px-12">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-px bg-[#FF0B1B]" />
-            <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Legal // Terms</span>
+            <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase">Legal // Terms</span>
           </div>
           <h1 className="font-heading text-4xl sm:text-5xl font-black uppercase tracking-tighter text-white leading-[0.95]">
             Terms & Conditions

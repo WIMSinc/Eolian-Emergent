@@ -41,27 +41,27 @@ export default function CatalogModal({ open, onClose }) {
               </div>
             ) : (
               <>
-                <div className="flex items-center gap-3 mb-2"><Download size={16} className="text-[#FF0B1B]" /><span className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase">Product Catalog // 2026</span></div>
+                <div className="flex items-center gap-3 mb-2"><Download size={16} className="text-[#FF0B1B]" /><span className="font-mono text-[10px] tracking-[0.2em] text-zinc-400 uppercase">Product Catalog // 2026</span></div>
                 <h3 className="font-heading text-xl font-bold text-white uppercase mb-2">ARTAK Product Catalog</h3>
                 <p className="text-sm text-zinc-400 mb-6">Fill out the form below to download the full ARTAK product catalog.</p>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   {/* Honeypot */}
                   <input type="text" name="website" value={form.website} onChange={(e) => setForm({ ...form, website: e.target.value })} tabIndex={-1} autoComplete="off" style={{ position: "absolute", left: "-9999px", opacity: 0, height: 0 }} aria-hidden="true" />
                   <div>
-                    <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase block mb-1.5">Name *</label>
+                    <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-400 uppercase block mb-1.5">Name *</label>
                     <input data-testid="catalog-name" type="text" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Your name" className={inputCls} />
                   </div>
                   <div>
-                    <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase block mb-1.5">Email *</label>
+                    <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-400 uppercase block mb-1.5">Email *</label>
                     <input data-testid="catalog-email" type="email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="your@email.com" className={inputCls} />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase block mb-1.5">Phone</label>
+                      <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-400 uppercase block mb-1.5">Phone</label>
                       <input data-testid="catalog-phone" type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="(555) 000-0000" className={inputCls} />
                     </div>
                     <div>
-                      <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-500 uppercase block mb-1.5">Organization</label>
+                      <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-400 uppercase block mb-1.5">Organization</label>
                       <input data-testid="catalog-org" type="text" value={form.organization} onChange={(e) => setForm({ ...form, organization: e.target.value })} placeholder="Company / Unit" className={inputCls} />
                     </div>
                   </div>

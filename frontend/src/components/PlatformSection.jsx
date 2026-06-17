@@ -20,7 +20,7 @@ export default function PlatformSection() {
       <div className="max-w-[1400px] mx-auto px-6 md:px-12">
         {/* Header */}
         <div className="text-center mb-16">
-          <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase block mb-4">
+          <span className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase block mb-4">
             Device Agnostic // Cross-Platform
           </span>
           <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase tracking-tight text-white">
@@ -77,7 +77,7 @@ export default function PlatformSection() {
                 ].map((text, i) => (
                   <span
                     key={i}
-                    className="font-mono text-xs tracking-[0.3em] text-zinc-700"
+                    className="font-mono text-xs tracking-[0.3em] text-zinc-400"
                   >
                     {text}
                     <span className="text-[#FF0B1B] mx-4">/</span>
