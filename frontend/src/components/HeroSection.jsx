@@ -133,7 +133,7 @@ export default function HeroSection() {
             <button
               data-testid="hero-cta-contact"
               onClick={scrollToContact}
-              className="bg-[#FF0B1B] text-white font-mono uppercase text-sm tracking-widest px-8 py-4 hover:bg-[#D90412] transition-colors duration-300"
+              className="bg-[#D90412] text-white font-mono uppercase text-sm tracking-widest px-8 py-4 hover:bg-[#FF0B1B] transition-colors duration-300"
             >
               Contact Us
             </button>

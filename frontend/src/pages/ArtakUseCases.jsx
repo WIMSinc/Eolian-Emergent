@@ -24,7 +24,7 @@ export default function ArtakUseCases() {
         <div className="absolute inset-0 tactical-grid opacity-30" />
         <div className="relative max-w-[1400px] mx-auto px-6 md:px-12">
           <div className="flex items-center gap-4 mb-4">
-            <img src="/artak-logo-white.webp" alt="ARTAK" className="h-10 w-auto opacity-90" />
+            <img src="/artak-logo-white.webp" alt="ARTAK" width="200" height="74" className="h-10 w-auto opacity-90" />
             <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">ARTAK // Use Cases</span>
           </div>
           <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-white leading-[0.95] max-w-5xl">
@@ -45,7 +45,7 @@ export default function ArtakUseCases() {
           <button
             onClick={() => setCatalogOpen(true)}
             data-testid="download-catalog-btn"
-            className="mt-6 inline-flex items-center gap-2 bg-[#FF0B1B] text-white font-mono uppercase text-sm tracking-widest px-8 py-4 hover:bg-[#D90412] transition-colors"
+            className="mt-6 inline-flex items-center gap-2 bg-[#D90412] text-white font-mono uppercase text-sm tracking-widest px-8 py-4 hover:bg-[#FF0B1B] transition-colors"
           >
             <Download size={16} /> Download Product Catalog
           </button>
@@ -56,7 +56,7 @@ export default function ArtakUseCases() {
       <section className="py-16 md:py-20 border-t border-zinc-800">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
           <div className="flex items-center gap-3 mb-6">
-            <img src="/artak-logo-white.webp" alt="ARTAK" className="h-7 w-auto opacity-70" />
+            <img src="/artak-logo-white.webp" alt="ARTAK" width="200" height="74" className="h-7 w-auto opacity-70" />
             <span className="font-mono text-[10px] tracking-[0.2em] text-zinc-600 uppercase">DHS Operational View (OV-1) // January 2026</span>
           </div>
           <div className="border border-zinc-800 overflow-hidden group">

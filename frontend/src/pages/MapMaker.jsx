@@ -120,7 +120,7 @@ export default function MapMaker() {
                 Map Maker transforms raw sensor data — drone imagery, LiDAR, video, sonar, satellite — into photorealistic 3D digital twins in minutes, not months. Fully offline. Fully automated. Fully yours.
               </p>
               <div className="flex gap-4 flex-wrap">
-                <a href="#kits" className="inline-flex items-center gap-2 bg-[#FF0B1B] text-white font-mono uppercase text-xs tracking-widest px-6 py-3 hover:bg-[#D90412] transition-colors">
+                <a href="#kits" className="inline-flex items-center gap-2 bg-[#D90412] text-white font-mono uppercase text-xs tracking-widest px-6 py-3 hover:bg-[#FF0B1B] transition-colors">
                   Explore Kits <ArrowRight size={14} />
                 </a>
                 <a href="#reconstruction" className="inline-flex items-center gap-2 border border-zinc-700 text-zinc-400 font-mono uppercase text-xs tracking-widest px-6 py-3 hover:border-zinc-500 hover:text-white transition-colors">
@@ -480,7 +480,7 @@ export default function MapMaker() {
                   </ul>
                   <div className="font-heading text-lg font-bold text-white mb-4">{kit.price}</div>
                   <Link to="/#contact"
-                    className={`block text-center font-mono text-[10px] tracking-[0.15em] uppercase py-2.5 transition-colors ${kit.featured ? "bg-[#FF0B1B] text-white hover:bg-[#D90412]" : "border border-zinc-700 text-zinc-400 hover:border-[#FF0B1B] hover:text-white"}`}
+                    className={`block text-center font-mono text-[10px] tracking-[0.15em] uppercase py-2.5 transition-colors ${kit.featured ? "bg-[#D90412] text-white hover:bg-[#FF0B1B]" : "border border-zinc-700 text-zinc-400 hover:border-[#FF0B1B] hover:text-white"}`}
                   >
                     {kit.price === "Contact for Pricing" ? "Contact Us" : "Purchase Kit"}
                   </Link>
@@ -509,7 +509,7 @@ export default function MapMaker() {
               Talk to our team about deploying Map Maker for your mission — from city-scale digital twins to underwater survey operations.
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
-              <Link to="/#contact" className="inline-flex items-center gap-2 bg-[#FF0B1B] text-white font-mono uppercase text-xs tracking-widest px-8 py-4 hover:bg-[#D90412] transition-colors">
+              <Link to="/#contact" className="inline-flex items-center gap-2 bg-[#D90412] text-white font-mono uppercase text-xs tracking-widest px-8 py-4 hover:bg-[#FF0B1B] transition-colors">
                 Request a Demo <ArrowRight size={14} />
               </Link>
               <a href="#kits" className="inline-flex items-center gap-2 border border-zinc-700 text-zinc-400 font-mono uppercase text-xs tracking-widest px-8 py-4 hover:border-zinc-500 hover:text-white transition-colors">

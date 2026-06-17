@@ -90,7 +90,7 @@ function PostForm({ post, onSave, onCancel, saving }) {
         </div>
       </div>
       <div className="flex gap-3 pt-2">
-        <button data-testid="post-form-save" onClick={() => onSave(form)} disabled={saving || !form.title || !form.slug || !form.excerpt || !form.content || form.content === "<p><br></p>"} className="flex items-center gap-2 bg-[#FF0B1B] text-white font-mono uppercase text-xs tracking-widest px-6 py-3 hover:bg-[#D90412] transition-colors disabled:opacity-40">
+        <button data-testid="post-form-save" onClick={() => onSave(form)} disabled={saving || !form.title || !form.slug || !form.excerpt || !form.content || form.content === "<p><br></p>"} className="flex items-center gap-2 bg-[#D90412] text-white font-mono uppercase text-xs tracking-widest px-6 py-3 hover:bg-[#FF0B1B] transition-colors disabled:opacity-40">
           <Save size={14} /> {saving ? "Saving..." : post ? "Update" : "Publish"}
         </button>
         <button data-testid="post-form-cancel" onClick={onCancel} className="flex items-center gap-2 bg-transparent text-zinc-500 border border-zinc-800 font-mono uppercase text-xs tracking-widest px-6 py-3 hover:text-white hover:border-zinc-600 transition-colors">
@@ -236,7 +236,7 @@ export default function AdminDashboard() {
             ) : (
               <>
                 <div className="flex justify-end mb-4">
-                  <button data-testid="new-post-btn" onClick={() => setEditingPost("new")} className="flex items-center gap-2 bg-[#FF0B1B] text-white font-mono uppercase text-xs tracking-widest px-6 py-3 hover:bg-[#D90412] transition-colors">
+                  <button data-testid="new-post-btn" onClick={() => setEditingPost("new")} className="flex items-center gap-2 bg-[#D90412] text-white font-mono uppercase text-xs tracking-widest px-6 py-3 hover:bg-[#FF0B1B] transition-colors">
                     <Plus size={14} /> New Post
                   </button>
                 </div>

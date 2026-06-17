@@ -82,7 +82,7 @@ export default function Support() {
           <a
             href="tel:8888115339"
             data-testid="support-hero-cta"
-            className="mt-8 inline-flex items-center gap-2 bg-[#FF0B1B] text-white font-mono uppercase text-sm tracking-widest px-8 py-4 hover:bg-[#D90412] transition-colors"
+            className="mt-8 inline-flex items-center gap-2 bg-[#D90412] text-white font-mono uppercase text-sm tracking-widest px-8 py-4 hover:bg-[#FF0B1B] transition-colors"
           >
             <Phone size={16} /> Immediate Assistance
           </a>
@@ -116,7 +116,7 @@ export default function Support() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-testid="support-ticket-link"
-                className="inline-flex items-center gap-2 bg-[#FF0B1B] text-white font-mono uppercase text-sm tracking-widest px-6 py-3 hover:bg-[#D90412] transition-colors"
+                className="inline-flex items-center gap-2 bg-[#D90412] text-white font-mono uppercase text-sm tracking-widest px-6 py-3 hover:bg-[#FF0B1B] transition-colors"
               >
                 Open Ticket <ArrowRight size={14} />
               </a>
@@ -297,7 +297,7 @@ export default function Support() {
                 href="https://share.hsforms.com/124KXMQCwQIaK-u7eKbL0_Abmwk1"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[#FF0B1B] text-white font-mono uppercase text-sm tracking-widest px-6 py-3 hover:bg-[#D90412] transition-colors"
+                className="inline-flex items-center gap-2 bg-[#D90412] text-white font-mono uppercase text-sm tracking-widest px-6 py-3 hover:bg-[#FF0B1B] transition-colors"
               >
                 Open Ticket <ArrowRight size={14} />
               </a>

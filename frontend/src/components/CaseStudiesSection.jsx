@@ -12,7 +12,7 @@ export default function CaseStudiesSection() {
       <div className="max-w-[1400px] mx-auto px-6 md:px-12">
         <div className="mb-12">
           <div className="flex items-center gap-4 mb-4">
-            <img src="/artak-logo-white.webp" alt="ARTAK" className="h-7 w-auto opacity-70" />
+            <img src="/artak-logo-white.webp" alt="ARTAK" width="200" height="74" className="h-7 w-auto opacity-70" />
             <span className="font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">Storyboards // Field Deployments</span>
           </div>
           <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase tracking-tight text-white">Case Studies</h2>

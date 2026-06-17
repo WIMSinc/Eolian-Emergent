@@ -102,7 +102,7 @@ export default function Navigation() {
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex items-center justify-between h-20 md:h-24">
         {/* Logo */}
         <Link to="/" data-testid="nav-logo" className="flex items-center gap-2 group">
-          <img src="/eolian-logo-white.webp" alt="Eolian" className="h-12 md:h-14 w-auto" />
+          <img src="/eolian-logo-white.webp" alt="Eolian" width="200" height="259" className="h-12 md:h-14 w-auto" />
         </Link>
 
         {/* Desktop Links */}
@@ -116,6 +116,8 @@ export default function Navigation() {
               >
                 <button
                   data-testid={`nav-link-${link.label.toLowerCase()}`}
+                  aria-haspopup="true"
+                  aria-expanded={link.label === "ABOUT" ? aboutOpen : artakOpen}
                   onClick={() =>
                     link.label === "ABOUT"
                       ? setAboutOpen(!aboutOpen)
@@ -187,6 +189,8 @@ export default function Navigation() {
         {/* Mobile Menu Toggle */}
         <button
           data-testid="mobile-menu-toggle"
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileOpen}
           className="lg:hidden text-white"
           onClick={() => setMobileOpen(!mobileOpen)}
         >

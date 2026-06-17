@@ -169,7 +169,7 @@ export default function ContactSection() {
                 type="submit"
                 data-testid="contact-submit-button"
                 disabled={status === "sending"}
-                className="w-full bg-[#FF0B1B] text-white font-mono uppercase text-sm tracking-widest px-8 py-4 hover:bg-[#D90412] transition-colors duration-300 flex items-center justify-center gap-3 disabled:opacity-50"
+                className="w-full bg-[#D90412] text-white font-mono uppercase text-sm tracking-widest px-8 py-4 hover:bg-[#FF0B1B] transition-colors duration-300 flex items-center justify-center gap-3 disabled:opacity-50"
               >
                 {status === "sending" ? (
                   "Transmitting..."

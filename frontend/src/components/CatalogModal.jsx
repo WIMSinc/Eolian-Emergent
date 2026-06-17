@@ -65,7 +65,7 @@ export default function CatalogModal({ open, onClose }) {
                       <input data-testid="catalog-org" type="text" value={form.organization} onChange={(e) => setForm({ ...form, organization: e.target.value })} placeholder="Company / Unit" className={inputCls} />
                     </div>
                   </div>
-                  <button type="submit" data-testid="catalog-submit" disabled={status === "sending"} className="w-full bg-[#FF0B1B] text-white font-mono uppercase text-sm tracking-widest px-8 py-3.5 hover:bg-[#D90412] transition-colors flex items-center justify-center gap-2 disabled:opacity-50">
+                  <button type="submit" data-testid="catalog-submit" disabled={status === "sending"} className="w-full bg-[#D90412] text-white font-mono uppercase text-sm tracking-widest px-8 py-3.5 hover:bg-[#FF0B1B] transition-colors flex items-center justify-center gap-2 disabled:opacity-50">
                     {status === "sending" ? <><Loader2 size={14} className="animate-spin" /> Processing...</> : <><Send size={14} /> Download Catalog</>}
                   </button>
                 </form>

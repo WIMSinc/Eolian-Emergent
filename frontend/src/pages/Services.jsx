@@ -78,7 +78,7 @@ export default function Services() {
           <div className="mt-8">
             <Link
               to="/#contact"
-              className="inline-flex items-center gap-2 bg-[#FF0B1B] text-white font-mono uppercase text-sm tracking-widest px-8 py-4 hover:bg-[#D90412] transition-colors"
+              className="inline-flex items-center gap-2 bg-[#D90412] text-white font-mono uppercase text-sm tracking-widest px-8 py-4 hover:bg-[#FF0B1B] transition-colors"
             >
               Get In Touch <ArrowRight size={16} />
             </Link>
@@ -392,7 +392,7 @@ export default function Services() {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
               to="/#contact"
-              className="inline-flex items-center gap-2 bg-[#FF0B1B] text-white font-mono uppercase text-sm tracking-widest px-8 py-4 hover:bg-[#D90412] transition-colors"
+              className="inline-flex items-center gap-2 bg-[#D90412] text-white font-mono uppercase text-sm tracking-widest px-8 py-4 hover:bg-[#FF0B1B] transition-colors"
             >
               Contact Us <ArrowRight size={16} />
             </Link>

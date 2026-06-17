@@ -8,7 +8,7 @@ const useCases = [
     sysLabel: "[UC.01]",
     title: "Disaster Response & Emergency Management",
     desc: "In times of chaos, ARTAK transforms fragmented operations into a unified mission picture. Real-time drone feeds, IoT data, and geospatial overlays help command centers coordinate faster, deploy smarter, and save more lives.",
-    image: "/artak-in-action.webp",
+    image: "/artak-in-action-thumb.webp",
     slug: "disaster-response",
   },
   {
@@ -24,7 +24,7 @@ const useCases = [
     sysLabel: "[UC.03]",
     title: "Security & Protection Services",
     desc: "Whether providing security for individuals, events, or facilities, ARTAK delivers a fused operational picture — combining radar, drone, and sensor data in a single spatial interface. Agencies gain 360-degree visibility over wide or remote regions.",
-    image: "/artak-c2.webp",
+    image: "/artak-c2-thumb.webp",
     slug: "security-protection",
   },
   {
@@ -48,7 +48,7 @@ const useCases = [
     sysLabel: "[UC.06]",
     title: "Space & Aerospace Operations",
     desc: "From orbital mission planning to ground-station coordination, ARTAK enables teams to visualize assets, trajectories, and contingencies in immersive 3D. It brings real-time command awareness to an increasingly complex operational domain.",
-    image: "/artak-xr-sdve.webp",
+    image: "/artak-xr-sdve-thumb.webp",
     slug: "space-aerospace",
   },
 ];

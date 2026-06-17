@@ -85,7 +85,7 @@ export default function AdminLogin() {
               type="submit"
               data-testid="admin-login-submit"
               disabled={loading}
-              className="w-full bg-[#FF0B1B] text-white font-mono uppercase text-sm tracking-widest px-8 py-4 hover:bg-[#D90412] transition-colors disabled:opacity-50"
+              className="w-full bg-[#D90412] text-white font-mono uppercase text-sm tracking-widest px-8 py-4 hover:bg-[#FF0B1B] transition-colors disabled:opacity-50"
             >
               {loading ? "Authenticating..." : "Access Dashboard"}
             </button>

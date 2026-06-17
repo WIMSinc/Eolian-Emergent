@@ -332,7 +332,7 @@ export default function ArtakSubPage() {
             <Link
               to="/#contact"
               data-testid="subpage-demo-cta"
-              className="inline-flex items-center gap-2 bg-[#FF0B1B] text-white font-mono uppercase text-sm tracking-widest px-8 py-4 hover:bg-[#D90412] transition-colors"
+              className="inline-flex items-center gap-2 bg-[#D90412] text-white font-mono uppercase text-sm tracking-widest px-8 py-4 hover:bg-[#FF0B1B] transition-colors"
             >
               Request a Demo <ArrowRight size={16} />
             </Link>
