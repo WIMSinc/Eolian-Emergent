@@ -28,6 +28,7 @@ const navLinks = [
   { label: "ABOUT", to: "/about", hasDropdown: true },
   { label: "ARTAK", to: "/artak", hasDropdown: true },
   { label: "MAP MAKER", to: "/mapmaker" },
+  { label: "ACQUIRE", to: "/acquire" },
   { label: "SERVICES", to: "/services" },
   { label: "THE LAB", to: "/lab" },
   { label: "TEAM", to: "/team" },

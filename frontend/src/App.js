@@ -23,6 +23,7 @@ const AdminDashboard = lazy(() => import("@/pages/AdminDashboard"));
 const Terms = lazy(() => import("@/pages/Terms"));
 const Privacy = lazy(() => import("@/pages/Privacy"));
 const CheckoutResult = lazy(() => import("@/pages/CheckoutResult"));
+const AcquireGuide = lazy(() => import("@/pages/AcquireGuide"));
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -58,6 +59,7 @@ function App() {
             <Route path="/mapmaker" element={<MapMaker />} />
             <Route path="/lab" element={<Lab />} />
             <Route path="/support" element={<Support />} />
+            <Route path="/acquire" element={<AcquireGuide />} />
             <Route path="/team" element={<Team />} />
             <Route path="/services" element={<Services />} />
             <Route path="/admin" element={<AdminLogin />} />
