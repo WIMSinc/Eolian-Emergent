@@ -11,9 +11,33 @@
  * is disabled below and the raw buffer is read with raw-body.
  */
 
-const getRawBody = require("raw-body");
 const nodemailer = require("nodemailer");
 const { formatUsd } = require("./_catalog");
+
+/**
+ * Collect the unparsed request body.
+ *
+ * Deliberately dependency-free: raw-body v4 is ESM-only, and `require`-ing it
+ * from these CommonJS functions throws ERR_REQUIRE_ESM at module load, which
+ * surfaces as FUNCTION_INVOCATION_FAILED rather than anything diagnosable.
+ *
+ * Never touch req.body in this handler — on Vercel's Node runtime that getter
+ * parses (and consumes) the stream on first access, which would leave nothing
+ * to verify the signature against.
+ */
+function readRawBody(req) {
+  if (req.readableEnded) {
+    // The stream was already drained, so the exact signed bytes are gone and
+    // any signature check would be meaningless. Fail loudly instead.
+    return Promise.reject(new Error("Request body already consumed"));
+  }
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    req.on("data", (chunk) => chunks.push(chunk));
+    req.on("end", () => resolve(Buffer.concat(chunks)));
+    req.on("error", reject);
+  });
+}
 
 async function email(subject, text) {
   const smtpUser = process.env.SMTP_USER;
@@ -52,7 +76,7 @@ module.exports = async (req, res) => {
 
   let event;
   try {
-    const raw = await getRawBody(req);
+    const raw = await readRawBody(req);
     event = stripe.webhooks.constructEvent(raw, req.headers["stripe-signature"], webhookSecret);
   } catch (err) {
     // Unverified payload — never act on it.
