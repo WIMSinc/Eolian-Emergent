@@ -1,8 +1,15 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Download, ShoppingCart } from "lucide-react";
+import { ArrowRight, Download, ShoppingCart, Loader2 } from "lucide-react";
+import axios from "axios";
 import CatalogModal from "@/components/CatalogModal";
+import KitRequestModal from "@/components/KitRequestModal";
+
+// The display labels already carry the catalog SKU ("[KIT.01]"), so derive it
+// rather than maintaining a parallel field that can drift. The server re-reads
+// every price from api/_catalog.js — the prices below are display only.
+const skuOf = (label) => label.replace(/[[\]]/g, "");
 
 const kits = [
   {
@@ -97,10 +104,31 @@ const fadeUp = {
 
 export default function KitsSoftwareSection() {
   const [catalogOpen, setCatalogOpen] = useState(false);
+  const [activeKit, setActiveKit] = useState(null);
+  const [pendingSku, setPendingSku] = useState(null);
+  const [checkoutError, setCheckoutError] = useState("");
+
+  // Software subscriptions go straight to Stripe Checkout. The browser sends
+  // only a SKU; the amount is resolved server-side.
+  const startCheckout = useCallback(async (sku) => {
+    setPendingSku(sku);
+    setCheckoutError("");
+    try {
+      const { data } = await axios.post("/api/create-checkout-session", { sku, quantity: 1 });
+      if (!data?.url) throw new Error("No checkout URL returned");
+      window.location.assign(data.url);
+    } catch (err) {
+      setPendingSku(null);
+      setCheckoutError(
+        err?.response?.data?.error || "Could not start checkout. Please try again or contact us."
+      );
+    }
+  }, []);
 
   return (
     <section className="py-20 md:py-28 border-t border-zinc-800">
       <CatalogModal open={catalogOpen} onClose={() => setCatalogOpen(false)} />
+      <KitRequestModal kit={activeKit} onClose={() => setActiveKit(null)} />
       <div className="max-w-[1400px] mx-auto px-6 md:px-12">
 
         {/* Kits header */}
@@ -155,12 +183,15 @@ export default function KitsSoftwareSection() {
                   ))}
                 </div>
                 <p className="font-mono text-xl text-[#FF0B1B] font-bold mb-4">{kit.price}</p>
-                <Link
-                  to="/#contact"
+                <button
+                  type="button"
+                  onClick={() => setActiveKit({ ...kit, sku: skuOf(kit.label) })}
+                  data-testid={`kit-acquire-${i}`}
+                  aria-label={`Request a quote for the ${kit.name}`}
                   className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] text-zinc-400 hover:text-[#FF0B1B] border border-zinc-800 hover:border-[#FF0B1B] px-3 py-2 transition-colors uppercase"
                 >
                   <ShoppingCart size={11} /> Acquire Kit
-                </Link>
+                </button>
               </div>
               <div className="absolute bottom-0 left-0 w-0 h-px bg-[#FF0B1B] group-hover:w-full transition-all duration-700" />
             </motion.div>
@@ -211,18 +242,36 @@ export default function KitsSoftwareSection() {
                   <p className="font-mono text-[10px] text-zinc-500 tracking-wider uppercase mb-2">{pkg.duration}</p>
                   <p className="text-xs text-zinc-600 leading-relaxed mb-3">{pkg.desc}</p>
                   <p className="font-mono text-lg text-[#FF0B1B] font-bold mb-3">{pkg.price}</p>
-                  <Link
-                    to="/#contact"
-                    className="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.15em] text-zinc-400 hover:text-[#FF0B1B] border border-zinc-800 hover:border-[#FF0B1B] px-3 py-1.5 transition-colors uppercase"
+                  <button
+                    type="button"
+                    onClick={() => startCheckout(skuOf(pkg.label))}
+                    disabled={pendingSku !== null}
+                    data-testid={`software-acquire-${i}`}
+                    aria-label={`Purchase the ${pkg.name}, ${pkg.duration}`}
+                    className="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.15em] text-zinc-400 hover:text-[#FF0B1B] border border-zinc-800 hover:border-[#FF0B1B] px-3 py-1.5 transition-colors uppercase disabled:opacity-40 disabled:hover:text-zinc-400 disabled:hover:border-zinc-800"
                   >
-                    <ShoppingCart size={10} /> Acquire
-                  </Link>
+                    {pendingSku === skuOf(pkg.label) ? (
+                      <><Loader2 size={10} className="animate-spin" /> Redirecting...</>
+                    ) : (
+                      <><ShoppingCart size={10} /> Acquire</>
+                    )}
+                  </button>
                 </div>
                 <div className="absolute bottom-0 left-0 w-0 h-px bg-[#FF0B1B] group-hover:w-full transition-all duration-700" />
               </motion.div>
             ))}
           </div>
         </div>
+
+        {checkoutError && (
+          <p
+            role="alert"
+            data-testid="checkout-error"
+            className="mt-6 font-mono text-[11px] tracking-wider text-[#FF0B1B]"
+          >
+            {checkoutError}
+          </p>
+        )}
 
         {/* CTA row */}
         <div className="mt-12 flex flex-wrap items-center justify-between gap-6 border-t border-zinc-800 pt-10">

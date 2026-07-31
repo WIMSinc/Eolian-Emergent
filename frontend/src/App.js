@@ -22,6 +22,7 @@ const AdminLogin = lazy(() => import("@/pages/AdminLogin"));
 const AdminDashboard = lazy(() => import("@/pages/AdminDashboard"));
 const Terms = lazy(() => import("@/pages/Terms"));
 const Privacy = lazy(() => import("@/pages/Privacy"));
+const CheckoutResult = lazy(() => import("@/pages/CheckoutResult"));
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -63,6 +64,8 @@ function App() {
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />
+            <Route path="/checkout/success" element={<CheckoutResult />} />
+            <Route path="/checkout/cancelled" element={<CheckoutResult />} />
           </Routes>
         </Suspense>
         <Footer />
