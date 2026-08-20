@@ -4,10 +4,17 @@
  * Stripe is the source of truth for price and name. Products opt in to the
  * website by carrying metadata:
  *
- *   website_sku      KIT.01 … SW.05   join key to local copy/images
- *   website_visible  "true"           opt-in flag
- *   website_group    kit | software   which grid it renders in
- *   website_order    10, 20, 30 …     sort order
+ *   website_sku       KIT.01 … SW.05   join key to local copy/images
+ *   website_visible   "true"           opt-in flag
+ *   website_group     kit | software   which grid it renders in
+ *   website_order     10, 20, 30 …     sort order
+ *   website_checkout  direct | quote   how it is bought
+ *
+ * Group and checkout are deliberately separate: the two lower-priced kits sell
+ * directly through Checkout while the rest stay on the quote flow, but all six
+ * still render in the kit grid. Default when unset: software direct, kits quote —
+ * the safe direction, since a missing flag never turns a six-figure kit into a
+ * one-click purchase.
  *
  * Opt-in is deliberate. The account also holds archived defense-contract SKUs,
  * a custom demo kit, and legacy accessories; with opt-out semantics a missing
@@ -38,9 +45,18 @@ function toItem(product) {
   if (!price || typeof price !== "object" || !price.active) return null;
 
   const md = product.metadata || {};
+  const group = md.website_group;
+  // Fall back to quote for anything that is not explicitly software, so a
+  // missing or mistyped flag can never expose a kit as one-click purchasable.
+  const checkout =
+    md.website_checkout === "direct" || (!md.website_checkout && group === "software")
+      ? "direct"
+      : "quote";
+
   return {
     sku: md.website_sku,
-    group: md.website_group,
+    group,
+    checkout,
     order: parseInt(md.website_order, 10) || 999,
     name: md.website_title || product.name,
     productId: product.id,
@@ -87,12 +103,25 @@ async function loadCatalog(stripe, { force = false } = {}) {
   return items;
 }
 
-async function getBySku(stripe, sku, expectedGroup) {
+/**
+ * Look up a SKU, optionally asserting how it may be transacted.
+ *
+ *   getBySku(stripe, sku, { checkout: "direct" })  purchasable via Checkout
+ *   getBySku(stripe, sku, { checkout: "quote" })   quote/invoice flow only
+ *   getBySku(stripe, sku, { group: "kit" })        must live in the kit grid
+ *
+ * Callers assert the path they serve, so a SKU can never be bought through an
+ * endpoint that was not meant to sell it.
+ */
+async function getBySku(stripe, sku, opts = {}) {
   if (!sku) return null;
+  const { group, checkout } = typeof opts === "string" ? { group: opts } : opts;
+
   const items = await loadCatalog(stripe);
   const item = items.find((i) => i.sku === sku);
   if (!item) return null;
-  if (expectedGroup && item.group !== expectedGroup) return null;
+  if (group && item.group !== group) return null;
+  if (checkout && item.checkout !== checkout) return null;
   return item;
 }
 

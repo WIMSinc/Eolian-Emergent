@@ -28,7 +28,9 @@ module.exports = async (req, res) => {
 
   let item;
   try {
-    item = await getBySku(stripe, sku, "software");
+    // Gate on the checkout flag rather than the group: the UPT and Command Team
+    // kits sell directly, the larger kits do not.
+    item = await getBySku(stripe, sku, { checkout: "direct" });
   } catch (err) {
     console.error("Catalog lookup failed:", err.message);
     return res.status(502).json({ error: "Could not start checkout" });

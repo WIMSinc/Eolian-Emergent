@@ -18,6 +18,7 @@
 export const KITS = [
   {
     sku: "KIT.01",
+    fallbackCheckout: "direct",
     fallbackName: "ARTAK UPT Kit",
     fallbackAmount: 2198900,
     image: "/artak-kit-upt.webp",
@@ -26,6 +27,7 @@ export const KITS = [
   },
   {
     sku: "KIT.02",
+    fallbackCheckout: "direct",
     fallbackName: "ARTAK Command Team Kit",
     fallbackAmount: 3749900,
     image: "/artak-kit-command.webp",
@@ -34,6 +36,7 @@ export const KITS = [
   },
   {
     sku: "KIT.03",
+    fallbackCheckout: "quote",
     fallbackName: "ARTAK Squad Kit",
     fallbackAmount: 23468300,
     image: "/artak-kit-squad.webp",
@@ -42,6 +45,7 @@ export const KITS = [
   },
   {
     sku: "KIT.04",
+    fallbackCheckout: "quote",
     fallbackName: "ARTAK Platoon Kit",
     fallbackAmount: 33382700,
     image: "/artak-kit-platoon.webp",
@@ -50,6 +54,7 @@ export const KITS = [
   },
   {
     sku: "KIT.05",
+    fallbackCheckout: "quote",
     fallbackName: "ARTAK Battalion HQ Kit",
     fallbackAmount: 58203000,
     image: "/artak-kit-battalion.webp",
@@ -58,6 +63,7 @@ export const KITS = [
   },
   {
     sku: "KIT.06",
+    fallbackCheckout: "quote",
     fallbackName: "ARTAK Brigade HQ Kit",
     fallbackAmount: 84270800,
     image: "/artak-kit-brigade.webp",
@@ -73,6 +79,7 @@ const SW_IMAGE = "/artak-software-card.webp";
 export const SOFTWARE = [
   {
     sku: "SW.03",
+    fallbackCheckout: "direct",
     fallbackName: "ARTAK User License",
     fallbackAmount: 340000,
     image: SW_IMAGE,
@@ -81,6 +88,7 @@ export const SOFTWARE = [
   },
   {
     sku: "SW.05",
+    fallbackCheckout: "direct",
     fallbackName: "ARTAK User License x 2",
     fallbackAmount: 680000,
     image: SW_IMAGE,
@@ -89,6 +97,7 @@ export const SOFTWARE = [
   },
   {
     sku: "SW.04",
+    fallbackCheckout: "direct",
     fallbackName: "ARTAK User License (3 years)",
     fallbackAmount: 1020000,
     image: SW_IMAGE,
@@ -97,6 +106,7 @@ export const SOFTWARE = [
   },
   {
     sku: "SW.01",
+    fallbackCheckout: "direct",
     fallbackName: "ARTAK Backend Software Subscription (1 year)",
     fallbackAmount: 1500000,
     image: SW_IMAGE,
@@ -105,6 +115,7 @@ export const SOFTWARE = [
   },
   {
     sku: "SW.02",
+    fallbackCheckout: "direct",
     fallbackName: "ARTAK Backend Software Subscription (3 years)",
     fallbackAmount: 4500000,
     image: SW_IMAGE,
@@ -130,6 +141,9 @@ export function mergeCatalog(local, remoteBySku) {
       name: remote?.name || row.fallbackName,
       amount: typeof remote?.amount === "number" ? remote.amount : row.fallbackAmount,
       features: remote?.features || [],
+      // Falls back to "quote" when unknown so an offline catalog never turns a
+      // six-figure kit into a one-click purchase.
+      checkout: remote?.checkout || row.fallbackCheckout || "quote",
       live: Boolean(remote),
     };
   });

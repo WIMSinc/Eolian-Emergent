@@ -131,15 +131,42 @@ export default function KitsSoftwareSection() {
                   </div>
                 )}
                 <p className="font-mono text-xl text-[#FF0B1B] font-bold mb-4">{formatUsd(kit.amount)}</p>
-                <button
-                  type="button"
-                  onClick={() => setActiveKit({ ...kit, price: formatUsd(kit.amount), label: `[${kit.sku}]` })}
-                  data-testid={`kit-acquire-${i}`}
-                  aria-label={`Request a quote for the ${kit.name}`}
-                  className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] text-zinc-400 hover:text-[#FF0B1B] border border-zinc-800 hover:border-[#FF0B1B] px-3 py-2 transition-colors uppercase"
-                >
-                  <ShoppingCart size={11} /> Acquire Kit
-                </button>
+                {kit.checkout === "direct" ? (
+                  <>
+                    <button
+                      type="button"
+                      onClick={() => startCheckout(kit.sku)}
+                      disabled={pendingSku !== null}
+                      data-testid={`kit-acquire-${i}`}
+                      aria-label={`Purchase the ${kit.name}`}
+                      className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] text-zinc-400 hover:text-[#FF0B1B] border border-zinc-800 hover:border-[#FF0B1B] px-3 py-2 transition-colors uppercase disabled:opacity-40 disabled:hover:text-zinc-400 disabled:hover:border-zinc-800"
+                    >
+                      {pendingSku === kit.sku ? (
+                        <><Loader2 size={11} className="animate-spin" /> Redirecting...</>
+                      ) : (
+                        <><ShoppingCart size={11} /> Acquire Kit</>
+                      )}
+                    </button>
+                    <p className="mt-2 font-mono text-[9px] tracking-[0.15em] text-zinc-500 uppercase">
+                      Checkout — card or ACH
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      type="button"
+                      onClick={() => setActiveKit({ ...kit, price: formatUsd(kit.amount), label: `[${kit.sku}]` })}
+                      data-testid={`kit-acquire-${i}`}
+                      aria-label={`Request a quote for the ${kit.name}`}
+                      className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] text-zinc-400 hover:text-[#FF0B1B] border border-zinc-800 hover:border-[#FF0B1B] px-3 py-2 transition-colors uppercase"
+                    >
+                      <ShoppingCart size={11} /> Request Quote
+                    </button>
+                    <p className="mt-2 font-mono text-[9px] tracking-[0.15em] text-zinc-500 uppercase">
+                      Quote &amp; invoice — ACH or wire
+                    </p>
+                  </>
+                )}
               </div>
               <div className="absolute bottom-0 left-0 w-0 h-px bg-[#FF0B1B] group-hover:w-full transition-all duration-700" />
             </motion.div>

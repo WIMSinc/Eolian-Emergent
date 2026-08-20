@@ -35,6 +35,7 @@ module.exports = async (req, res) => {
       items: items.map((i) => ({
         sku: i.sku,
         group: i.group,
+        checkout: i.checkout,
         name: i.name,
         amount: i.amount,
         currency: i.currency,

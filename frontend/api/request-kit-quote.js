@@ -91,7 +91,7 @@ module.exports = async (req, res) => {
 
   let item;
   try {
-    item = await getBySku(stripe, sku, "kit");
+    item = await getBySku(stripe, sku, { group: "kit", checkout: "quote" });
   } catch (err) {
     console.error("Catalog lookup failed:", err.message);
     return res.status(502).json({ error: "Could not submit request" });
