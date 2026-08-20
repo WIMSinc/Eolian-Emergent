@@ -49,7 +49,7 @@ export const SECTIONS = [
           "1 Samsung tablet",
           "1 WiFi/LTE network node",
           "1 edge server",
-          "1-year software subscription",
+          "3-year software subscription",
         ],
       },
       {
@@ -152,7 +152,7 @@ export const SECTIONS = [
           "O&M funds — potentially available only after the servicing comptroller and legal/contracting officials confirm expense classification, bona fide need, purpose/time/amount compliance, any system or unit-cost aggregation rules, and the current DoD/Component expense-investment threshold. COTS status and the FAR SAT do not by themselves authorize O&M funding.",
           "Small business — FAR Part 13 supports small-business participation. Verify the prospective contractor's current representations, size status for the assigned NAICS code, and eligibility before treating the acquisition as a small-business set-aside or award.",
           "No GSA required — as an open-market item, the ARTAK Squad Kit can be purchased directly, bypassing GSA schedules.",
-          "Mission impact — the kit's 8 XR HMDs, tablet, WiFi/LTE network node, edge server, and 1-year software subscription enhance mission planning, C2, and situational awareness with real-time 3D maps and sensor data.",
+          "Mission impact — the kit's 8 XR HMDs, tablet, WiFi/LTE network node, edge server, and 3-year software subscription enhance mission planning, C2, and situational awareness with real-time 3D maps and sensor data.",
         ],
       },
       { type: "h3", text: "Key thresholds" },
@@ -397,7 +397,7 @@ export const SECTIONS = [
       { type: "h3", text: "Brief description of supplies required and intended use" },
       {
         type: "p",
-        text: "The [Unit Name] requires the purchase of the ARTAK Squad Kit, a commercial off-the-shelf augmented reality/virtual reality command and control platform from EolianVR. The kit includes 8 XR head-mounted displays, 1 Samsung tablet, 1 WiFi/LTE network node, 1 edge server, and a 1-year software subscription for the ARTAK app/cloud service, including training, support, data plan, installation, and case customization. The intended use is to enhance mission planning, situational awareness, and C2 by providing real-time 3D mapping and sensor data integration, synchronizing operations across echelons for tactical units such as infantry, Special Operations Forces, intelligence battalions, or combat logistics teams.",
+        text: "The [Unit Name] requires the purchase of the ARTAK Squad Kit, a commercial off-the-shelf augmented reality/virtual reality command and control platform from EolianVR. The kit includes 8 XR head-mounted displays, 1 Samsung tablet, 1 WiFi/LTE network node, 1 edge server, and a 3-year software subscription for the ARTAK app/cloud service, including training, support, data plan, installation, and case customization. The intended use is to enhance mission planning, situational awareness, and C2 by providing real-time 3D mapping and sensor data integration, synchronizing operations across echelons for tactical units such as infantry, Special Operations Forces, intelligence battalions, or combat logistics teams.",
       },
       { type: "h3", text: "Characteristics that may limit availability to one source" },
       {

@@ -11,7 +11,7 @@
  */
 
 const nodemailer = require("nodemailer");
-const { getItem, formatUsd } = require("./_catalog");
+const { getBySku, formatUsd } = require("./_catalog");
 
 async function verifyRecaptcha(token) {
   const secret = process.env.RECAPTCHA_SECRET_KEY;
@@ -71,14 +71,11 @@ module.exports = async (req, res) => {
     return res.status(200).json({ success: true });
   }
 
-  const item = getItem(sku, "kit");
-  if (!item) {
-    return res.status(400).json({ error: "Unknown kit SKU" });
-  }
   if (!name || !email) {
     return res.status(400).json({ error: "Name and email are required" });
   }
 
+  // Verify before touching Stripe so bot traffic never reaches the API.
   if (!(await verifyRecaptcha(recaptchaToken))) {
     return res.status(403).json({ error: "reCAPTCHA verification failed" });
   }
@@ -91,6 +88,17 @@ module.exports = async (req, res) => {
     return res.status(500).json({ error: "Quoting is not configured" });
   }
   const stripe = require("stripe")(secretKey);
+
+  let item;
+  try {
+    item = await getBySku(stripe, sku, "kit");
+  } catch (err) {
+    console.error("Catalog lookup failed:", err.message);
+    return res.status(502).json({ error: "Could not submit request" });
+  }
+  if (!item) {
+    return res.status(400).json({ error: "Unknown kit SKU" });
+  }
 
   try {
     // Reuse an existing customer where possible so repeat buyers do not
@@ -127,11 +135,12 @@ module.exports = async (req, res) => {
       },
     });
 
+    // Bill against Stripe's own price rather than a locally held amount, so the
+    // invoice can never diverge from the catalog.
     await stripe.invoiceItems.create({
       customer: customer.id,
       invoice: invoice.id,
-      currency: "usd",
-      unit_amount: item.amount,
+      price: item.priceId,
       quantity: qty,
       description: `${item.name} (${item.sku})`,
       metadata: { sku: item.sku },

@@ -1,63 +1,28 @@
 /**
- * Server-authoritative product catalog.
+ * Stripe-backed product catalog.
  *
- * The browser only ever sends a SKU. Every amount used to charge a card or
- * draft an invoice is read from this file — never from the request body — so
- * a tampered client cannot buy an $842,708 kit for $1.
+ * Stripe is the source of truth for price and name. Products opt in to the
+ * website by carrying metadata:
  *
- * Amounts are in cents (USD), matching Stripe's smallest-currency-unit
- * convention. Keep these in sync with the display prices in
- * src/components/KitsSoftwareSection.jsx; the values there are cosmetic.
+ *   website_sku      KIT.01 … SW.05   join key to local copy/images
+ *   website_visible  "true"           opt-in flag
+ *   website_group    kit | software   which grid it renders in
+ *   website_order    10, 20, 30 …     sort order
+ *
+ * Opt-in is deliberate. The account also holds archived defense-contract SKUs,
+ * a custom demo kit, and legacy accessories; with opt-out semantics a missing
+ * flag would publish them. Here the worst failure is a product not appearing.
+ *
+ * Descriptions and images are NOT synced — those live in the frontend so the
+ * site keeps its curated copy and its own optimised WebPs.
  */
 
-const CATALOG = {
-  // Hardware kits — quote/invoice flow only. Too large for card payment, and
-  // defense procurement runs on POs and wire/ACH rather than self-serve checkout.
-  "KIT.01": { name: "ARTAK UPT Kit", type: "kit", amount: 2198900 },
-  "KIT.02": { name: "ARTAK Command Team Kit", type: "kit", amount: 3749900 },
-  "KIT.03": { name: "ARTAK Squad Kit", type: "kit", amount: 23468300 },
-  "KIT.04": { name: "ARTAK Platoon Kit", type: "kit", amount: 33382700 },
-  "KIT.05": { name: "ARTAK Battalion HQ Kit", type: "kit", amount: 58203000 },
-  "KIT.06": { name: "ARTAK Brigade HQ Kit", type: "kit", amount: 84270800 },
+const CACHE_TTL_MS = 5 * 60 * 1000;
 
-  // Software subscriptions — self-serve Checkout. Priced inline via price_data
-  // so no pre-created Stripe Products are required to go live.
-  "SW.01": {
-    name: "ARTAK Backend Software Subscription — 1 Year",
-    type: "software",
-    amount: 1500000,
-    interval: "year",
-    intervalCount: 1,
-  },
-  "SW.02": {
-    name: "ARTAK Backend Software Subscription — 3 Years",
-    type: "software",
-    amount: 4500000,
-    interval: "year",
-    intervalCount: 3,
-  },
-  "SW.03": {
-    name: "ARTAK Software Subscription — 1 Year",
-    type: "software",
-    amount: 340000,
-    interval: "year",
-    intervalCount: 1,
-  },
-  "SW.04": {
-    name: "ARTAK Software Subscription — 3 Years",
-    type: "software",
-    amount: 1020000,
-    interval: "year",
-    intervalCount: 3,
-  },
-};
-
-function getItem(sku, expectedType) {
-  const item = CATALOG[sku];
-  if (!item) return null;
-  if (expectedType && item.type !== expectedType) return null;
-  return { sku, ...item };
-}
+// Serverless instances are reused between invocations, so this cache survives
+// across requests on a warm instance. The CDN in front of /api/catalog does the
+// heavy lifting; this just avoids hammering Stripe on cache-miss bursts.
+let cache = { at: 0, items: null };
 
 function formatUsd(cents) {
   return `$${(cents / 100).toLocaleString("en-US", {
@@ -66,4 +31,58 @@ function formatUsd(cents) {
   })}`;
 }
 
-module.exports = { CATALOG, getItem, formatUsd };
+function toItem(product) {
+  const price = product.default_price;
+  // A product with no resolved default price cannot be transacted. Skip it
+  // rather than rendering a card with a missing or guessed amount.
+  if (!price || typeof price !== "object" || !price.active) return null;
+
+  const md = product.metadata || {};
+  return {
+    sku: md.website_sku,
+    group: md.website_group,
+    order: parseInt(md.website_order, 10) || 999,
+    name: md.website_title || product.name,
+    productId: product.id,
+    priceId: price.id,
+    amount: price.unit_amount,
+    currency: price.currency,
+    // Stripe's structured promo field — drives the badge on the card, so promos
+    // can be changed in Stripe with no code change or redeploy.
+    features: (product.marketing_features || []).map((f) => f.name).filter(Boolean),
+    recurring: price.recurring
+      ? { interval: price.recurring.interval, count: price.recurring.interval_count }
+      : null,
+  };
+}
+
+async function loadCatalog(stripe, { force = false } = {}) {
+  if (!force && cache.items && Date.now() - cache.at < CACHE_TTL_MS) {
+    return cache.items;
+  }
+
+  const res = await stripe.products.search({
+    query: "active:'true' AND metadata['website_visible']:'true'",
+    limit: 100,
+    expand: ["data.default_price"],
+  });
+
+  const items = res.data
+    .map(toItem)
+    .filter((i) => i && i.sku && (i.group === "kit" || i.group === "software"))
+    .sort((a, b) => a.order - b.order || a.amount - b.amount);
+
+  cache = { at: Date.now(), items };
+  return items;
+}
+
+async function getBySku(stripe, sku, expectedGroup) {
+  if (!sku) return null;
+  const items = await loadCatalog(stripe);
+  const item = items.find((i) => i.sku === sku);
+  if (!item) return null;
+  if (expectedGroup && item.group !== expectedGroup) return null;
+  return item;
+}
+
+module.exports = { loadCatalog, getBySku, formatUsd, CACHE_TTL_MS };
