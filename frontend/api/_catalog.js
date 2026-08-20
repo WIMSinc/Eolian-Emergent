@@ -67,10 +67,21 @@ async function loadCatalog(stripe, { force = false } = {}) {
     expand: ["data.default_price"],
   });
 
+  // Group first, then website_order, then amount. Both groups number from 10,
+  // so sorting on order alone interleaves kits and software — harmless for the
+  // site (which orders from its own local arrays) but confusing for anything
+  // else reading the endpoint.
+  const GROUP_RANK = { kit: 0, software: 1 };
+
   const items = res.data
     .map(toItem)
-    .filter((i) => i && i.sku && (i.group === "kit" || i.group === "software"))
-    .sort((a, b) => a.order - b.order || a.amount - b.amount);
+    .filter((i) => i && i.sku && i.group in GROUP_RANK)
+    .sort(
+      (a, b) =>
+        GROUP_RANK[a.group] - GROUP_RANK[b.group] ||
+        a.order - b.order ||
+        a.amount - b.amount
+    );
 
   cache = { at: Date.now(), items };
   return items;
