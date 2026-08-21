@@ -58,7 +58,12 @@ export default function AdminLoginContent() {
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form
+            id="admin-login-form"
+            name="admin-login-form"
+            onSubmit={handleSubmit}
+            className="space-y-5"
+          >
             <div>
               <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-400 uppercase block mb-2">Email</label>
               <input

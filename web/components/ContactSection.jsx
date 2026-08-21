@@ -78,7 +78,12 @@ export default function ContactSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form
+              id="contact-form"
+              name="contact-form"
+              onSubmit={handleSubmit}
+              className="space-y-6"
+            >
               {/* Honeypot — hidden from real users */}
               <input
                 type="text"

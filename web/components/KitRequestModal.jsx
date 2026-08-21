@@ -115,7 +115,12 @@ export default function KitRequestModal({ kit, onClose }) {
                   with a formal quote, payable by ACH or wire.
                 </p>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form
+                  id="kit-quote-form"
+                  name="kit-quote-form"
+                  onSubmit={handleSubmit}
+                  className="space-y-4"
+                >
                   {/* Honeypot */}
                   <input
                     type="text"
