@@ -34,6 +34,7 @@ const navLinks = [
   { label: "ACQUIRE", to: "/acquire" },
   { label: "SERVICES", to: "/services" },
   { label: "THE LAB", to: "/lab" },
+  { label: "INSIGHTS", to: "/blog" },
   { label: "TEAM", to: "/team" },
   { label: "SUPPORT", to: "/support" },
   { label: "CONTACT", to: "/#contact" },

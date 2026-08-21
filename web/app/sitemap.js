@@ -1,6 +1,7 @@
 import { SITE_URL } from "@/lib/seo";
 import { slugs } from "@/data/artakUseCases";
 import { ALL_PRODUCTS } from "@/lib/products";
+import { getAllPosts } from "@/lib/sanity";
 
 /**
  * Generated sitemap, served at /sitemap.xml.
@@ -14,7 +15,7 @@ import { ALL_PRODUCTS } from "@/lib/products";
  * /admin* and /checkout/* are deliberately absent: the former is disallowed in
  * robots.txt, the latter is noindex and only reachable after a Stripe redirect.
  */
-export default function sitemap() {
+export default async function sitemap() {
   const now = new Date();
 
   const staticRoutes = [
@@ -22,6 +23,7 @@ export default function sitemap() {
     ["/artak", 0.9, "weekly"],
     ["/acquire", 0.9, "weekly"],
     ["/products", 0.9, "weekly"],
+    ["/blog", 0.8, "weekly"],
     ["/artak/national-security", 0.7, "monthly"],
     ["/about", 0.8, "monthly"],
     ["/about/past-performance", 0.7, "monthly"],
@@ -36,6 +38,10 @@ export default function sitemap() {
     ["/terms", 0.3, "yearly"],
   ];
 
+  // Blog URLs come from Sanity. getAllPosts() returns [] when the CMS is not
+  // configured or unreachable, so the sitemap degrades rather than failing.
+  const posts = await getAllPosts();
+
   return [
     ...staticRoutes.map(([path, priority, changeFrequency]) => ({
       url: `${SITE_URL}${path}`,
@@ -48,6 +54,12 @@ export default function sitemap() {
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.8,
+    })),
+    ...posts.map((p) => ({
+      url: `${SITE_URL}/blog/${p.slug}`,
+      lastModified: p._updatedAt ? new Date(p._updatedAt) : now,
+      changeFrequency: "monthly",
+      priority: 0.7,
     })),
     ...slugs.map((slug) => ({
       url: `${SITE_URL}/artak/${slug}`,

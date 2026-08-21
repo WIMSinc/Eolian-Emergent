@@ -133,6 +133,33 @@ export function productSchema({ name, description, image, sku, amount, path, ava
   };
 }
 
+/**
+ * BlogPosting schema for a Sanity-authored post.
+ *
+ * Distinct from articleSchema() above, which was written for the CRA-era
+ * /news routes that were never wired up. Fields map straight onto the Sanity
+ * document, so the structured data stays in step with what the page renders.
+ */
+export function blogPostingSchema({ title, description, image, slug, published, modified }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    description,
+    image: image || DEFAULT_IMG,
+    url: `${SITE_URL}/blog/${slug}`,
+    datePublished: published,
+    dateModified: modified || published,
+    author: { "@type": "Organization", name: "EolianVR, Inc.", url: SITE_URL },
+    publisher: {
+      "@type": "Organization",
+      name: "EolianVR, Inc.",
+      logo: { "@type": "ImageObject", url: `${SITE_URL}/eolian-logo-white.webp` },
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/blog/${slug}` },
+  };
+}
+
 /** FAQPage schema — the highest-leverage AEO addition for answer engines. */
 export function faqSchema(entries) {
   return {
