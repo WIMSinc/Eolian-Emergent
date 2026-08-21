@@ -120,6 +120,48 @@ npm run dev     # http://localhost:3000
 npm run build
 ```
 
+## Setting up the preview project
+
+A **separate** Vercel project is the safe way to test this. Changing the
+existing `eolian-emergent` project's root directory would repoint production at
+`web/` on its very next deploy.
+
+1. Vercel → **Add New… → Project** → import `WIMSinc/Eolian-Emergent`.
+2. Name it `eolianvr-next-preview`. Set **Root Directory** to `web`.
+   Framework preset should auto-detect as Next.js.
+3. Set **Production Branch** to `claude/nextjs-migration-phase1`
+   (Settings → Git). Otherwise it builds `main`, which has no `web/` directory
+   yet, and every build fails.
+4. Settings → **Deployment Protection** → enable **Vercel Authentication**.
+   New projects have it off, which would leave a full copy of the marketing
+   site publicly reachable.
+5. Add every variable in `.env.example`, copying values from the existing
+   project. Two must NOT be copied verbatim — see below.
+6. Redeploy.
+
+### The two variables that differ on preview
+
+| Variable | Why it differs |
+| --- | --- |
+| `PUBLIC_SITE_URL` | Builds the Stripe Checkout success/cancel URLs. Left as `https://www.eolianvr.com`, a test purchase pays on preview then redirects to production. Set it to the preview URL. |
+| `STRIPE_WEBHOOK_SECRET` | Signing secrets are per-endpoint. Register a second webhook endpoint in Stripe pointing at `<preview-url>/api/stripe-webhook` and use *its* secret, or signature verification rejects every event. |
+
+`next.config.mjs` sends `X-Robots-Tag: noindex, nofollow, noarchive` on every
+response whenever `VERCEL_ENV !== "production"`, so the preview cannot be
+indexed and compete with eolianvr.com even if protection is relaxed for a
+reviewer.
+
+### Worth testing on the preview
+
+- Contact, catalog-request and kit-quote forms — all four mailers and reCAPTCHA
+- A real Stripe Checkout run on a `direct` SKU (KIT.01 or KIT.02) end to end,
+  including the webhook firing and the `/checkout/success` page
+- `/products` and a few `/products/<slug>` pages; validate the Product JSON-LD
+  in Google's Rich Results Test
+- `/admin` login against the FastAPI backend (needs `NEXT_PUBLIC_BACKEND_URL`)
+- View source on `/` and confirm content is present without JavaScript
+- PageSpeed Insights on the preview URL versus the current mobile score of 61
+
 ## Promoting to production (do not do this casually)
 
 Vercel builds from `frontend/`. Switching over means repointing the project root
