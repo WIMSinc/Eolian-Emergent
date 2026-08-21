@@ -122,6 +122,18 @@ falls back to a validated request origin and then to `https://eolianvr.com`.
 - `News`/`NewsPost` page components exist in the CRA tree but were never routed
   in `App.js`, so they were intentionally skipped.
 
+## Build configuration
+
+`vercel.json` here pins `framework: nextjs` and sets `buildCommand`,
+`installCommand` and `outputDirectory` to `null`, which tells Vercel to
+auto-detect them.
+
+This matters because the `eolian-emergent` project was configured for Create
+React App for years. Dashboard overrides such as an Output Directory of `build`
+survive a Framework Preset change and would break a Next build, which emits to
+`.next`. Settings in `vercel.json` take precedence over the dashboard, so this
+file neutralises whatever the CRA era left behind.
+
 ## Running it
 
 ```bash
