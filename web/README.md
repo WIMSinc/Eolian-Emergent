@@ -72,16 +72,44 @@ app/services/ServicesContent.jsx   "use client" — the actual UI
 Note that client components are still server-rendered into the initial HTML, so
 this split costs nothing in crawlability.
 
-## Not yet ported (Phase 3)
+## Phase 3 additions
 
-- `/admin` and `/admin/dashboard` — the `localStorage` JWT needs rethinking
-  under SSR
-- Per-product pages + `productSchema()` (unblocks Merchant Center)
-- `faqSchema()` on the use-case pages — the highest-leverage AEO addition left
-- `next/image` adoption; images are currently the hand-optimised WebP files
-- `next/font` — fonts still load from the Google Fonts stylesheet
+- `/admin` and `/admin/dashboard` ported. Auth turned out to be `sessionStorage`
+  against the separate FastAPI backend and entirely client-side, so no SSR
+  rework was needed — only `useNavigate` → `useRouter` and the env-var rename
+  below. Quill loads through `next/dynamic` with `ssr: false` because it touches
+  `document` at import time.
+- **`/products` and `/products/[slug]`** — 11 prerendered product pages, one per
+  SKU, each emitting `Product`/`Offer` JSON-LD. This is the Merchant Center
+  unblock: previously no product had a URL of its own. The index emits
+  `ItemList` so the whole catalogue is reachable from one page.
+- `FAQPage` JSON-LD on `/support`, built from the same five knowledge-base
+  entries the page renders (extracted to `data/supportFaqs.js` so copy is not
+  duplicated).
+- `next/font` self-hosts Inter, IBM Plex Sans, JetBrains Mono and Unbounded.
+  The render-blocking `fonts.googleapis.com` stylesheet is gone; 8 woff2 files
+  are preloaded from the same origin instead.
+- Product URLs added to the generated sitemap — now 35 URLs.
+
+### Env var rename
+
+CRA's `REACT_APP_*` convention does not exist in Next. The admin pages now read
+`NEXT_PUBLIC_BACKEND_URL` (was `REACT_APP_BACKEND_URL`). **This must be set in
+Vercel before the admin routes will work.** No other client code reads env vars;
+the API routes' server-side vars are unchanged.
+
+## Known issues
+
+- `react-quill-new` carries a low-severity XSS advisory via `quill`, fixable
+  only by a major bump. It is the app's only outstanding advisory (2 low, 0
+  moderate/high/critical) and is reachable solely from the authenticated,
+  noindex admin editor. Same exposure the CRA build had.
+- `next/image` is **not** adopted. Images are still plain `<img>` pointing at the
+  hand-optimised WebP files in `public/`. Converting ~30 components carries real
+  visual-regression risk for modest gain, so it was deliberately deferred rather
+  than rushed.
 - `News`/`NewsPost` page components exist in the CRA tree but were never routed
-  in `App.js`, so they were intentionally skipped
+  in `App.js`, so they were intentionally skipped.
 
 ## Running it
 

@@ -1,5 +1,6 @@
 import { SITE_URL } from "@/lib/seo";
 import { slugs } from "@/data/artakUseCases";
+import { ALL_PRODUCTS } from "@/lib/products";
 
 /**
  * Generated sitemap, served at /sitemap.xml.
@@ -20,6 +21,7 @@ export default function sitemap() {
     ["/", 1.0, "weekly"],
     ["/artak", 0.9, "weekly"],
     ["/acquire", 0.9, "weekly"],
+    ["/products", 0.9, "weekly"],
     ["/artak/national-security", 0.7, "monthly"],
     ["/about", 0.8, "monthly"],
     ["/about/past-performance", 0.7, "monthly"],
@@ -40,6 +42,12 @@ export default function sitemap() {
       lastModified: now,
       changeFrequency,
       priority,
+    })),
+    ...ALL_PRODUCTS.map((p) => ({
+      url: `${SITE_URL}${p.href}`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
     })),
     ...slugs.map((slug) => ({
       url: `${SITE_URL}/artak/${slug}`,

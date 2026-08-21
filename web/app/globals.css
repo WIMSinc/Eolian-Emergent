@@ -43,7 +43,7 @@ html {
 }
 
 body {
-  font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-plex), -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #050505;
@@ -52,7 +52,7 @@ body {
 }
 
 code {
-  font-family: 'JetBrains Mono', source-code-pro, Menlo, Monaco, Consolas, monospace;
+  font-family: var(--font-jetbrains), source-code-pro, Menlo, Monaco, Consolas, monospace;
 }
 
 ::selection {
@@ -122,16 +122,16 @@ code {
 
 /* Font Classes */
 .font-heading {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-inter), sans-serif;
   letter-spacing: 0.04em;
 }
 
 .font-body {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: var(--font-plex), sans-serif;
 }
 
 .font-mono {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-jetbrains), monospace;
 }
 
 /* Tactical scan line */
@@ -278,7 +278,7 @@ a, button {
   background: #050505;
   border: 1px solid #27272A;
   min-height: 250px;
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: var(--font-plex), sans-serif;
   font-size: 14px;
   color: #e4e4e7;
 }
@@ -292,7 +292,7 @@ a, button {
 .quill-dark-wrapper .ql-editor.ql-blank::before {
   color: #3f3f46;
   font-style: normal;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-jetbrains), monospace;
   font-size: 12px;
 }
 
@@ -349,7 +349,7 @@ a, button {
 }
 
 .quill-dark-wrapper .ql-editor h2 {
-  font-family: 'Unbounded', sans-serif;
+  font-family: var(--font-unbounded), sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -358,7 +358,7 @@ a, button {
 }
 
 .quill-dark-wrapper .ql-editor h3 {
-  font-family: 'Unbounded', sans-serif;
+  font-family: var(--font-unbounded), sans-serif;
   font-size: 1.15rem;
   font-weight: 600;
   color: #ffffff;
@@ -404,7 +404,7 @@ a, button {
 
 /* ===== Blog post rendered HTML ===== */
 .blog-content h2 {
-  font-family: 'Unbounded', sans-serif;
+  font-family: var(--font-unbounded), sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -413,7 +413,7 @@ a, button {
 }
 
 .blog-content h3 {
-  font-family: 'Unbounded', sans-serif;
+  font-family: var(--font-unbounded), sans-serif;
   font-size: 1.15rem;
   font-weight: 600;
   color: #ffffff;

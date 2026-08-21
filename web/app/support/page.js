@@ -1,4 +1,5 @@
-import { pageMetadata } from "@/lib/seo";
+import { pageMetadata, faqSchema } from "@/lib/seo";
+import { faqs } from "@/data/supportFaqs";
 import SupportContent from "./SupportContent";
 
 export const metadata = pageMetadata({
@@ -7,6 +8,20 @@ export const metadata = pageMetadata({
   path: "/support",
 });
 
+// FAQPage JSON-LD built from the same entries the page renders — answer
+// engines and rich results both read this, and it costs nothing to emit.
+const schema = faqSchema(
+  faqs.map((f) => ({ question: f.title, answer: f.content }))
+);
+
 export default function Page() {
-  return <SupportContent />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+      <SupportContent />
+    </>
+  );
 }

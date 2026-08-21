@@ -1,4 +1,5 @@
 import Script from "next/script";
+import { Inter, IBM_Plex_Sans, JetBrains_Mono, Unbounded } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
@@ -50,19 +51,28 @@ export const viewport = {
   initialScale: 1,
 };
 
+// Self-hosted via next/font: the CRA build pulled a render-blocking stylesheet
+// from fonts.googleapis.com on every page load. These are emitted as CSS
+// variables and consumed by the font-family rules in globals.css.
+const inter = Inter({ subsets: ["latin"], display: "swap", variable: "--font-inter" });
+const plex = IBM_Plex_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-plex",
+});
+const jetbrains = JetBrains_Mono({ subsets: ["latin"], display: "swap", variable: "--font-jetbrains" });
+const unbounded = Unbounded({ subsets: ["latin"], display: "swap", variable: "--font-unbounded" });
+
+const fontVars = `${inter.variable} ${plex.variable} ${jetbrains.variable} ${unbounded.variable}`;
+
 const GA4_ID = "G-MSVBTTWTEH";
 const HUBSPOT_PORTAL = "19544401";
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={fontVars}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800;900&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@600&display=swap"
-        />
         {/* Site-wide structured data, server-rendered so AI and search crawlers
             that do not execute JavaScript still see it. */}
         <script
