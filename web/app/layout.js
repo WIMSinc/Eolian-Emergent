@@ -5,7 +5,6 @@ import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import RouteAnalytics from "@/components/RouteAnalytics";
-import SentryInit from "@/components/SentryInit";
 import LazyRecaptchaProvider from "@/components/LazyRecaptchaProvider";
 import { SITE_URL, DEFAULT_DESC, organizationSchema, websiteSchema } from "@/lib/seo";
 
@@ -92,7 +91,6 @@ export default function RootLayout({ children }) {
           <Footer />
         </LazyRecaptchaProvider>
         <RouteAnalytics />
-        <SentryInit />
         <Analytics />
 
         {/* GA4 — afterInteractive so the entry pageview lands reliably.

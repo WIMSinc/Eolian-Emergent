@@ -109,12 +109,28 @@ and `NEXT_PUBLIC_BACKEND_URL` pointed at it. Separate piece of work.
 `PUBLIC_SITE_URL` is also unset, which is harmless — `create-checkout-session`
 falls back to a validated request origin and then to `https://eolianvr.com`.
 
+## Admin removed
+
+`/admin` and `/admin/dashboard` were deleted. They managed blog posts that no
+route ever rendered and a contact list that HubSpot and email already receive,
+against a FastAPI/Mongo backend that was never deployed. Removing them also
+dropped `react-quill-new` and with it the app's last open advisory — the
+dependency tree is now at **0 vulnerabilities**.
+
+Blog content is moving to Sanity; see `lib/sanity.js` and `app/blog`.
+
+## Error reporting
+
+`@sentry/nextjs` replaces the CRA-era `@sentry/react`. Beyond readable stack
+traces from uploaded source maps, this reports errors thrown inside the API
+routes — checkout, the Stripe webhook, the mailers — which the CRA build never
+captured at all.
+
+Source maps upload only when `SENTRY_AUTH_TOKEN` is present, so local builds
+and any environment without it still succeed and simply ship minified traces.
+
 ## Known issues
 
-- `react-quill-new` carries a low-severity XSS advisory via `quill`, fixable
-  only by a major bump. It is the app's only outstanding advisory (2 low, 0
-  moderate/high/critical) and is reachable solely from the authenticated,
-  noindex admin editor. Same exposure the CRA build had.
 - `next/image` is **not** adopted. Images are still plain `<img>` pointing at the
   hand-optimised WebP files in `public/`. Converting ~30 components carries real
   visual-regression risk for modest gain, so it was deliberately deferred rather

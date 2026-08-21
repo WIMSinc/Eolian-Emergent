@@ -1,3 +1,5 @@
+import { withSentryConfig } from "@sentry/nextjs";
+
 /**
  * @type {import('next').NextConfig}
  */
@@ -50,4 +52,19 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+// Source maps are uploaded only when an auth token is present, so local builds
+// and any environment without SENTRY_AUTH_TOKEN still succeed — they just ship
+// minified stack traces, exactly as before.
+const sentryEnabled = Boolean(process.env.SENTRY_AUTH_TOKEN);
+
+export default withSentryConfig(nextConfig, {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  silent: !process.env.CI,
+  sourcemaps: { disable: !sentryEnabled },
+  // Strip the uploaded source maps from the deployed output so the readable
+  // source is not publicly served alongside the bundle.
+  widenClientFileUpload: true,
+  disableLogger: true,
+});
