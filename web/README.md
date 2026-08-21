@@ -22,6 +22,25 @@ Measured against the same home page:
 | `frontend/` (CRA) | 19 | 32 |
 | `web/` (Next) | **1,653** | **0** |
 
+## Phase 2 additions
+
+- All 10 remaining marketing routes ported (About tree, ARTAK national-security,
+  Lab, Support, Team, Terms, Privacy). `/terms` and `/privacy` needed no client
+  boundary at all and are pure server components.
+- `/artak/[slug]` — the eight use-case pages, prerendered via
+  `generateStaticParams()` with per-slug `generateMetadata()`. Their copy moved
+  to `data/artakUseCases.js` so the server route and the client component share
+  one source; unknown slugs still redirect to `/artak` as the CRA build did.
+- `/checkout/success` and `/checkout/cancelled` read `session_id` from
+  server-side `searchParams`, which keeps them server components and avoids
+  needing a Suspense boundary for `useSearchParams()`.
+- `app/sitemap.js` replaces the hand-maintained `public/sitemap.xml`. The ARTAK
+  URLs derive from the same `slugs` the routes use, so the drift that left
+  `/acquire` missing cannot recur there.
+
+**Route parity: every public CRA route now exists here.** Only `/admin` and
+`/admin/dashboard` remain, deferred to Phase 3 with the auth rework.
+
 ## What Phase 1 covers
 
 - App Router scaffold, Tailwind config and global CSS ported verbatim
@@ -53,14 +72,16 @@ app/services/ServicesContent.jsx   "use client" — the actual UI
 Note that client components are still server-rendered into the initial HTML, so
 this split costs nothing in crawlability.
 
-## Not yet ported
+## Not yet ported (Phase 3)
 
-- 16 remaining routes (About tree, ARTAK sub-pages, Team, Lab, Support, News,
-  Terms, Privacy, Admin, checkout result)
-- Admin auth — `localStorage` JWT needs rethinking under SSR
+- `/admin` and `/admin/dashboard` — the `localStorage` JWT needs rethinking
+  under SSR
 - Per-product pages + `productSchema()` (unblocks Merchant Center)
+- `faqSchema()` on the use-case pages — the highest-leverage AEO addition left
 - `next/image` adoption; images are currently the hand-optimised WebP files
 - `next/font` — fonts still load from the Google Fonts stylesheet
+- `News`/`NewsPost` page components exist in the CRA tree but were never routed
+  in `App.js`, so they were intentionally skipped
 
 ## Running it
 
