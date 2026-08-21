@@ -94,9 +94,20 @@ this split costs nothing in crawlability.
 ### Env var rename
 
 CRA's `REACT_APP_*` convention does not exist in Next. The admin pages now read
-`NEXT_PUBLIC_BACKEND_URL` (was `REACT_APP_BACKEND_URL`). **This must be set in
-Vercel before the admin routes will work.** No other client code reads env vars;
-the API routes' server-side vars are unchanged.
+`NEXT_PUBLIC_BACKEND_URL` (was `REACT_APP_BACKEND_URL`).
+
+`REACT_APP_BACKEND_URL` was **never set on the Vercel project**, so the CRA
+build baked in the literal string `undefined` and admin login has been calling
+`undefined/api/admin/login`. Admin is therefore already non-functional in
+production, and the migration neither causes nor fixes that. Nothing
+visitor-facing reads it: the marketing pages, product pages, forms and Stripe
+checkout all use the same-origin `/api/*` routes.
+
+Making admin work needs the FastAPI service in `backend/` deployed somewhere
+and `NEXT_PUBLIC_BACKEND_URL` pointed at it. Separate piece of work.
+
+`PUBLIC_SITE_URL` is also unset, which is harmless — `create-checkout-session`
+falls back to a validated request origin and then to `https://eolianvr.com`.
 
 ## Known issues
 
