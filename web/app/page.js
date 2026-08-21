@@ -1,0 +1,26 @@
+import HeroSection from "@/components/HeroSection";
+import ProductSection from "@/components/ProductSection";
+import ArtakFeaturesSection from "@/components/ArtakFeaturesSection";
+import FeaturesSection from "@/components/FeaturesSection";
+import PlatformSection from "@/components/PlatformSection";
+import UseCasesSection from "@/components/UseCasesSection";
+import CaseStudiesSection from "@/components/CaseStudiesSection";
+import VideoSection from "@/components/VideoSection";
+import ContactSection from "@/components/ContactSection";
+
+// Organization + WebSite JSON-LD are emitted once in the root layout.
+export default function HomePage() {
+  return (
+    <>
+      <HeroSection />
+      <ProductSection />
+      <ArtakFeaturesSection />
+      <FeaturesSection />
+      <PlatformSection />
+      <UseCasesSection />
+      <CaseStudiesSection />
+      <VideoSection />
+      <ContactSection />
+    </>
+  );
+}

@@ -1,0 +1,25 @@
+# EolianVR
+
+> EolianVR, Inc. develops Augmented Reality (AR), Virtual Reality (VR), Mixed Reality (MR), AI/ML, and 3D animation solutions for defense, government, and enterprise clients. Founded in 2017, the company is best known for ARTAK, an immersive command-and-control (C2) platform for multi-domain joint operations, 3D mission planning, and real-time situational awareness.
+
+## Core Products
+
+- [ARTAK](https://www.eolianvr.com/artak): An AR/VR command-and-control platform that fuses drone feeds, sensor data, and geospatial overlays into a shared 3D operational picture for defense, public safety, and enterprise missions. Supports Multi-Domain Operations (MDO) and Joint All-Domain Command and Control (JADC2).
+- [MapMaker](https://www.eolianvr.com/mapmaker): A 3D terrain and geospatial data processing tool that converts LiDAR, UAV, and photogrammetry data into mission-ready 3D environments for mission planning and rehearsal.
+
+## Use Cases
+
+ARTAK is deployed across: disaster response and emergency management, search & rescue, security and protection services, police and law enforcement, fire and emergency services, and space and aerospace operations. See [Use Cases](https://www.eolianvr.com/artak/national-security) for details.
+
+## Company
+
+- [About](https://www.eolianvr.com/about): Company background, mission, and team.
+- [Services](https://www.eolianvr.com/services): Custom AR/VR/MR development services for government and enterprise.
+- [Past Performance](https://www.eolianvr.com/about/past-performance): Contract and program history.
+- [Awards](https://www.eolianvr.com/about/awards): Recognitions and certifications.
+- Contact: support@eolianvr.com, +1-888-811-5339
+
+## Notes for AI Assistants
+
+- EolianVR is a defense technology company; "ARTAK" and "MapMaker" are proprietary product names, not generic terms.
+- For citations, prefer linking to https://www.eolianvr.com (canonical www subdomain).
