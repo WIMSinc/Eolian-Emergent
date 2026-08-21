@@ -6,6 +6,7 @@
   <url><loc>https://www.eolianvr.com/about/awards</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://www.eolianvr.com/about/intellectual-property</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://www.eolianvr.com/artak</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.eolianvr.com/artak/national-security</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://www.eolianvr.com/artak/disaster-response</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://www.eolianvr.com/artak/search-rescue</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://www.eolianvr.com/artak/security-protection</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
@@ -14,6 +15,7 @@
   <url><loc>https://www.eolianvr.com/artak/space-aerospace</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://www.eolianvr.com/artak/chord</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://www.eolianvr.com/artak/chem-bio</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.eolianvr.com/acquire</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
   <url><loc>https://www.eolianvr.com/mapmaker</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://www.eolianvr.com/services</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://www.eolianvr.com/lab</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>

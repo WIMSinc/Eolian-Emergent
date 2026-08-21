@@ -24,4 +24,4 @@ Allow: /
 User-agent: anthropic-ai
 Allow: /
 
-Sitemap: https://www.eolianvr.com/api/sitemap.xml
+Sitemap: https://www.eolianvr.com/sitemap.xml
