@@ -40,11 +40,11 @@ function ScrollToTop() {
   return null;
 }
 
-// The HubSpot loader records the entry pageview on its own, but this is a SPA —
-// every later navigation happens client-side and would otherwise go unreported.
-// Push those route changes onto the _hsq queue; skip the first render so the
-// entry pageview isn't counted twice.
-function HubSpotPageViews() {
+// HubSpot's loader and GA4's config call each record the entry pageview on their
+// own, but this is a SPA — every later navigation happens client-side and would
+// otherwise go unreported. Report those route changes to both; skip the first
+// render so the entry pageview isn't counted twice.
+function RouteAnalytics() {
   const { pathname, search } = useLocation();
   const initialLoad = useRef(true);
   useEffect(() => {
@@ -52,9 +52,18 @@ function HubSpotPageViews() {
       initialLoad.current = false;
       return;
     }
+    const path = pathname + search;
+
     const _hsq = (window._hsq = window._hsq || []);
-    _hsq.push(["setPath", pathname + search]);
+    _hsq.push(["setPath", path]);
     _hsq.push(["trackPageView"]);
+
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "page_view", {
+        page_path: path,
+        page_location: window.location.href,
+      });
+    }
   }, [pathname, search]);
   return null;
 }
@@ -64,7 +73,7 @@ function App() {
     <div className="noise-overlay min-h-screen bg-[#050505]">
       <BrowserRouter>
         <ScrollToTop />
-        <HubSpotPageViews />
+        <RouteAnalytics />
         <Navigation />
         <Suspense fallback={<div className="min-h-screen bg-[#050505]" />}>
           <Routes>
