@@ -2,7 +2,9 @@ import Script from "next/script";
 import { Inter, IBM_Plex_Sans, JetBrains_Mono, Unbounded } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
-import SiteChrome from "@/components/SiteChrome";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import LazyRecaptchaProvider from "@/components/LazyRecaptchaProvider";
 import RouteAnalytics from "@/components/RouteAnalytics";
 import { SITE_URL, DEFAULT_DESC, organizationSchema, websiteSchema } from "@/lib/seo";
 
@@ -83,7 +85,11 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="noise-overlay min-h-screen bg-[#050505]">
-        <SiteChrome>{children}</SiteChrome>
+        <LazyRecaptchaProvider>
+          <Navigation />
+          {children}
+          <Footer />
+        </LazyRecaptchaProvider>
         <RouteAnalytics />
         <Analytics />
 

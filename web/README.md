@@ -161,34 +161,17 @@ npm run build
 
 ## Content Studio
 
-The Studio is embedded at **/studio** in this app — same project, same deploy.
+The Studio lives in `studio/` at the repo root, deployed separately to
+`<projectId>.sanity.studio`. See `studio/README.md`.
 
-It was originally scaffolded as a standalone `studio/` package, but embedding
-turned out better: no second Vercel project, no CORS entry (it is same-origin),
-and no terminal step to publish it. The `sanity` toolkit adds ~30 MB to
-`node_modules`, and Next code-splits the route, so visitors to the marketing
-pages never download any of it — the home page still serves 1,654 words of
-prerendered HTML with no Studio code in it.
+Embedding it at `/studio` in this app was tried and reverted: it worked, but
+pulling the `sanity` toolkit into these dependencies took the audit from 0
+advisories to 9 — all `@sanity/cli` transitives that never execute at runtime
+but still sit in the tree the production site is built from. Keeping the CMS
+out means this app depends on nothing it does not actually serve.
 
-`components/SiteChrome.jsx` hides the site nav, footer and reCAPTCHA provider on
-`/studio`, since the Studio renders its own full-screen shell.
-
-`app/studio/[[...tool]]/StudioClient.jsx` exists for a specific reason: importing
-`sanity.config.js` from a server component pulls `sanity` into the RSC graph,
-where `swr` resolves to its `react-server` build and has no default export,
-failing the build. Keeping that import behind a client boundary resolves it with
-the browser condition instead.
-
-Schema lives in `sanity/schemaTypes/` — one copy, shared by the Studio and the
-queries in `lib/sanity.js`.
-
-### Dependency note
-
-Embedding took the audit from 0 to 9 advisories (1 high, 8 moderate). All of
-them trace to `@sanity/cli` -> `@vercel/frameworks` -> `js-yaml`/`smol-toml`/
-`uuid`: CLI tooling that ships as a transitive dependency but never runs in the
-browser or on the server. None are reachable by visitors, and each would need a
-major bump of `sanity` itself to clear.
+The site only needs `@sanity/client`, `@sanity/image-url` and
+`@portabletext/react` (~3.3 MB) to read and render published content.
 
 ## Promoting to production (do not do this casually)
 
