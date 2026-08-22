@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import TacticalCanvas from "./TacticalCanvas";
 
-const VIDEO_SRC = "/hero-bg-terrain.mp4";
+const VIDEO_SRC = "/hero-bg-terrain-v2.mp4";
 const POSTER_IMG = "/hero-poster.webp";
 
 export default function HeroSection() {
