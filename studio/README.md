@@ -35,8 +35,13 @@ sitemap, and carrying `BlogPosting` + `FAQPage` schema.
    npm run deploy
    ```
 
-   Sign in when prompted. You get a hosted Studio at `n2qolqrd.sanity.studio`,
+   Sign in when prompted. The Studio is live at **https://eolian.sanity.studio/**
    and `deploy` registers that host with Sanity, so no CORS entry is needed.
+
+   If deploy fails with `missing required grant sanity.project.read`, the CLI is
+   signed in as a different Sanity account than the one owning the project. Run
+   `npx sanity logout`, then `npx sanity login`, then `npx sanity projects list`
+   and confirm `n2qolqrd` appears before retrying.
 
 `npm run dev` instead runs it at http://localhost:3333 without deploying.
 
