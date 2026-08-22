@@ -93,12 +93,14 @@ export default function RootLayout({ children }) {
         <RouteAnalytics />
         <Analytics />
 
-        {/* GA4 — afterInteractive so the entry pageview lands reliably.
-            next/script replaces the manual requestIdleCallback loader the CRA
-            build needed. */}
+        {/* The gtag.js bundle is ~159 KiB and cost ~87 ms of main-thread time
+            when loaded afterInteractive, landing squarely inside the TBT
+            window. It is deferred to lazyOnload instead; the tiny inline
+            config below still runs early and queues onto dataLayer, which
+            gtag.js replays once it arrives — so no pageview is lost. */}
         <Script
           id="ga4-src"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`}
         />
         <Script id="ga4-init" strategy="afterInteractive">

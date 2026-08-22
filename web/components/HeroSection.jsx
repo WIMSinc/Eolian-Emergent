@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import TacticalCanvas from "./TacticalCanvas";
@@ -11,6 +11,13 @@ const POSTER_IMG = "/hero-poster.webp";
 export default function HeroSection() {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const videoRef = useRef(null);
+  // The hero video is 1.7 MB — 56% of the page's total weight. It is pure
+  // decoration behind a poster image, so its download is held back until the
+  // browser is idle rather than competing with the critical path. The <source>
+  // is withheld until then; rendering the element with no source keeps the
+  // poster visible and downloads nothing.
+  const [videoAllowed, setVideoAllowed] = useState(false);
+
   const [skipVideo] = useState(() => {
     if (typeof window === "undefined") return false;
     const isSmallScreen = window.matchMedia("(max-width: 768px)").matches;
@@ -18,6 +25,22 @@ export default function HeroSection() {
     const slowConnection = ["slow-2g", "2g", "3g"].includes(navigator.connection?.effectiveType);
     return isSmallScreen || saveData || slowConnection;
   });
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const allow = () => setVideoAllowed(true);
+    const id =
+      "requestIdleCallback" in window
+        ? window.requestIdleCallback(allow, { timeout: 3000 })
+        : setTimeout(allow, 2000);
+    return () => {
+      if ("cancelIdleCallback" in window && typeof id === "number") {
+        window.cancelIdleCallback(id);
+      } else {
+        clearTimeout(id);
+      }
+    };
+  }, []);
 
   const scrollToArtak = () => {
     const el = document.querySelector("#artak");
@@ -49,6 +72,7 @@ export default function HeroSection() {
             loop
             playsInline
             poster={POSTER_IMG}
+            preload="none"
             onCanPlay={() => {
               setVideoLoaded(true);
               videoRef.current?.play().catch(() => {});
@@ -57,7 +81,7 @@ export default function HeroSection() {
               videoLoaded ? "opacity-30" : "opacity-0"
             }`}
           >
-            <source src={VIDEO_SRC} type="video/mp4" />
+            {videoAllowed && <source src={VIDEO_SRC} type="video/mp4" />}
           </video>
         )}
         {/* Poster fallback while video loads, or permanently on mobile/slow connections */}
