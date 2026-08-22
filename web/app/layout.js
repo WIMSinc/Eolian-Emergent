@@ -2,10 +2,8 @@ import Script from "next/script";
 import { Inter, IBM_Plex_Sans, JetBrains_Mono, Unbounded } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+import SiteChrome from "@/components/SiteChrome";
 import RouteAnalytics from "@/components/RouteAnalytics";
-import LazyRecaptchaProvider from "@/components/LazyRecaptchaProvider";
 import { SITE_URL, DEFAULT_DESC, organizationSchema, websiteSchema } from "@/lib/seo";
 
 // Replaces the hand-rolled tags in the CRA public/index.html. Next renders
@@ -85,11 +83,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="noise-overlay min-h-screen bg-[#050505]">
-        <LazyRecaptchaProvider>
-          <Navigation />
-          {children}
-          <Footer />
-        </LazyRecaptchaProvider>
+        <SiteChrome>{children}</SiteChrome>
         <RouteAnalytics />
         <Analytics />
 

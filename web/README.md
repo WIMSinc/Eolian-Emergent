@@ -159,47 +159,36 @@ npm run dev     # http://localhost:3000
 npm run build
 ```
 
-## Setting up the preview project
+## Content Studio
 
-A **separate** Vercel project is the safe way to test this. Changing the
-existing `eolian-emergent` project's root directory would repoint production at
-`web/` on its very next deploy.
+The Studio is embedded at **/studio** in this app — same project, same deploy.
 
-1. Vercel → **Add New… → Project** → import `WIMSinc/Eolian-Emergent`.
-2. Name it `eolianvr-next-preview`. Set **Root Directory** to `web`.
-   Framework preset should auto-detect as Next.js.
-3. Set **Production Branch** to `claude/nextjs-migration-phase1`
-   (Settings → Git). Otherwise it builds `main`, which has no `web/` directory
-   yet, and every build fails.
-4. Settings → **Deployment Protection** → enable **Vercel Authentication**.
-   New projects have it off, which would leave a full copy of the marketing
-   site publicly reachable.
-5. Add every variable in `.env.example`, copying values from the existing
-   project. Two must NOT be copied verbatim — see below.
-6. Redeploy.
+It was originally scaffolded as a standalone `studio/` package, but embedding
+turned out better: no second Vercel project, no CORS entry (it is same-origin),
+and no terminal step to publish it. The `sanity` toolkit adds ~30 MB to
+`node_modules`, and Next code-splits the route, so visitors to the marketing
+pages never download any of it — the home page still serves 1,654 words of
+prerendered HTML with no Studio code in it.
 
-### The two variables that differ on preview
+`components/SiteChrome.jsx` hides the site nav, footer and reCAPTCHA provider on
+`/studio`, since the Studio renders its own full-screen shell.
 
-| Variable | Why it differs |
-| --- | --- |
-| `PUBLIC_SITE_URL` | Builds the Stripe Checkout success/cancel URLs. Left as `https://www.eolianvr.com`, a test purchase pays on preview then redirects to production. Set it to the preview URL. |
-| `STRIPE_WEBHOOK_SECRET` | Signing secrets are per-endpoint. Register a second webhook endpoint in Stripe pointing at `<preview-url>/api/stripe-webhook` and use *its* secret, or signature verification rejects every event. |
+`app/studio/[[...tool]]/StudioClient.jsx` exists for a specific reason: importing
+`sanity.config.js` from a server component pulls `sanity` into the RSC graph,
+where `swr` resolves to its `react-server` build and has no default export,
+failing the build. Keeping that import behind a client boundary resolves it with
+the browser condition instead.
 
-`next.config.mjs` sends `X-Robots-Tag: noindex, nofollow, noarchive` on every
-response whenever `VERCEL_ENV !== "production"`, so the preview cannot be
-indexed and compete with eolianvr.com even if protection is relaxed for a
-reviewer.
+Schema lives in `sanity/schemaTypes/` — one copy, shared by the Studio and the
+queries in `lib/sanity.js`.
 
-### Worth testing on the preview
+### Dependency note
 
-- Contact, catalog-request and kit-quote forms — all four mailers and reCAPTCHA
-- A real Stripe Checkout run on a `direct` SKU (KIT.01 or KIT.02) end to end,
-  including the webhook firing and the `/checkout/success` page
-- `/products` and a few `/products/<slug>` pages; validate the Product JSON-LD
-  in Google's Rich Results Test
-- `/admin` login against the FastAPI backend (needs `NEXT_PUBLIC_BACKEND_URL`)
-- View source on `/` and confirm content is present without JavaScript
-- PageSpeed Insights on the preview URL versus the current mobile score of 61
+Embedding took the audit from 0 to 9 advisories (1 high, 8 moderate). All of
+them trace to `@sanity/cli` -> `@vercel/frameworks` -> `js-yaml`/`smol-toml`/
+`uuid`: CLI tooling that ships as a transitive dependency but never runs in the
+browser or on the server. None are reachable by visitors, and each would need a
+major bump of `sanity` itself to clear.
 
 ## Promoting to production (do not do this casually)
 
