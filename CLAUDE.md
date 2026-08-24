@@ -66,6 +66,62 @@ them. A previous mismatch — schema saying founded 2017 while the About page sa
 > Paste the content-standards and never-claim material here so there is one
 > file both assistants read, rather than two that can drift.
 
+### 3.1 Claims currently asserted on the site — NOT YET RULED ON
+
+Inventory only. Nothing below has been approved or rejected; it is recorded so
+an assistant can see what the site already says before adding more, and so the
+team has one list to rule on.
+
+**An assistant must not add a new named customer, contract value, or readiness
+claim without an explicit ruling here.** Removing or softening an existing one
+is equally a team decision, not a cleanup task.
+
+Named organisations, with mention counts:
+
+| Name | Mentions | Notes |
+| --- | --- | --- |
+| USSOCOM / SOCOM | 32 | Highest-exposure attribution on the site |
+| Army | 20 | |
+| NATO SOF | 10 | |
+| DIU / Defense Innovation Unit | 9 | |
+| DHS | 3 | |
+| Marine Corps, Air Force | 4 | |
+| USASOC, MARSOC, MITRE, ERDCWERX | 1 each | |
+| "Booz Allen Hamilton and MITRE" | 1 | Stated as a **teaming partnership** |
+
+They appear in `web/app/services/`, `web/app/about/`,
+`web/app/about/past-performance/`, `web/app/about/awards/`,
+`web/components/CaseStudiesSection.jsx`, `web/components/ProductSection.jsx`
+and `web/data/acquireGuide.js`.
+
+Hardware vendors named as specifications — Samsung, Skydio, Exyn, Meta Quest,
+HoloLens, Magic Leap, GoTENNA, Dell — are treated as product facts rather than
+customer attributions.
+
+**Checked for and confirmed absent** (as of 2026-08-22), so do not reintroduce
+them from older copy or drafts:
+
+- No `TRL <n>` readiness claim. The only match is the proper noun "RAPTR Task
+  Force — Rapid Assessment of Prototype Technology Readiness", an exercise
+  name on the Past Performance page, not a readiness assertion.
+- No `$13M` or comparable contract-value figure.
+- No "every component of USSOCOM" or similar absolute-scope phrasing. The one
+  "all components" match is `"one ARTAK Squad Kit, all components and
+  services"` — kit contents, not organisational scope.
+
+Dollar figures that do appear ($350,000 · $234,683 · $207,760 · $149,240 ·
+$114,688 · $15,000) are published catalogue and acquisition-guide pricing, not
+contract values.
+
+Re-run the scan after any content change:
+
+```bash
+cd web
+grep -rniE "TRL ?[0-9]|technology readiness" app components data
+grep -rniE "every component|entire (DoD|force|command)" app components data
+grep -rhoE "USSOCOM|NATO ?SOF|Booz Allen[ A-Za-z]*|MITRE|DIU\b" app components data | sort | uniq -c
+```
+
 ---
 
 ## 4. Sanity CMS — already built and live
@@ -106,6 +162,16 @@ JSON-LD**, or values drift from the canonical facts above.
 ARTAK is **multi-typed as one entity**, not two sibling blocks. It is genuinely
 both a software application and a product, but it is one thing; two blocks would
 describe it as two entities competing for the same identity.
+
+`faqSchema()` is shared by `/support` and `/blog/[slug]`. That is reuse, not
+duplication — they are different URLs, and no single URL emits more than one
+`FAQPage`. Verified against the built HTML; do not "fix" it.
+
+**Known tradeoff, revisit at 3+ pages:** FAQ answers are stored inline on each
+post rather than as a reusable `faq` document. With a handful of posts that is
+the right call, but once the same answer appears on `/artak` and in a post, the
+copies drift — and drift is precisely what answer engines penalise. Promote to
+a referenced `faq` type when three or more pages share answers.
 
 Per-SKU pricing lives on `/products/<slug>`. The `AggregateOffer` on `/artak`
 derives `lowPrice` and `offerCount` from the same catalogue those pages price
