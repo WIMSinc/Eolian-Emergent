@@ -312,7 +312,20 @@ live site for its own terms.
 - `main` and `claude/nextjs-migration-phase1` are identical
 - Dependency audit: **0 vulnerabilities** in `web/`
 - PageSpeed: mobile **75**, desktop **91** (lab variance is ±5; judge trends)
-- Open: first blog post, `backend/` removal, YouTube facade pattern
+- Blog is live with two posts — `/blog/what-is-artak` and `/blog/who-is-eolianvr`
+  (25 inline FAQs between them). Verified in the raw HTML, not just in Sanity.
+- Open: cover images for both posts (uploaded in Studio, not the filesystem),
+  `backend/` removal, YouTube facade pattern
+
+**Publishing content is not a deploy — but it races one.** Content imported into
+Sanity while a build is running will be missing from anything rendered at build
+time. On 2026-08-24 an import committed at 19:13:50Z against a build that went
+READY at 19:13:57Z: the two post pages were fine (generated on demand afterwards,
+so they picked the content up), but `/blog` served "No posts published yet" and
+`/sitemap.xml` carried 36 URLs and no post URLs. Both read from `getAllPosts()`
+at build time. Nothing was wrong with the content or the code — the fix is a
+redeploy. After importing or publishing, re-check `/blog` **and** `/sitemap.xml`,
+not just the post URL.
 
 ## 10. Working conventions
 
