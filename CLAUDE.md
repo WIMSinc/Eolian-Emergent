@@ -39,11 +39,24 @@ Routes are `web/app/blog/page.js`, not `src/app/blog/page.tsx`. The sitemap is
 | --- | --- |
 | Legal name | EolianVR, Inc. |
 | Founded | **2016** |
-| Founders | Michael McCormack, Mike Simmons |
+| Leadership | **Michael** McCormack (CEO), **Mike** Simmons (COO) — different first-name forms, both correct as written |
 | Address | 12577 66th St, Largo, FL 33773-3440, US |
 | Phone | **(305) 562-9639** |
 | Website | https://www.eolianvr.com |
-| Patents | US 11,297,164 B2 · WO 2019/217437 A2 |
+| CAGE / UEI | 7RLL6 · HHN2E2LNBSV5 |
+| NAICS | 541511 (primary); 541512, 541519, 423420, 423430, 423490, 541613, 611430 |
+| Patents | US 11,297,164 B2 · WO 2019/217437 A2, enforceable through ~2040 |
+| Products | **ARTAK** (flagship), **Map Maker**, **STAK** |
+| DoD funding to date | **$18M** (includes the $5M FY26 congressional add) |
+| ARTAK Squad Kit | **$234,683** |
+
+**Eligibility:** Other Small Business, 100% U.S.-owned, **nontraditional defense
+contractor** (10 U.S.C. § 3014 — the basis for OTA prototype awards without cost
+share). **NOT** SDVOSB, 8(a), WOSB or HUBZone; never claim set-aside eligibility
+beyond Small Business.
+
+Use the address identically on the site, SAM.gov, the capability statement,
+LinkedIn and Google Business Profile — variants split the entity graph.
 
 **The 888-811-5339 number is dead.** It appeared in four places and has been
 removed; do not reintroduce it from older copy.
@@ -57,14 +70,61 @@ them. A previous mismatch — schema saying founded 2017 while the About page sa
 
 ## 3. Content standards and never-claim list
 
-> **TO BE FILLED IN BY THE EOLIAN TEAM.**
->
-> This section is intentionally empty rather than guessed at. Content rules and
-> claim prohibitions for a defense contractor carry real compliance weight, and
-> inventing them would be worse than leaving the gap visible.
->
-> Paste the content-standards and never-claim material here so there is one
-> file both assistants read, rather than two that can drift.
+Reconciled from the Eolian working-style guide on 2026-08-24. Where that guide
+and this file ever disagree, **this file wins** — and the guide gets reconciled
+in the same session.
+
+### Never claim
+
+None of these exist. Publishing any of them is a compliance problem, not a
+wording problem.
+
+- FedRAMP High / IL5 / IL6 **authorization** — **"IL-5 path in progress"** is
+  the correct phrasing
+- An independent or transferable ATO
+- JITC, NIAP or Common Criteria certification
+- A published VPAT or Section 508 conformance
+- CAC/PIV federation
+- A native browser-only client
+
+### Withheld from public copy
+
+- **U.S. Coast Guard is NOT a customer.** Older capability-statement material
+  lists it; that material is wrong. Never reintroduce it.
+- **Any TRL claim, including TRL 9** — internally debated, not confirmed.
+- **"every component of USSOCOM"** — the accurate scope is **"most
+  components."**
+- **Unapproved third parties:** UK MoD, Australian Army, American Rheinmetall,
+  PNNL, USMA West Point, Montana State. Rheinmetall and Microsoft Federal are
+  real relationships but are not cleared for public naming.
+- **Headcount, revenue, capital raised, fundraising status, pipeline values.**
+  "Small business" is the approved framing.
+- **Specific unit designations** (ODA numbers, battalion identifiers) in *new*
+  copy. Existing site case studies naming units were approved separately.
+
+If a figure cannot be traced to a source, mark it `[VERIFY]` rather than
+shipping it. Never invent contract values, program office names or solicitation
+numbers.
+
+### AEO rules — these outrank styling
+
+Answer-engine crawlers (GPTBot, ClaudeBot, PerplexityBot) **do not execute
+JavaScript**.
+
+- **Never add `"use client"` to a blog route.**
+- **Never hide FAQ answers behind a JS-only accordion.** Collapse with CSS or an
+  animated height on an always-mounted element; conditional rendering keeps the
+  text out of the HTML entirely. `/support` had exactly this bug — answers
+  existed only inside the JSON-LD until it was fixed.
+- **Acceptance test for any content change:** `curl -s <url> | grep` for the
+  text. If it is not in the raw HTML, it does not exist for AEO.
+
+### FAQ answer style
+
+- Repeat the subject noun instead of pronouns — "ARTAK is…", never "It is…" —
+  so an extracted snippet survives without its surrounding context.
+- 40–120 words. Answer in the first sentence.
+- Phrase questions the way a person would actually type them.
 
 ### 3.1 Claims currently asserted on the site — APPROVED as of 2026-08-22
 

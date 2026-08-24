@@ -157,7 +157,7 @@ export default async function Page({ params }) {
           /* eslint-disable-next-line @next/next/no-img-element */
           <img
             src={cover}
-            alt={post.title}
+            alt={post.coverImage?.alt || post.title}
             className="w-full mt-10 border border-zinc-800"
           />
         )}

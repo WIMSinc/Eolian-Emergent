@@ -89,7 +89,7 @@ export default async function Page() {
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={img}
-                        alt={post.title}
+                        alt={post.coverImage?.alt || post.title}
                         loading="lazy"
                         className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                       />
