@@ -57,11 +57,25 @@ export const organizationSchema = {
   logo: `${SITE_URL}/eolian-logo-white.webp`,
   description:
     "EolianVR develops AR, VR, MR, AI/ML, and 3D Animation solutions for enterprise and government.",
-  foundingDate: "2017",
+  // 2016 matches the About page copy; the schema previously said 2017 and
+  // contradicted it.
+  foundingDate: "2016",
+  founder: [
+    { "@type": "Person", name: "Michael McCormack" },
+    { "@type": "Person", name: "Mike Simmons" },
+  ],
   industry: "Defense Technology",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "12577 66th St",
+    addressLocality: "Largo",
+    addressRegion: "FL",
+    postalCode: "33773-3440",
+    addressCountry: "US",
+  },
   contactPoint: {
     "@type": "ContactPoint",
-    telephone: "+1-888-811-5339",
+    telephone: "+1-305-562-9639",
     contactType: "customer service",
   },
   knowsAbout: [
@@ -157,6 +171,57 @@ export function blogPostingSchema({ title, description, image, slug, published, 
       logo: { "@type": "ImageObject", url: `${SITE_URL}/eolian-logo-white.webp` },
     },
     mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/blog/${slug}` },
+  };
+}
+
+/**
+ * ARTAK as a SoftwareApplication.
+ *
+ * Deliberately multi-typed as ["SoftwareApplication", "Product"] rather than
+ * emitting two separate blocks. ARTAK is genuinely both, but it is one thing —
+ * two sibling blocks would describe it as two distinct entities competing for
+ * the same identity. schema.org allows an array of types, and Google resolves a
+ * multi-typed node as a single entity eligible for both treatments.
+ *
+ * Per-SKU pricing stays on /products/<slug>, where each licence and kit carries
+ * its own Offer. Here `offers` is an AggregateOffer computed from the same
+ * catalogue, so the low price cannot drift from what the product pages show.
+ */
+export function softwareApplicationSchema({ lowPrice, offerCount } = {}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": ["SoftwareApplication", "Product"],
+    name: "ARTAK",
+    alternateName: "Augmented Reality Team Awareness Kit",
+    url: `${SITE_URL}/artak`,
+    description:
+      "ARTAK is a multi-domain joint planning and command & control platform. It synchronizes planning and C2 activities across echelons, domains, and warfighting functions, bringing command and staff into a single digital decision environment.",
+    applicationCategory: "BusinessApplication",
+    applicationSubCategory: "Command and Control / Mission Planning",
+    operatingSystem: "Meta Quest, Windows, Android, iOS, macOS",
+    image: `${SITE_URL}/artak-overview.jpg`,
+    brand: { "@type": "Brand", name: "EolianVR" },
+    publisher: { "@type": "Organization", name: "EolianVR, Inc.", url: SITE_URL },
+    featureList: [
+      "Multi-domain joint mission planning",
+      "Real-time common operating picture",
+      "3D terrain and digital twin visualization",
+      "Device agnostic across AR, VR, tablet, phone and desktop",
+      "ATAK / WinTAK / iTAK ecosystem integration",
+      "Collaborative rehearsal and after-action review",
+    ],
+    ...(lowPrice
+      ? {
+          offers: {
+            "@type": "AggregateOffer",
+            priceCurrency: "USD",
+            lowPrice: (lowPrice / 100).toFixed(2),
+            offerCount,
+            url: `${SITE_URL}/products`,
+            seller: { "@type": "Organization", name: "EolianVR, Inc." },
+          },
+        }
+      : {}),
   };
 }
 

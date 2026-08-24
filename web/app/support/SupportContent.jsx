@@ -44,7 +44,7 @@ export default function SupportContent() {
             Mission-critical support for your ARTAK deployment. Submit a ticket, call our hotline, access operational manuals, or search the knowledge base.
           </p>
           <a
-            href="tel:8888115339"
+            href="tel:3055629639"
             data-testid="support-hero-cta"
             className="mt-8 inline-flex items-center gap-2 bg-[#D90412] text-white font-mono uppercase text-sm tracking-widest px-8 py-4 hover:bg-[#FF0B1B] transition-colors"
           >
@@ -105,11 +105,11 @@ export default function SupportContent() {
                 For mission-critical issues requiring immediate assistance, reach our on-call support team directly. Available 24/7 for active deployments.
               </p>
               <a
-                href="tel:8888115339"
+                href="tel:3055629639"
                 data-testid="support-phone-link"
                 className="font-mono text-3xl text-white hover:text-[#FF0B1B] transition-colors tracking-wider block"
               >
-                (888) 811-5339
+                (305) 562-9639
               </a>
               <span className="font-mono text-[10px] text-zinc-600 tracking-wider mt-2 block">CALL OR TEXT // 24/7</span>
               <div className="absolute bottom-0 left-0 w-0 h-px bg-[#FF0B1B] group-hover:w-full transition-all duration-700" />
@@ -266,10 +266,10 @@ export default function SupportContent() {
                 Open Ticket <ArrowRight size={14} />
               </a>
               <a
-                href="tel:8888115339"
+                href="tel:3055629639"
                 className="inline-flex items-center gap-2 border border-zinc-700 text-white font-mono uppercase text-sm tracking-widest px-6 py-3 hover:border-white transition-colors"
               >
-                <Phone size={14} /> (888) 811-5339
+                <Phone size={14} /> (305) 562-9639
               </a>
             </div>
           </div>
