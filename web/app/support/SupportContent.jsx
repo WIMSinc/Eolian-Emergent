@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Phone, Ticket, FileText, Download, ChevronDown, ArrowRight, Shield, Headset, Wifi, RefreshCw, Lock } from "lucide-react";
 
 const manuals = [
@@ -225,23 +225,24 @@ export default function SupportContent() {
                     />
                   </button>
 
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="overflow-hidden"
-                      >
-                        <div className="px-6 md:px-8 pb-6 pl-[4.5rem] md:pl-[5.5rem]">
-                          <p className="text-sm text-zinc-400 leading-relaxed border-l-2 border-[#FF0B1B]/30 pl-4">
-                            {faq.content}
-                          </p>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  {/* The answer is always mounted and collapsed with height,
+                      rather than conditionally rendered. Mounting on click kept
+                      the text out of the server-rendered HTML entirely, so the
+                      answers existed only inside the FAQPage JSON-LD — invisible
+                      to answer engines reading raw HTML, and to Google's check
+                      that FAQ content is actually present on the page. */}
+                  <motion.div
+                    initial={false}
+                    animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-6 md:px-8 pb-6 pl-[4.5rem] md:pl-[5.5rem]">
+                      <p className="text-sm text-zinc-400 leading-relaxed border-l-2 border-[#FF0B1B]/30 pl-4">
+                        {faq.content}
+                      </p>
+                    </div>
+                  </motion.div>
 
                   <div className="absolute bottom-0 left-0 w-0 h-px bg-[#FF0B1B] group-hover:w-full transition-all duration-700" />
                 </motion.div>
