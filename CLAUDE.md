@@ -66,28 +66,31 @@ them. A previous mismatch — schema saying founded 2017 while the About page sa
 > Paste the content-standards and never-claim material here so there is one
 > file both assistants read, rather than two that can drift.
 
-### 3.1 Claims currently asserted on the site — NOT YET RULED ON
+### 3.1 Claims currently asserted on the site — APPROVED as of 2026-08-22
 
-Inventory only. Nothing below has been approved or rejected; it is recorded so
-an assistant can see what the site already says before adding more, and so the
-team has one list to rule on.
+Everything listed below was reviewed and **approved for public attribution** by
+the Eolian team. Leave it as it stands.
 
-**An assistant must not add a new named customer, contract value, or readiness
-claim without an explicit ruling here.** Removing or softening an existing one
-is equally a team decision, not a cleanup task.
+Two rules follow from that, and they cut in both directions:
 
-Named organisations, with mention counts:
+- **Do not remove, soften or reword these attributions** as a tidy-up. They are
+  deliberate.
+- **Approval covers this list, not the category.** A *new* named customer,
+  contract value or readiness claim still needs an explicit ruling before it
+  goes on the site, and should be added here once granted.
+
+Named organisations, with mention counts at time of approval:
 
 | Name | Mentions | Notes |
 | --- | --- | --- |
-| USSOCOM / SOCOM | 32 | Highest-exposure attribution on the site |
+| USSOCOM / SOCOM | 32 | Approved |
 | Army | 20 | |
 | NATO SOF | 10 | |
 | DIU / Defense Innovation Unit | 9 | |
 | DHS | 3 | |
 | Marine Corps, Air Force | 4 | |
 | USASOC, MARSOC, MITRE, ERDCWERX | 1 each | |
-| "Booz Allen Hamilton and MITRE" | 1 | Stated as a **teaming partnership** |
+| "Booz Allen Hamilton and MITRE" | 1 | Approved — stated as a teaming partnership |
 
 They appear in `web/app/services/`, `web/app/about/`,
 `web/app/about/past-performance/`, `web/app/about/awards/`,
@@ -95,8 +98,8 @@ They appear in `web/app/services/`, `web/app/about/`,
 and `web/data/acquireGuide.js`.
 
 Hardware vendors named as specifications — Samsung, Skydio, Exyn, Meta Quest,
-HoloLens, Magic Leap, GoTENNA, Dell — are treated as product facts rather than
-customer attributions.
+HoloLens, Magic Leap, GoTENNA, Dell — are product facts rather than customer
+attributions, and are likewise approved.
 
 **Checked for and confirmed absent** (as of 2026-08-22), so do not reintroduce
 them from older copy or drafts:
