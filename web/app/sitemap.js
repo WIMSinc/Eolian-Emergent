@@ -15,6 +15,14 @@ import { getAllPosts } from "@/lib/sanity";
  * /admin* and /checkout/* are deliberately absent: the former is disallowed in
  * robots.txt, the latter is noindex and only reachable after a Stripe redirect.
  */
+
+// Matches the hourly revalidate on /blog. Without this the sitemap is generated
+// once at build time, so a post published in Sanity stays out of it until the
+// next deploy — /blog picks the post up an hour later and the sitemap never
+// does, which is the worse half of that split. Both now refresh on the same
+// clock from the same getAllPosts() call.
+export const revalidate = 3600;
+
 export default async function sitemap() {
   const now = new Date();
 

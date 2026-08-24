@@ -52,6 +52,12 @@ export const post = defineType({
           type: "string",
           title: "Alt text",
           description: "Describe the image for screen readers and search engines.",
+          // Warns rather than blocks: the site falls back to the post title, so
+          // a missing alt is a quality problem, not a broken page. The prompt
+          // still fires at the moment the image is chosen, which is the only
+          // time the right words are obvious.
+          validation: (r) =>
+            r.warning("Add alt text — without it the post title is used, which rarely describes the image"),
         }),
       ],
     }),
