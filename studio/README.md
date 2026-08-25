@@ -21,6 +21,7 @@ sitemap, and carrying `BlogPosting` + `FAQPage` schema.
 ## The project it points at
 
 **Project `b4qwtn71`, dataset `production` (public ACL).**
+Studio: **https://eolian.sanity.studio/** — application `stx1x12dctuosp6merrpebmt`.
 
 This replaced `n2qolqrd` on 2026-08-25. That project was deleted by a change to
 the Vercel Marketplace integration, which owns the lifecycle of any project
@@ -54,13 +55,21 @@ error to explain it.
    npm run deploy
    ```
 
-   Sign in when prompted. The first deploy against this project asks for a
-   hostname and creates a new Studio application, then writes its `appId` into
-   `sanity.cli.js` — commit that so later deploys stop asking. `deploy`
-   registers the resulting host with Sanity, so no CORS entry is needed.
+   Sign in when prompted. The Studio is live at **https://eolian.sanity.studio/**
+   and `deploy` registers that host with Sanity, so no CORS entry is needed.
+   `sanity.cli.js` already carries the `appId`, so deploys no longer prompt for
+   a hostname.
 
-   The old **eolian.sanity.studio** host belonged to the deleted project and is
-   gone with it.
+   **Logging in from a remote terminal** (Codespaces, a container, anything not
+   your own machine): `sanity login` opens a browser flow that redirects to
+   `localhost`, which never reaches a remote host, so the login hangs or fails.
+   Skip it — create a token in Manage under **API → Tokens** with Administrator
+   access and export it instead:
+
+   ```bash
+   export SANITY_AUTH_TOKEN=<token>
+   npm run deploy
+   ```
 
    If deploy fails with `missing required grant sanity.project.read`, the CLI is
    signed in as a different Sanity account than the one owning the project. Run

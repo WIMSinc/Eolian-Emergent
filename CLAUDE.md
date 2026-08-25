@@ -194,8 +194,10 @@ with what exists, not used to replace it.
 
 - Project **`b4qwtn71`**, dataset `production` — public ACL, anonymous published
   reads, no token in the site
-- Studio: built from `studio/`, deployed with `npm run deploy`. The old
-  **eolian.sanity.studio** host belonged to the previous project and is gone
+- Studio: **https://eolian.sanity.studio/**, built from `studio/`, deployed with
+  `npm run deploy`. The hostname is the same as before, but the application
+  behind it is new (`stx1x12dctuosp6merrpebmt`) — the old one died with the old
+  project, and `eolian` was free to reclaim
 - Schema: `studio/schemas/post.js`. Includes a **`faqs` array** that drives
   FAQPage structured data — the highest-value field in the schema
 - Site reads through `web/lib/sanity.js`; routes are `/blog` and `/blog/[slug]`
