@@ -18,12 +18,31 @@ Note: blocking the Studio from crawlers has **no bearing on blog SEO**.
 `/blog` and `/blog/<slug>` are separate URLs, and they stay indexed, in the
 sitemap, and carrying `BlogPosting` + `FAQPage` schema.
 
+## The project it points at
+
+**Project `b4qwtn71`, dataset `production` (public ACL).**
+
+This replaced `n2qolqrd` on 2026-08-25. That project was deleted by a change to
+the Vercel Marketplace integration, which owns the lifecycle of any project
+billed through it — such a project is deleted by removing the resource in
+Vercel, not through Sanity's own Manage UI, so the deletion carries no
+confirmation on the Sanity side. The dataset went with it.
+
+The site and the Studio must name the same project or the blog renders empty:
+`SANITY_STUDIO_PROJECT_ID` here, `NEXT_PUBLIC_SANITY_PROJECT_ID` in Vercel.
+Neither is hardcoded, so moving projects is an environment change rather than
+a code change.
+
+The dataset ACL must stay **public**. The site reads published documents
+anonymously with no token, so a private dataset renders an empty blog with no
+error to explain it.
+
 ## Setup
 
 1. Create `.env` in this folder:
 
    ```
-   SANITY_STUDIO_PROJECT_ID=n2qolqrd
+   SANITY_STUDIO_PROJECT_ID=b4qwtn71
    SANITY_STUDIO_DATASET=production
    ```
 
@@ -35,15 +54,41 @@ sitemap, and carrying `BlogPosting` + `FAQPage` schema.
    npm run deploy
    ```
 
-   Sign in when prompted. The Studio is live at **https://eolian.sanity.studio/**
-   and `deploy` registers that host with Sanity, so no CORS entry is needed.
+   Sign in when prompted. The first deploy against this project asks for a
+   hostname and creates a new Studio application, then writes its `appId` into
+   `sanity.cli.js` — commit that so later deploys stop asking. `deploy`
+   registers the resulting host with Sanity, so no CORS entry is needed.
+
+   The old **eolian.sanity.studio** host belonged to the deleted project and is
+   gone with it.
 
    If deploy fails with `missing required grant sanity.project.read`, the CLI is
    signed in as a different Sanity account than the one owning the project. Run
    `npx sanity logout`, then `npx sanity login`, then `npx sanity projects list`
-   and confirm `n2qolqrd` appears before retrying.
+   and confirm `b4qwtn71` appears before retrying.
 
 `npm run dev` instead runs it at http://localhost:3333 without deploying.
+
+## Restoring content
+
+`content/blog-posts.ndjson` at the repo root holds the published posts as
+Sanity documents, so the CMS is never the only copy:
+
+```bash
+npx sanity dataset import ../content/blog-posts.ndjson production --replace
+```
+
+`--replace` overwrites documents with matching `_id`s and leaves the rest
+alone, so re-running it is safe.
+
+Export after publishing, and keep the file current:
+
+```bash
+npx sanity dataset export production ../content/
+```
+
+Prefer **Archive** over **Delete** for a project you may want back. Archiving
+is reversible; deleting is not.
 
 ## How publishing reaches the site
 

@@ -5,10 +5,11 @@ export default defineCliConfig({
     projectId: process.env.SANITY_STUDIO_PROJECT_ID,
     dataset: process.env.SANITY_STUDIO_DATASET || "production",
   },
-  deployment: {
-    // Identifies the deployed Studio at eolian.sanity.studio so `sanity deploy`
-    // does not prompt for it again. Not a secret — it names the application,
-    // and access is still governed by your Sanity login.
-    appId: "pgrs079wfk81xyfimgdbu3mv",
-  },
+  // No `deployment.appId` on purpose. It used to pin the Studio application
+  // behind eolian.sanity.studio, but that application belonged to project
+  // n2qolqrd, which no longer exists — pinning an appId from a deleted project
+  // makes `sanity deploy` fail rather than fall back. The first deploy against
+  // the current project creates a new application and writes its appId back
+  // into this file, at which point it is worth committing so later deploys stop
+  // prompting for a hostname.
 });

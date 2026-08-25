@@ -192,13 +192,31 @@ grep -rhoE "USSOCOM|NATO ?SOF|Booz Allen[ A-Za-z]*|MITRE|DIU\b" app components d
 **Do not "add" Sanity. It is done.** Any incoming schema must be reconciled
 with what exists, not used to replace it.
 
-- Project `n2qolqrd`, dataset `production` — public ACL, anonymous published
+- Project **`b4qwtn71`**, dataset `production` — public ACL, anonymous published
   reads, no token in the site
-- Studio: **https://eolian.sanity.studio/**, built from `studio/`
+- Studio: built from `studio/`, deployed with `npm run deploy`. The old
+  **eolian.sanity.studio** host belonged to the previous project and is gone
 - Schema: `studio/schemas/post.js`. Includes a **`faqs` array** that drives
   FAQPage structured data — the highest-value field in the schema
 - Site reads through `web/lib/sanity.js`; routes are `/blog` and `/blog/[slug]`
   with `revalidate = 3600`
+- Content source of truth is **`content/blog-posts.ndjson`**, committed. Import
+  it with `sanity dataset import ... --replace`; export after publishing
+
+**Project `n2qolqrd` was deleted on 2026-08-25 — do not reference it.** It was
+billed through the Vercel Marketplace, and such a project is deleted by
+removing the resource in Vercel rather than through Sanity's Manage UI, so the
+deletion happened with no confirmation on the Sanity side and took the dataset
+with it. The published posts were rebuilt from the rendered HTML of the live
+pages; a third post existed only as a draft, and because drafts never render,
+nothing had a copy of it. Treat the CMS as replaceable and the committed
+NDJSON as the real source. Prefer **Archive** over **Delete** on any project
+worth keeping — archiving is reversible.
+
+Neither the site nor the Studio hardcodes the project: `SANITY_STUDIO_PROJECT_ID`
+in `studio/.env`, `NEXT_PUBLIC_SANITY_PROJECT_ID` in Vercel. They must agree, and
+the dataset ACL must stay public, or the blog renders empty with nothing in the
+build log to explain it.
 
 `lib/sanity.js` **degrades to empty rather than throwing** when the project is
 unconfigured or unreachable. eolianvr.com builds from this app, so a missing
