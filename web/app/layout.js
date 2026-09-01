@@ -6,6 +6,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import LazyRecaptchaProvider from "@/components/LazyRecaptchaProvider";
 import RouteAnalytics from "@/components/RouteAnalytics";
+import HubSpotLoader from "@/components/HubSpotLoader";
 import { SITE_URL, DEFAULT_DESC, organizationSchema, websiteSchema } from "@/lib/seo";
 
 // Replaces the hand-rolled tags in the CRA public/index.html. Next renders
@@ -110,12 +111,11 @@ gtag('js', new Date());
 gtag('config', '${GA4_ID}');`}
         </Script>
 
-        {/* HubSpot tracking is not needed for first paint. */}
-        <Script
-          id="hs-script-loader"
-          strategy="lazyOnload"
-          src={`//js.hs-scripts.com/${HUBSPOT_PORTAL}.js`}
-        />
+        {/* HubSpot is not needed for first paint, and lazyOnload was not far
+            enough: the loader chain-pulls ~100 KiB that accounted for almost
+            all of mobile Total Blocking Time. HubSpotLoader waits for the
+            first interaction, or five seconds, whichever comes first. */}
+        <HubSpotLoader portalId={HUBSPOT_PORTAL} />
       </body>
     </html>
   );
