@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+const { submitToHubSpotForm, getHutk, FORM_GUIDS } = require("../../lib/hubspot");
 
 async function verifyRecaptcha(token) {
   const secret = process.env.RECAPTCHA_SECRET_KEY;
@@ -54,6 +55,21 @@ module.exports = async (req, res) => {
       subject: `[EolianVR] New Contact: ${name}`,
       text: `New contact form submission\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone || "N/A"}\nOrganization: ${organization || "N/A"}\n\nMessage:\n${message}`,
     });
+
+    // CRM write after the email, and never in front of it: the visitor is
+    // waiting on the email path, and a HubSpot failure is not a reason to tell
+    // them their message did not send. Runs after reCAPTCHA so spam does not
+    // reach the CRM.
+    const hubspot = await submitToHubSpotForm({
+      formGuid: FORM_GUIDS.contact,
+      values: { email, firstname: name, phone, company: organization, message },
+      hutk: getHutk(req),
+      pageUri: req.headers.referer,
+      pageName: "Contact form",
+    });
+    if (hubspot.ok === false) {
+      console.error("HubSpot contact submission failed:", hubspot);
+    }
 
     return res.status(200).json({ success: true });
   } catch (err) {

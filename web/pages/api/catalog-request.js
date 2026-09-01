@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+const { submitToHubSpotForm, getHutk, FORM_GUIDS } = require("../../lib/hubspot");
 
 async function verifyRecaptcha(token) {
   const secret = process.env.RECAPTCHA_SECRET_KEY;
@@ -54,6 +55,17 @@ module.exports = async (req, res) => {
       subject: `[EolianVR] Catalog Request: ${name}`,
       text: `New catalog download request\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone || "N/A"}\nOrganization: ${organization || "N/A"}`,
     });
+
+    const hubspot = await submitToHubSpotForm({
+      formGuid: FORM_GUIDS.catalog,
+      values: { email, firstname: name, phone, company: organization },
+      hutk: getHutk(req),
+      pageUri: req.headers.referer,
+      pageName: "Catalog request",
+    });
+    if (hubspot.ok === false) {
+      console.error("HubSpot catalog submission failed:", hubspot);
+    }
 
     return res.status(200).json({ success: true });
   } catch (err) {

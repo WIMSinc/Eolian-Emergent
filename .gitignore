@@ -93,6 +93,12 @@ credentials.json
 .env
 .env.*
 *.env
+
+# ...but the example files hold no values, and are the only record of which
+# variables each app reads. Excluding them is why web/.env.example did not
+# exist despite CLAUDE.md section 8 describing it as the documentation.
+!.env.example
+!**/.env.example
 credentials.json
 *.pem
 *.key

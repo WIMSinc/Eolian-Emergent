@@ -11,6 +11,7 @@
  */
 
 const nodemailer = require("nodemailer");
+const { submitToHubSpotForm, getHutk, FORM_GUIDS } = require("../../lib/hubspot");
 const { getBySku, formatUsd } = require("../../lib/catalog");
 
 async function verifyRecaptcha(token) {
@@ -156,6 +157,32 @@ module.exports = async (req, res) => {
       notes,
       invoiceUrl: invoice.hosted_invoice_url || null,
     });
+
+    // The highest-intent lead on the site — someone asking the price of a kit.
+    // Carries the SKU and quantity so the CRM record says what was asked for,
+    // not just that somebody asked.
+    const hubspot = await submitToHubSpotForm({
+      formGuid: FORM_GUIDS.kitQuote,
+      values: {
+        email,
+        firstname: name,
+        phone,
+        company: organization,
+        message: [
+          `Kit quote request: ${item?.name || sku}`,
+          `Quantity: ${qty}`,
+          notes ? `Notes: ${notes}` : null,
+        ]
+          .filter(Boolean)
+          .join("\n"),
+      },
+      hutk: getHutk(req),
+      pageUri: req.headers.referer,
+      pageName: "Kit quote request",
+    });
+    if (hubspot.ok === false) {
+      console.error("HubSpot kit quote submission failed:", hubspot);
+    }
 
     return res.status(200).json({ success: true });
   } catch (err) {
