@@ -2,6 +2,26 @@
 
 import { useRef, useEffect, useCallback } from "react";
 
+/**
+ * Return the 2D context only if it can actually do everything draw() needs.
+ *
+ * Anti-fingerprinting extensions and privacy-hardened browsers do not remove
+ * canvas — they replace the context with a partial stub. The stub carries the
+ * common methods, so clearRect, arc and stroke all succeed, and the first thing
+ * to fail is createLinearGradient, several dozen lines into a frame. Because
+ * draw() runs on requestAnimationFrame, that throws on every frame for the rest
+ * of the session.
+ *
+ * Feature-detecting the one method that matters keeps this to a single check.
+ * The background is decorative, so returning null simply leaves it unpainted;
+ * the hero's video, type and layout are unaffected.
+ */
+function getUsableContext(canvas) {
+  const ctx = canvas.getContext("2d");
+  if (!ctx || typeof ctx.createLinearGradient !== "function") return null;
+  return ctx;
+}
+
 export default function TacticalCanvas() {
   const canvasRef = useRef(null);
   const animRef = useRef(null);
@@ -10,7 +30,10 @@ export default function TacticalCanvas() {
   const draw = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
+    const ctx = getUsableContext(canvas);
+    // A context that cannot draw gradients ends the loop rather than throwing
+    // once per frame. See getUsableContext above for why that happens.
+    if (!ctx) return;
     const w = canvas.width;
     const h = canvas.height;
     const t = timeRef.current;
@@ -105,6 +128,10 @@ export default function TacticalCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
+    // Bail before the first frame when the context is unusable, so the resize
+    // listener and animation loop are never set up at all.
+    if (!getUsableContext(canvas)) return;
+
     resize();
     window.addEventListener("resize", resize);
     animRef.current = requestAnimationFrame(draw);
