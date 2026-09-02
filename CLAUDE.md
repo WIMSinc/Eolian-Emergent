@@ -290,6 +290,18 @@ Each of these was reached deliberately, several after trying the alternative.
    backend that was never deployed.
 7. **API routes stay in `web/pages/api/`** with the `(req, res)` signature, so
    the Stripe webhook keeps `config.api.bodyParser = false`.
+8. **Form submissions reach HubSpot from the server, not the browser.** All
+   three forms — contact, catalog request, kit quote — email a notification and
+   also POST to the HubSpot Forms API via `web/lib/hubspot.js`. Previously the
+   only thing creating CRM records was Collected Forms, a client script that
+   scrapes the DOM, so an ad blocker or a managed corporate laptop meant the
+   email arrived and HubSpot got nothing. HubSpot's own numbers showed it: the
+   previous site's form collected 294 submissions, the current site's three
+   selectors collected four between them. A server-side POST cannot be blocked.
+9. **HubSpot loads on first interaction, or after five seconds.** See
+   `web/components/HubSpotLoader.jsx`. `lazyOnload` was not enough — hs-scripts
+   is a loader that chain-pulls ~100 KiB costing 1,130 ms of long tasks, which
+   was essentially the entire 1,070 ms mobile TBT.
 
 ---
 
@@ -321,7 +333,15 @@ live site for its own terms.
   `frontend/vercel.json` pins its own framework so nothing else is needed.
 - Environment variables live only in Vercel. `web/.env.example` documents every
   one. `PUBLIC_SITE_URL` and `STRIPE_WEBHOOK_SECRET` differ between production
-  and any preview — see that file.
+  and any preview — see that file. (`.gitignore` excluded `.env.*`, which is
+  why that file did not exist for a while despite this line describing it; the
+  example files are now explicitly un-ignored.)
+- **A HubSpot form must not mark Last name required.** The site collects a
+  single "Name" field, mapped to `firstname`. A required `lastname` makes
+  HubSpot reject the whole submission, and the failure is invisible from the
+  outside: the notification email still arrives, only the CRM record is
+  missing. That was the live configuration when the integration went in, so it
+  is worth checking on any new form.
 - `NEXT_PUBLIC_*` values are baked in **at build time**. Adding one requires a
   redeploy that starts *after* the variable is saved.
 
