@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { AlertTriangle, Search, Shield, Siren, Flame, Rocket, ArrowRight } from "lucide-react";
+import { srcSetFor, CARD_SIZES } from "@/lib/responsiveImage";
 
 const useCases = [
   {
@@ -89,6 +90,8 @@ export default function UseCasesSection() {
               <div className="relative h-48 overflow-hidden">
                 <img
                   src={uc.image}
+                  srcSet={srcSetFor(uc.image)}
+                  sizes={CARD_SIZES.useCase}
                   alt={uc.title}
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
                   loading="lazy"

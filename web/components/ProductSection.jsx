@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Crosshair, Radio, Globe, Shield } from "lucide-react";
+import { srcSetFor, CARD_SIZES } from "@/lib/responsiveImage";
 
 const panels = [
   {
@@ -95,6 +96,8 @@ export default function ProductSection() {
               <div className="relative h-56 md:h-64 overflow-hidden">
                 <img
                   src={panel.image}
+                  srcSet={srcSetFor(panel.image)}
+                  sizes={CARD_SIZES.bento}
                   alt={panel.title}
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
                   loading="lazy"
