@@ -141,7 +141,12 @@ module.exports = async (req, res) => {
     await stripe.invoiceItems.create({
       customer: customer.id,
       invoice: invoice.id,
-      price: item.priceId,
+      // `pricing: { price }`, not a bare `price`. Current Stripe API versions
+      // reject the flat form on invoice items with "Received unknown parameter:
+      // price. Did you mean pricing?" — the shape changed and no apiVersion is
+      // pinned here, so the SDK follows whatever is current. Checkout Sessions
+      // still take a flat `price` inside line_items; only invoice items moved.
+      pricing: { price: item.priceId },
       quantity: qty,
       description: `${item.name} (${item.sku})`,
       metadata: { sku: item.sku },
