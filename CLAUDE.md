@@ -342,6 +342,17 @@ live site for its own terms.
   outside: the notification email still arrives, only the CRM record is
   missing. That was the live configuration when the integration went in, so it
   is worth checking on any new form.
+- **A HubSpot form must not have Captcha / SPAM prevention enabled.** HubSpot
+  refuses API submissions outright for such a form:
+  `FORM_HAS_RECAPTCHA_ENABLED — Form can't receive API submissions as Captcha
+  (SPAM prevention) is enabled.` It fails the same silent way as the required
+  `lastname`: email arrives, CRM record does not. The setting is redundant here
+  anyway — every form route verifies reCAPTCHA server-side and checks a
+  honeypot *before* forwarding, so anything reaching HubSpot has already
+  cleared spam checks the site controls.
+- Both of the above fail invisibly, so **check Vercel runtime errors rather
+  than trusting a successful-looking submission.** The routes log HubSpot's
+  rejection verbatim, and it names the cause directly.
 - `NEXT_PUBLIC_*` values are baked in **at build time**. Adding one requires a
   redeploy that starts *after* the variable is saved.
 
