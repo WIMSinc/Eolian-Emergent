@@ -22,19 +22,75 @@ const nextConfig = {
    * Redirects for URLs the pre-migration site served that this one does not.
    *
    * A 404 tells Google the page is gone and discards whatever authority the URL
-   * had; a 301 hands it to the replacement. These are the paths confirmed to
-   * still be referenced — /contact appears as an original source on HubSpot
-   * contacts created before the migration, so it was being reached by real
-   * people, not only crawlers.
+   * had; a 301 hands it to the replacement. Everything below is a path Search
+   * Console reported under "Not found (404)", so each one is a URL something out
+   * there still links to or remembers — not a guess at what WordPress might have
+   * served.
    *
-   * Search Console's Pages report lists the rest under "Not found (404)". Add
-   * them here as they are identified rather than guessing at old URLs, since a
-   * redirect from a path that never existed is just noise.
+   * The old site was WooCommerce, so /product/ and /product-tag/ are entire
+   * namespaces this site does not have. The named entries map the ones Google
+   * listed onto their real replacements; the two wildcards at the end catch the
+   * rest of those namespaces rather than waiting for each to be reported. Next
+   * matches in order, so the specific rules must stay above the wildcards.
+   *
+   * Not redirected on purpose: /dsc0f4677-copy/, a WordPress image attachment
+   * page. Nothing on this site replaces it, and pointing an unrelated URL at the
+   * homepage is what Google treats as a soft 404 — a genuine 404 is the honest
+   * answer and app/not-found.js now serves it without a canonical.
    */
   async redirects() {
     return [
       // Contact lives on the homepage now, as an anchor rather than a route.
+      // It appears as an original source on HubSpot contacts created before the
+      // migration, so it was being reached by real people, not only crawlers.
       { source: "/contact", destination: "/#contact", permanent: true },
+
+      // ARTAK was "TAK" on the old site before the product was named.
+      { source: "/tak", destination: "/artak", permanent: true },
+
+      // WooCommerce product pages. The -hl2 suffixes were HoloLens 2 variants
+      // of kits that are now one SKU each, headset choice being a spec rather
+      // than a separate product.
+      {
+        source: "/product/artak-brigadehq-kit",
+        destination: "/products/artak-brigade-hq-kit",
+        permanent: true,
+      },
+      {
+        source: "/product/artak-battalion-hq-kit-hl2",
+        destination: "/products/artak-battalion-hq-kit",
+        permanent: true,
+      },
+      {
+        source: "/product/artak-platoon-kit-hl2",
+        destination: "/products/artak-platoon-kit",
+        permanent: true,
+      },
+      {
+        source: "/product/artak-platoon-kit",
+        destination: "/products/artak-platoon-kit",
+        permanent: true,
+      },
+      {
+        source: "/product/artak-backend-software-subscription-1-year",
+        destination: "/products/artak-backend-software-subscription-1-year",
+        permanent: true,
+      },
+
+      // Map Maker is a page rather than a purchasable SKU now, and it is also
+      // the closest match for the two tag archives Google reported: both listed
+      // drone-capture and digital-twin products.
+      {
+        source: "/product/3d-mapmaker-processing-kit",
+        destination: "/mapmaker",
+        permanent: true,
+      },
+      { source: "/product-tag/skydio-x10", destination: "/mapmaker", permanent: true },
+      { source: "/product-tag/digital-twins", destination: "/mapmaker", permanent: true },
+
+      // Anything else left in the WooCommerce namespaces. Keep last.
+      { source: "/product/:slug", destination: "/products", permanent: true },
+      { source: "/product-tag/:slug", destination: "/products", permanent: true },
     ];
   },
 
