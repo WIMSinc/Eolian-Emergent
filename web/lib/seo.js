@@ -187,7 +187,7 @@ export function blogPostingSchema({ title, description, image, slug, published, 
  * its own Offer. Here `offers` is an AggregateOffer computed from the same
  * catalogue, so the low price cannot drift from what the product pages show.
  */
-export function softwareApplicationSchema({ lowPrice, offerCount } = {}) {
+export function softwareApplicationSchema({ lowPrice, highPrice, offerCount } = {}) {
   return {
     "@context": "https://schema.org",
     "@type": ["SoftwareApplication", "Product"],
@@ -216,6 +216,11 @@ export function softwareApplicationSchema({ lowPrice, offerCount } = {}) {
             "@type": "AggregateOffer",
             priceCurrency: "USD",
             lowPrice: (lowPrice / 100).toFixed(2),
+            // Google's Product snippet check reports `highPrice` missing when an
+            // AggregateOffer carries only a low price. Both come from the same
+            // catalogue the per-SKU Offers price against, so the range cannot
+            // disagree with what /products/<slug> shows.
+            ...(highPrice ? { highPrice: (highPrice / 100).toFixed(2) } : {}),
             offerCount,
             url: `${SITE_URL}/products`,
             seller: { "@type": "Organization", name: "EolianVR, Inc." },

@@ -14,6 +14,7 @@ export const metadata = pageMetadata({
 const amounts = ALL_PRODUCTS.map((p) => p.fallbackAmount).filter(Boolean);
 const schema = softwareApplicationSchema({
   lowPrice: amounts.length ? Math.min(...amounts) : undefined,
+  highPrice: amounts.length ? Math.max(...amounts) : undefined,
   offerCount: amounts.length || undefined,
 });
 

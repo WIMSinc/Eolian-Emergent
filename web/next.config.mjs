@@ -18,6 +18,26 @@ const nextConfig = {
     // formats for anything next/image processes going forward.
     formats: ["image/avif", "image/webp"],
   },
+  /**
+   * Redirects for URLs the pre-migration site served that this one does not.
+   *
+   * A 404 tells Google the page is gone and discards whatever authority the URL
+   * had; a 301 hands it to the replacement. These are the paths confirmed to
+   * still be referenced — /contact appears as an original source on HubSpot
+   * contacts created before the migration, so it was being reached by real
+   * people, not only crawlers.
+   *
+   * Search Console's Pages report lists the rest under "Not found (404)". Add
+   * them here as they are identified rather than guessing at old URLs, since a
+   * redirect from a path that never existed is just noise.
+   */
+  async redirects() {
+    return [
+      // Contact lives on the homepage now, as an anchor rather than a route.
+      { source: "/contact", destination: "/#contact", permanent: true },
+    ];
+  },
+
   async headers() {
     const rules = [];
 
