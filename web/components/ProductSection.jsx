@@ -80,9 +80,9 @@ export default function ProductSection() {
         </div>
 
         {/* Bento grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-px bg-zinc-800">
+        <ul className="grid grid-cols-1 md:grid-cols-12 gap-px bg-zinc-800">
           {panels.map((panel, i) => (
-            <motion.div
+            <motion.li
               key={i}
               custom={i}
               initial="hidden"
@@ -131,9 +131,9 @@ export default function ProductSection() {
 
               {/* Hover border accent */}
               <div className="absolute bottom-0 left-0 w-0 h-px bg-[#FF0B1B] group-hover:w-full transition-all duration-700" />
-            </motion.div>
+            </motion.li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

@@ -59,9 +59,9 @@ export default function LabContent() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-800">
+          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-800">
             {experiments.map((exp, i) => (
-              <motion.div
+              <motion.li
                 key={i}
                 custom={i}
                 initial="hidden"
@@ -81,9 +81,9 @@ export default function LabContent() {
                 <h3 className="font-heading text-sm font-semibold text-white uppercase tracking-wide mb-2">{exp.title}</h3>
                 <p className="text-xs text-zinc-500 leading-relaxed">{exp.desc}</p>
                 <div className="absolute bottom-0 left-0 w-0 h-px bg-[#FF0B1B] group-hover:w-full transition-all duration-500" />
-              </motion.div>
+              </motion.li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
     </div>

@@ -146,9 +146,9 @@ export default function AboutContent() {
               ARTAK is an implementation of Eolian's patented Eolian Mixed Reality Platform (U.S. Patent No. 11,297,164 B2; International Patent WO 2019/217437 A2) — a framework that allows customers to stand up, sustain, and ingest data into a 3D mixed reality environment that is secure and massively scalable. The patent is enforceable through approximately 2040, providing Eolian with a durable, defensible technology moat.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-800">
+          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-800">
             {artakCapabilities.map((cap, i) => (
-              <motion.div
+              <motion.li
                 key={i}
                 custom={i}
                 initial="hidden"
@@ -165,9 +165,9 @@ export default function AboutContent() {
                   </div>
                 </div>
                 <div className="absolute bottom-0 left-0 w-0 h-px bg-[#FF0B1B] group-hover:w-full transition-all duration-500" />
-              </motion.div>
+              </motion.li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
@@ -193,22 +193,22 @@ export default function AboutContent() {
                 Learn More About Map Maker <ChevronRight size={12} />
               </Link>
             </div>
-            <div className="grid grid-cols-1 gap-px bg-zinc-800">
+            <ul className="grid grid-cols-1 gap-px bg-zinc-800">
               {[
                 { label: "Fully Automated", desc: "No manual intervention — point at drone footage and get a 3D map." },
                 { label: "Offline Capable", desc: "Works entirely without internet connectivity for edge deployments." },
                 { label: "200+ Acres/Hour", desc: "8.8 cm GSD resolution at high throughput using commercial UAS platforms." },
                 { label: "Open Formats", desc: "Non-proprietary output compatible with ARTAK, ATAK, WinTAK, Meshlab, and more." },
               ].map((item, i) => (
-                <motion.div key={i} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="bg-[#0A0A0A] p-5 flex items-start gap-4">
+                <motion.li key={i} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="bg-[#0A0A0A] p-5 flex items-start gap-4">
                   <div className="w-1.5 h-1.5 bg-[#FF0B1B] mt-1.5 flex-shrink-0" />
                   <div>
                     <div className="font-mono text-xs text-white tracking-wider uppercase mb-1">{item.label}</div>
                     <div className="text-xs text-zinc-500 leading-relaxed">{item.desc}</div>
                   </div>
-                </motion.div>
+                </motion.li>
               ))}
-            </div>
+            </ul>
           </div>
         </div>
       </section>
@@ -225,9 +225,9 @@ export default function AboutContent() {
               Explore Our Record
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-zinc-800">
+          <ul className="grid grid-cols-1 md:grid-cols-3 gap-px bg-zinc-800">
             {subpageLinks.map((item, i) => (
-              <motion.div key={i} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+              <motion.li key={i} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
                 <Link
                   href={item.to}
                   className="bg-[#0A0A0A] p-8 group hover:bg-[#0D0D0D] transition-colors relative flex flex-col h-full block"
@@ -243,9 +243,9 @@ export default function AboutContent() {
                   </div>
                   <div className="absolute bottom-0 left-0 w-0 h-px bg-[#FF0B1B] group-hover:w-full transition-all duration-500" />
                 </Link>
-              </motion.div>
+              </motion.li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
@@ -259,18 +259,18 @@ export default function AboutContent() {
             </div>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase tracking-tight text-white">Our Core Values</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-800">
+          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-800">
             {values.map((v, i) => (
-              <motion.div key={i} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="bg-[#0A0A0A] p-6 md:p-8 group hover:bg-[#0D0D0D] transition-colors relative">
+              <motion.li key={i} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="bg-[#0A0A0A] p-6 md:p-8 group hover:bg-[#0D0D0D] transition-colors relative">
                 <div className="w-10 h-10 border border-zinc-800 flex items-center justify-center mb-4 group-hover:border-[#FF0B1B] transition-colors">
                   <v.icon size={18} className="text-zinc-600 group-hover:text-[#FF0B1B] transition-colors" />
                 </div>
                 <h3 className="font-heading text-sm font-semibold text-white tracking-wide uppercase mb-2">{v.title}</h3>
                 <p className="text-sm text-zinc-500 leading-relaxed">{v.desc}</p>
                 <div className="absolute bottom-0 left-0 w-0 h-px bg-[#FF0B1B] group-hover:w-full transition-all duration-500" />
-              </motion.div>
+              </motion.li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 

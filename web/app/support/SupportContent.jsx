@@ -134,9 +134,9 @@ export default function SupportContent() {
             </p>
           </div>
 
-          <div className="space-y-px">
+          <ul className="space-y-px">
             {manuals.map((manual, i) => (
-              <motion.div
+              <motion.li
                 key={i}
                 custom={i}
                 initial="hidden"
@@ -167,9 +167,9 @@ export default function SupportContent() {
                   </a>
                 </div>
                 <div className="absolute bottom-0 left-0 w-0 h-px bg-[#FF0B1B] group-hover:w-full transition-all duration-700" />
-              </motion.div>
+              </motion.li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 

@@ -137,9 +137,9 @@ const block2 = [
 
 function FeatureGrid({ items, testIdPrefix }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-zinc-800/50">
+    <ul className="grid grid-cols-1 md:grid-cols-2 gap-px bg-zinc-800/50">
       {items.map((feat, i) => (
-        <motion.div
+        <motion.li
           key={i}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -169,9 +169,9 @@ function FeatureGrid({ items, testIdPrefix }) {
 
           {/* Hover accent */}
           <div className="absolute left-0 top-0 w-px h-0 bg-[#FF0B1B] group-hover:h-full transition-all duration-500" />
-        </motion.div>
+        </motion.li>
       ))}
-    </div>
+    </ul>
   );
 }
 

@@ -75,9 +75,9 @@ export default function UseCasesSection() {
             ARTAK's immersive C2 platform is deployed across defense, public safety, and enterprise sectors worldwide.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-800">
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-800">
           {useCases.map((uc, i) => (
-            <motion.div
+            <motion.li
               key={i}
               custom={i}
               initial="hidden"
@@ -115,9 +115,9 @@ export default function UseCasesSection() {
                 </Link>
               </div>
               <div className="absolute bottom-0 left-0 w-0 h-px bg-[#FF0B1B] group-hover:w-full transition-all duration-700" />
-            </motion.div>
+            </motion.li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

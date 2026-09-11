@@ -251,3 +251,37 @@ export function faqSchema(entries) {
     })),
   };
 }
+
+/**
+ * HowTo schema for an ordered procedure.
+ *
+ * Added for /acquire, which walks a unit and a contracting officer through
+ * buying ARTAK under Simplified Acquisition Procedures and — until now —
+ * emitted no JSON-LD at all. The steps already exist as structured data in
+ * data/acquireGuide.js, so this reads them rather than restating them; the
+ * page and the schema cannot drift.
+ *
+ * Worth being precise about what this does and does not buy. Google retired
+ * HowTo *rich results* in 2023, so this will not produce a how-to card in
+ * search. It is here for answer engines: it marks an ordered procedure as an
+ * ordered procedure, so a crawler extracting "how does a unit buy ARTAK"
+ * gets the six steps in sequence rather than inferring them from prose.
+ */
+export function howToSchema({ name, description, steps, path }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name,
+    description,
+    // The section anchor, which the page really renders. Individual steps have
+    // no anchor of their own, so none is claimed — a step URL pointing at a
+    // fragment that does not exist is worse than no step URL.
+    url: `${SITE_URL}${path}`,
+    step: steps.map((s, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: s.title,
+      text: s.body,
+    })),
+  };
+}

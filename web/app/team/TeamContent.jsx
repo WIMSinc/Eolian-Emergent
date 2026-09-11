@@ -24,7 +24,7 @@ const fadeUp = {
 function MemberCard({ member, index }) {
   const initials = getInitials(member.name);
   return (
-    <motion.div
+    <motion.li
       custom={index}
       initial="hidden"
       whileInView="visible"
@@ -41,7 +41,7 @@ function MemberCard({ member, index }) {
       <h3 className="font-heading text-sm font-semibold text-white uppercase tracking-wide mb-1">{member.name}</h3>
       <p className="font-mono text-[10px] text-zinc-500 tracking-wider uppercase">{member.title}</p>
       <div className="absolute bottom-0 left-0 w-0 h-px bg-[#FF0B1B] group-hover:w-full transition-all duration-500" />
-    </motion.div>
+    </motion.li>
   );
 }
 
@@ -75,11 +75,11 @@ export default function TeamContent() {
             </div>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase tracking-tight text-white">Company Leadership</h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px bg-zinc-800">
+          <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px bg-zinc-800">
             {leadership.map((m, i) => (
               <MemberCard key={i} member={m} index={i} />
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 

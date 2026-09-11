@@ -91,9 +91,9 @@ export default function KitsSoftwareSection() {
         </div>
 
         {/* Kits grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-800">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-800">
           {kits.map((kit, i) => (
-            <motion.div
+            <motion.li
               key={kit.sku}
               custom={i}
               initial="hidden"
@@ -171,9 +171,9 @@ export default function KitsSoftwareSection() {
                 )}
               </div>
               <div className="absolute bottom-0 left-0 w-0 h-px bg-[#FF0B1B] group-hover:w-full transition-all duration-700" />
-            </motion.div>
+            </motion.li>
           ))}
-        </div>
+        </ul>
 
         {/* Software section */}
         <div className="mt-20">
@@ -188,9 +188,9 @@ export default function KitsSoftwareSection() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-px bg-zinc-800">
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-px bg-zinc-800">
             {software.map((pkg, i) => (
-              <motion.div
+              <motion.li
                 key={pkg.sku}
                 custom={i}
                 initial="hidden"
@@ -239,9 +239,9 @@ export default function KitsSoftwareSection() {
                   </button>
                 </div>
                 <div className="absolute bottom-0 left-0 w-0 h-px bg-[#FF0B1B] group-hover:w-full transition-all duration-700" />
-              </motion.div>
+              </motion.li>
             ))}
-          </div>
+          </ul>
         </div>
 
         {checkoutError && (

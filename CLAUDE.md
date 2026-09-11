@@ -131,6 +131,18 @@ JavaScript**.
   existed only inside the JSON-LD until it was fixed.
 - **Acceptance test for any content change:** `curl -s <url> | grep` for the
   text. If it is not in the raw HTML, it does not exist for AEO.
+- **Repeated cards are lists — mark them up as `<ul>`/`<li>`.** Every card grid
+  was `<div>` soup, so a crawler reading raw HTML could not tell a ten-item
+  capability grid from a paragraph. Tailwind's preflight already zeroes
+  `list-style`, `margin` and `padding` on `ul`/`ol`, so `div` → `ul` and
+  `motion.div` → `motion.li` is a **visual no-op**; there is no reason to leave
+  a repeated `.map()` as divs. `/products` and `/blog` are the deliberate
+  exceptions: their repeated child is a `<Link>` rather than a `motion.div`, so
+  wrapping costs a grid-item stretch fix, and both already emit `ItemList` /
+  `Blog` JSON-LD covering the same ground.
+- **Exactly one `<h1>` per route, and no skipped levels.** Audited across all
+  19 routes on 2026-09-11; `/about/awards` was the only defect (h1 → h3) and is
+  fixed. Re-run the audit after adding a route.
 
 ### FAQ answer style
 
@@ -252,6 +264,7 @@ JSON-LD**, or values drift from the canonical facts above.
 | `/products` | `ItemList` |
 | `/products/[slug]` | `Product` + `Offer` (11 pages) |
 | `/support` | `FAQPage` |
+| `/acquire` | `HowTo` × 3 |
 | `/blog` | `Blog` |
 | `/blog/[slug]` | `BlogPosting` + `FAQPage` (when the post has `faqs`) |
 
@@ -268,6 +281,16 @@ post rather than as a reusable `faq` document. With a handful of posts that is
 the right call, but once the same answer appears on `/artak` and in a post, the
 copies drift — and drift is precisely what answer engines penalise. Promote to
 a referenced `faq` type when three or more pages share answers.
+
+`/acquire` emits **three** `HowTo` entities, not one, because it genuinely
+documents three procedures for three readers — the unit's six steps, the
+contracting shop's eleven, and the KO Fast Start's five. `howToSchema()` reads
+them straight out of `data/acquireGuide.js`, so the schema cannot describe a
+procedure the page does not render, and a section whose steps go missing drops
+out rather than publishing an empty `HowTo`. Note that Google retired HowTo
+*rich results* in 2023: this earns no search card and is not meant to. It is
+there so an answer engine extracting "how does a unit buy ARTAK" gets ordered
+steps instead of inferring them from prose.
 
 Per-SKU pricing lives on `/products/<slug>`. The `AggregateOffer` on `/artak`
 derives `lowPrice` and `offerCount` from the same catalogue those pages price

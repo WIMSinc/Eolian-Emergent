@@ -80,9 +80,9 @@ export default function AwardsContent() {
       {/* Awards Grid */}
       <section className="py-20 md:py-28 border-t border-zinc-800">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-800">
+          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-800">
             {awards.map((award, i) => (
-              <motion.div
+              <motion.li
                 key={i}
                 custom={i}
                 initial="hidden"
@@ -95,13 +95,13 @@ export default function AwardsContent() {
                   <award.icon size={16} className="text-zinc-600 group-hover:text-[#FF0B1B] transition-colors" />
                 </div>
                 <span className="font-mono text-[10px] tracking-[0.2em] text-zinc-400 uppercase mb-2">{award.category}</span>
-                <h3 className="font-heading text-base font-bold text-white uppercase tracking-tight mb-1">{award.title}</h3>
+                <h2 className="font-heading text-base font-bold text-white uppercase tracking-tight mb-1">{award.title}</h2>
                 <div className="font-mono text-xs text-[#FF0B1B] tracking-wider mb-4">{award.years}</div>
                 <p className="text-xs text-zinc-500 leading-relaxed flex-1">{award.desc}</p>
                 <div className="absolute bottom-0 left-0 w-0 h-px bg-[#FF0B1B] group-hover:w-full transition-all duration-500" />
-              </motion.div>
+              </motion.li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
     </div>

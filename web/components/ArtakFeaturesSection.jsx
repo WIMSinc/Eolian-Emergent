@@ -38,9 +38,9 @@ export default function ArtakFeaturesSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-zinc-800">
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-zinc-800">
           {features.map((feat, i) => (
-            <motion.div
+            <motion.li
               key={i}
               custom={i}
               initial="hidden"
@@ -56,9 +56,9 @@ export default function ArtakFeaturesSection() {
               <h3 className="font-heading text-xs font-semibold text-white tracking-wide uppercase mb-2">{feat.title}</h3>
               <p className="text-xs text-zinc-500 leading-relaxed">{feat.desc}</p>
               <div className="absolute bottom-0 left-0 w-0 h-px bg-[#FF0B1B] group-hover:w-full transition-all duration-500" />
-            </motion.div>
+            </motion.li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );
