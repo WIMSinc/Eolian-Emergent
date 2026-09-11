@@ -106,6 +106,19 @@ If a figure cannot be traced to a source, mark it `[VERIFY]` rather than
 shipping it. Never invent contract values, program office names or solicitation
 numbers.
 
+**ARTAK Block 3 phrasing, settled 2026-09-11.** Two traps in the launch copy:
+
+- **"Built to MIL-STD-2525E"**, never "complete adherence" or "fully
+  conformant". A blanket conformance claim is something a customer can test,
+  and 2525E has been superseded by **2525E w/ Change 1 (2 March 2025)** — so an
+  unqualified claim invites the question of which version. If engineering ever
+  confirms full conformance, name the version explicitly and update this line.
+- **Name no specific weapon system.** The Weapon Inventory is described by
+  count and by what it enforces ("200+ U.S. weapon systems", "cannot be placed
+  beyond its actual range"), never by system. Whether the range, kill-zone and
+  blast-radius figures derive from publicly releasable sources is unconfirmed,
+  so the copy stays at the level where that does not matter.
+
 ### AEO rules — these outrank styling
 
 Answer-engine crawlers (GPTBot, ClaudeBot, PerplexityBot) **do not execute
@@ -363,8 +376,17 @@ live site for its own terms.
 - `main` and `claude/nextjs-migration-phase1` are identical
 - Dependency audit: **0 vulnerabilities** in `web/`
 - PageSpeed: mobile **75**, desktop **91** (lab variance is ±5; judge trends)
-- Blog is live with two posts — `/blog/what-is-artak` and `/blog/who-is-eolianvr`
-  (25 inline FAQs between them). Verified in the raw HTML, not just in Sanity.
+- Blog is live with three posts — `/blog/what-is-artak`, `/blog/who-is-eolianvr`
+  and `/blog/artak-block-3-whats-new` (33 inline FAQs between them). Verified in
+  the raw HTML, not just in Sanity.
+- **ARTAK Block 3 is the current release.** `components/FeaturesSection.jsx`
+  leads with the Block 3 grid and keeps the Block 2 grid below it — each Block
+  is additive, so the page must not read as a swap. That component, the Block 3
+  post, and `softwareApplicationSchema()` in `lib/seo.js` (`softwareVersion:
+  "Block 3"`, `releaseNotes` pointing at the post) are one set of claims; change
+  one and reconcile the other two. `/support` still links the **Block 2 Full
+  User Manual** (`[DOC.02]`, v2.4.1) because no Block 3 manual URL exists yet —
+  do not invent one.
 - Open: cover images for both posts (uploaded in Studio, not the filesystem),
   `backend/` removal, YouTube facade pattern
 

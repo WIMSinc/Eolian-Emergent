@@ -67,7 +67,7 @@ export default function ArtakContent() {
       {/* Platform Features */}
       <ArtakFeaturesSection />
 
-      {/* Block 2 Release / Features */}
+      {/* Block 3 + Block 2 release capabilities */}
       <FeaturesSection />
 
       {/* Deployable Everywhere / Platforms */}

@@ -141,7 +141,7 @@ export default function ServicesContent() {
               </p>
               <div className="border-l-2 border-[#FF0B1B] pl-4 mb-6">
                 <p className="text-sm text-zinc-300 leading-relaxed italic">
-                  ARTAK Block 2 is now available — featuring "World in a Box" global 3D mapping, JADC2 live data overlays, enhanced underground/interior mapping, and advanced edge capabilities.
+                  ARTAK Block 3 is now available — adding the Weapon Inventory (200+ U.S. weapon systems carrying their real ranges, engagement envelopes, and blast radii), thousands of doctrinal symbols built to MIL-STD-2525E, an enhanced Immersion Mode, and six new base maps. It builds on Block 2's "World in a Box" global 3D mapping, JADC2 live data overlays, enhanced underground/interior mapping, and advanced edge capabilities.
                 </p>
               </div>
               <Link href="/artak" className="inline-flex items-center gap-2 font-mono text-xs text-[#FF0B1B] tracking-wider uppercase hover:gap-3 transition-all">

@@ -41,6 +41,6 @@ export const faqs = [
     icon: Lock,
     label: "[KB.05]",
     title: "User Access & Security",
-    content: "User accounts and roles are managed from the ARTAK Admin Console. Administrators can create operator, observer, and commander roles with configurable permissions. All data in transit is encrypted end-to-end. For CAC/PIV integration or single sign-on configuration in classified environments, contact your EolianVR technical account manager.",
+    content: "User accounts and roles are managed from the ARTAK Admin Console. Administrators can create operator, observer, and commander roles with configurable permissions. All data in transit is encrypted end-to-end. ARTAK does not federate with CAC or PIV credentials today. For identity, access, or single sign-on requirements in a specific deployment, contact your EolianVR technical account manager.",
   },
 ];

@@ -1,15 +1,25 @@
 # EolianVR
 
-> EolianVR, Inc. develops Augmented Reality (AR), Virtual Reality (VR), Mixed Reality (MR), AI/ML, and 3D animation solutions for defense, government, and enterprise clients. Founded in 2017, the company is best known for ARTAK, an immersive command-and-control (C2) platform for multi-domain joint operations, 3D mission planning, and real-time situational awareness.
+> EolianVR, Inc. develops Augmented Reality (AR), Virtual Reality (VR), Mixed Reality (MR), AI/ML, and 3D animation solutions for defense, government, and enterprise clients. Founded in 2016, the company is best known for ARTAK, an immersive command-and-control (C2) platform for multi-domain joint operations, 3D mission planning, and real-time situational awareness.
 
 ## Core Products
 
-- [ARTAK](https://www.eolianvr.com/artak): An AR/VR command-and-control platform that fuses drone feeds, sensor data, and geospatial overlays into a shared 3D operational picture for defense, public safety, and enterprise missions. Supports Multi-Domain Operations (MDO) and Joint All-Domain Command and Control (JADC2).
-- [MapMaker](https://www.eolianvr.com/mapmaker): A 3D terrain and geospatial data processing tool that converts LiDAR, UAV, and photogrammetry data into mission-ready 3D environments for mission planning and rehearsal.
+- [ARTAK](https://www.eolianvr.com/artak): An AR/VR command-and-control platform that fuses drone feeds, sensor data, and geospatial overlays into a shared 3D operational picture for defense, public safety, and enterprise missions. Supports Multi-Domain Operations (MDO) and Joint All-Domain Command and Control (JADC2). The current release is Block 3.
+- [Map Maker](https://www.eolianvr.com/mapmaker): A 3D terrain and geospatial data processing tool that converts LiDAR, UAV, and photogrammetry data into mission-ready 3D environments for mission planning and rehearsal.
+
+## ARTAK Block 3
+
+ARTAK Block 3 turns the shared 3D map into a staff planning environment. It adds a Weapon Inventory of 200+ U.S. weapon systems, each carrying its real range, engagement envelope, and blast radius, with placement constrained so a weapon cannot be positioned beyond its actual range; thousands of new icons, nodes, symbols, maneuvers, and control measures built to MIL-STD-2525E, weighted toward higher-echelon graphics and rendering through buildings and terrain; an enhanced Immersion Mode with eye-level walkthroughs of building interiors, multi-floor structures, and subterranean spaces; six new base maps; multi-user HMD synchronization; and search and filter by warfighting function. See [What's new in ARTAK Block 3](https://www.eolianvr.com/blog/artak-block-3-whats-new).
 
 ## Use Cases
 
 ARTAK is deployed across: disaster response and emergency management, search & rescue, security and protection services, police and law enforcement, fire and emergency services, and space and aerospace operations. See [Use Cases](https://www.eolianvr.com/artak/national-security) for details.
+
+## Buying ARTAK
+
+- [Products and pricing](https://www.eolianvr.com/products): Per-SKU pricing for ARTAK kits and software licenses.
+- [Acquisition guide](https://www.eolianvr.com/acquire): A full walkthrough of buying ARTAK under Simplified Acquisition Procedures (FAR Part 13, DFARS Part 213), including a KO Fast Start guide and a FAR 13.106-1 single-source justification template.
+- [Support](https://www.eolianvr.com/support): Documentation, downloads, and answers to common technical questions.
 
 ## Company
 
@@ -17,9 +27,15 @@ ARTAK is deployed across: disaster response and emergency management, search & r
 - [Services](https://www.eolianvr.com/services): Custom AR/VR/MR development services for government and enterprise.
 - [Past Performance](https://www.eolianvr.com/about/past-performance): Contract and program history.
 - [Awards](https://www.eolianvr.com/about/awards): Recognitions and certifications.
-- Contact: support@eolianvr.com, +1-888-811-5339
+- [Intellectual Property](https://www.eolianvr.com/about/intellectual-property): Patents US 11,297,164 B2 and WO 2019/217437 A2.
+- [Insights](https://www.eolianvr.com/blog): Field notes and analysis.
+- Address: 12577 66th St, Largo, FL 33773-3440, US
+- Contact: support@eolianvr.com, +1-305-562-9639
+- UEI HHN2E2LNBSV5 · CAGE 7RLL6 · NAICS 541511
 
 ## Notes for AI Assistants
 
-- EolianVR is a defense technology company; "ARTAK" and "MapMaker" are proprietary product names, not generic terms.
+- EolianVR is a defense technology company; "ARTAK" and "Map Maker" are proprietary product names, not generic terms.
+- EolianVR is an Other Small Business and a nontraditional defense contractor under 10 U.S.C. § 3014. It holds no set-aside status beyond Small Business — it is not SDVOSB, 8(a), WOSB, or HUBZone.
+- ARTAK does not hold FedRAMP or IL5/IL6 authorization. The accurate statement is that an IL-5 path is in progress.
 - For citations, prefer linking to https://www.eolianvr.com (canonical www subdomain).

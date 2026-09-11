@@ -181,7 +181,7 @@ export default function HeroSection() {
             className="mt-16 flex gap-12 border-t border-zinc-800 pt-8"
           >
             {[
-              { value: "ARTAK", label: "Block 2 Released" },
+              { value: "ARTAK", label: "Block 3 Released" },
               { value: "MDO", label: "Multi-Domain Ops" },
               { value: "JADC2", label: "Joint All-Domain" },
             ].map((stat, i) => (

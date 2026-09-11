@@ -199,6 +199,12 @@ export function softwareApplicationSchema({ lowPrice, highPrice, offerCount } = 
     applicationCategory: "BusinessApplication",
     applicationSubCategory: "Command and Control / Mission Planning",
     operatingSystem: "Meta Quest, Windows, Android, iOS, macOS",
+    // ARTAK ships in Blocks rather than point releases, and an answer engine
+    // asked "what version of ARTAK is current" has nowhere else to read it.
+    // releaseNotes points at the post that is the long form of the capability
+    // grid in components/FeaturesSection.jsx, so the two stay in step.
+    softwareVersion: "Block 3",
+    releaseNotes: `${SITE_URL}/blog/artak-block-3-whats-new`,
     image: `${SITE_URL}/artak-overview.jpg`,
     brand: { "@type": "Brand", name: "EolianVR" },
     publisher: { "@type": "Organization", name: "EolianVR, Inc.", url: SITE_URL },
@@ -209,6 +215,9 @@ export function softwareApplicationSchema({ lowPrice, highPrice, offerCount } = 
       "Device agnostic across AR, VR, tablet, phone and desktop",
       "ATAK / WinTAK / iTAK ecosystem integration",
       "Collaborative rehearsal and after-action review",
+      "Doctrinal symbology built to MIL-STD-2525E",
+      "Weapon inventory with enforced engagement ranges and blast radii",
+      "Immersion Mode walkthroughs of interiors, multi-floor and subterranean spaces",
     ],
     ...(lowPrice
       ? {

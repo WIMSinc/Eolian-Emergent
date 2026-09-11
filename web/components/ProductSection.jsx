@@ -8,7 +8,7 @@ const panels = [
   {
     sysLabel: "[SYS.01]",
     title: "The Augmented Reality Team Awareness Kit",
-    subtitle: "ARTAK Block 2 Out Now",
+    subtitle: "ARTAK Block 3 Out Now",
     description:
       "ARTAK is a multi-domain joint planning and command & control platform. It synchronizes planning and C2 activities across echelons, domains, and warfighting functions by bringing command and staff together into a single digital decision environment. ARTAK software is device agnostic, running across AR, VR, Tablet, Phone, Laptop, and PC.",
     image: "/artak-overview.webp",
