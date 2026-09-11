@@ -1,5 +1,6 @@
 import { pageMetadata, softwareApplicationSchema } from "@/lib/seo";
 import { ALL_PRODUCTS } from "@/lib/products";
+import OfferBanner from "@/components/OfferBanner";
 import ArtakContent from "./ArtakContent";
 
 export const metadata = pageMetadata({
@@ -18,6 +19,10 @@ const schema = softwareApplicationSchema({
   offerCount: amounts.length || undefined,
 });
 
+// Matches app/page.js: OfferBanner expires itself on a date, and a fully static
+// page would freeze that decision at build time.
+export const revalidate = 3600;
+
 export default function Page() {
   return (
     <>
@@ -25,7 +30,7 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
-      <ArtakContent />
+      <ArtakContent offerBanner={<OfferBanner />} />
     </>
   );
 }

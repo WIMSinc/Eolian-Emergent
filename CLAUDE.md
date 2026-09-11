@@ -410,6 +410,18 @@ live site for its own terms.
   one and reconcile the other two. `/support` still links the **Block 2 Full
   User Manual** (`[DOC.02]`, v2.4.1) because no Block 3 manual URL exists yet —
   do not invent one.
+- **`components/OfferBanner.jsx` is a time-limited promotion that expires
+  itself** — free Meta Quest 3 with a Block 3 bundle, through 30 September
+  2026. It renders `null` past `OFFER_ENDS`, so the worst case is one stale
+  hour rather than a dead promotion sitting on the home page for a quarter.
+  **That only works because `/` and `/artak` export `revalidate = 3600`.** A
+  fully static page evaluates the date once at build time and freezes the
+  answer, so never remove those exports while the banner is live. Its prices
+  ($3,400 / $6,800) are the `ARTAK User License` and `ARTAK User License x 2`
+  rows in `data/productCatalog.js` — change one and reconcile the other.
+  It is a server component on purpose: `/artak` passes it into the client
+  `ArtakContent` as the `offerBanner` prop rather than importing it there, so
+  the expiry date is never evaluated in a visitor's browser.
 - Open: cover images for both posts (uploaded in Studio, not the filesystem),
   `backend/` removal, YouTube facade pattern
 

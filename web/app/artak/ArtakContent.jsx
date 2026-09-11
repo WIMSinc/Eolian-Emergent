@@ -28,7 +28,7 @@ const fadeUp = {
   visible: (i) => ({ opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.08 } }),
 };
 
-export default function ArtakContent() {
+export default function ArtakContent({ offerBanner = null }) {
   const [catalogOpen, setCatalogOpen] = useState(false);
 
   return (
@@ -60,6 +60,10 @@ export default function ArtakContent() {
           </div>
         </div>
       </section>
+
+      {/* Rendered by the server page and passed through, so the banner stays a
+          server component and its expiry date is never evaluated in the browser. */}
+      {offerBanner}
 
       {/* Product overview */}
       <ProductSection />
