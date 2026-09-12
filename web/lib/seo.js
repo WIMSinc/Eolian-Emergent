@@ -46,11 +46,30 @@ export function personSchema(author) {
     description: author.bio?.[0],
     worksFor: { "@type": "Organization", name: "EolianVR, Inc.", url: SITE_URL },
     ...(author.knowsAbout?.length ? { knowsAbout: author.knowsAbout } : {}),
-    // Omitted entirely when empty rather than emitted as []. An empty sameAs
-    // asserts "this person has no findable profiles", which is false and worse
-    // than staying silent.
+    // Every optional key below is omitted entirely when empty rather than
+    // emitted as [] or "". An empty sameAs asserts "this person has no
+    // findable profiles", which is false and worse than staying silent.
     ...(author.sameAs?.length ? { sameAs: author.sameAs } : {}),
+    ...(author.image ? { image: `${SITE_URL}${author.image}` } : {}),
+    // Only interviews. `subjectOf` means the work is *about* this person, so
+    // it fits an interview or a podcast appearance exactly, and does not fit
+    // something they wrote. Work authored elsewhere renders as a link on the
+    // page but claims no schema property, because schema.org has none that
+    // says it accurately.
+    ...(subjectOf(author).length ? { subjectOf: subjectOf(author) } : {}),
   };
+}
+
+function subjectOf(author) {
+  return (author.elsewhere || [])
+    .filter((e) => e.kind === "interview" && e.url && e.title)
+    .map((e) => ({
+      "@type": "CreativeWork",
+      name: e.title,
+      url: e.url,
+      ...(e.publisher ? { publisher: { "@type": "Organization", name: e.publisher } } : {}),
+      ...(e.date ? { datePublished: e.date } : {}),
+    }));
 }
 
 /**

@@ -303,10 +303,18 @@ people who happen to share a name, and the credentials on the author page
 attach to none of the bylines — which would defeat the entire point of
 bylining. Do not inline a second copy of the Person anywhere.
 
-`author.sameAs` in `data/team.js` is **empty and must stay empty until a real
-profile URL is supplied.** A guessed LinkedIn URL is worse than none, and the
-builder omits the key entirely when the array is empty rather than emitting
-`[]`, which would assert the person has no findable profiles.
+**`personSchema()` omits every optional key when empty rather than emitting
+`[]` or `""`.** An empty `sameAs` asserts "this person has no findable
+profiles", which is false and worse than silence; the same applies to `image`
+and `subjectOf`. Never guess a profile URL — a `sameAs` pointing at the wrong
+person is worse than an absent one.
+
+`author.elsewhere` splits by `kind`, and the split is a correctness rule, not a
+display choice. `"interview"` means the work is *about* the person, which is
+exactly what `subjectOf` asserts. `"writing"` means they authored something
+hosted elsewhere — rendered as a link, but claiming **no** schema property,
+because schema.org has none that says that accurately and a stretched one
+would assert something untrue.
 
 Per-SKU pricing lives on `/products/<slug>`. The `AggregateOffer` on `/artak`
 derives `lowPrice` and `offerCount` from the same catalogue those pages price
@@ -444,13 +452,21 @@ live site for its own terms.
   than in the CMS. An absent or unknown key falls back to
   `DEFAULT_AUTHOR_SLUG`, so a post imported without an author still carries a
   byline. All three live posts are set to `mike-simmons`.
-- **`content/blog-posts.ndjson` now holds all three posts.** It was missing the
-  Block 3 post entirely — written after the last export — which quietly broke
-  the §4 recovery story that names this file as the real source. Re-export
-  after publishing, and check the count.
-- Open: cover images for `/blog/what-is-artak` and `/blog/who-is-eolianvr` (the
-  Block 3 post has one), `backend/` removal, YouTube facade pattern,
-  **a real LinkedIn URL for `author.sameAs` in `data/team.js`**
+- **`content/blog-posts.ndjson` had drifted badly and is now back in sync.** It
+  was missing the Block 3 post entirely, and both older posts were missing
+  their `coverImage` and all 21 `tags` each — everything added in Studio after
+  the last export. Since §4 names this file as the real source of truth
+  precisely because the CMS was lost once, that drift was a broken recovery
+  path. Verified field by field against the live dataset: block counts, body
+  character counts, title and excerpt lengths, tag counts and cover asset refs
+  all match. **Re-export after publishing** — and note that the failure is
+  silent, because a stale export still imports cleanly.
+- **All three posts have cover images with alt text.** An earlier note here
+  said two were missing; that was read off the committed NDJSON, which was
+  stale, rather than off Sanity. **Check the dataset, not the export.**
+- Open: `backend/` removal, YouTube facade pattern, a **headshot** for
+  `author.image` (nothing in `public/` is one), and filling in
+  `author.elsewhere` with real interviews and bylined work
 
 **Publishing content is not a deploy — but it races one.** Content imported into
 Sanity while a build is running will be missing from anything rendered at build

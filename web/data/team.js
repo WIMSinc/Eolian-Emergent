@@ -26,7 +26,8 @@ export const TEAM = [
       // place to guess — it is the page asserting that the author is credible.
       bio: [
         "Mike Simmons is a co-founder and the Chief Operating Officer of EolianVR, Inc., the defense technology company behind ARTAK — the Augmented Reality Team Awareness Kit used for multi-domain mission planning and command and control.",
-        "Since EolianVR was founded in 2016, the company has delivered ARTAK across most components of USSOCOM as well as the Army, Marine Corps, Air Force, NATO SOF, DIU and DHS. Mike leads operations and is the direct point of contact for units, contracting officers and partners evaluating ARTAK.",
+        "Mike leads operations at EolianVR and is the direct point of contact for units, contracting officers and partners evaluating ARTAK. He writes the company's field notes on immersive mission planning, command and control, and the acquisition side of getting software into the hands of a unit that wants it.",
+        "EolianVR was founded in 2016 and is based in Largo, Florida. It is a small business and a nontraditional defense contractor under 10 U.S.C. § 3014. ARTAK has been fielded across most components of USSOCOM since 2022, as well as with the Army, Marine Corps, Air Force, NATO SOF, DIU and DHS.",
       ],
       // What this author is credibly an authority on. Feeds Person.knowsAbout,
       // which is how an answer engine decides whose byline to weight on a
@@ -40,11 +41,32 @@ export const TEAM = [
         "Small business contracting",
       ],
       // Profile URLs for Person.sameAs — the strongest single signal that a
-      // byline belongs to a real, findable person. EMPTY ON PURPOSE: the
-      // correct URLs are not knowable from this repo, and a guessed profile
-      // link is worse than none. Add the real LinkedIn URL here and the schema
-      // picks it up with no other change.
-      sameAs: [],
+      // byline belongs to a real, findable person. Add profiles here as they
+      // are confirmed; never guess a URL, since a sameAs pointing at the wrong
+      // person is worse than an absent one.
+      sameAs: ["https://www.linkedin.com/in/mikesimmons305/"],
+
+      // Headshot for Person.image, served from public/. EMPTY ON PURPOSE —
+      // no photograph exists in this repo, and Person.image must point at a
+      // real picture of the person. /team renders initials in the meantime.
+      image: "",
+
+      // Interviews, podcast appearances and bylined work published elsewhere.
+      //
+      // `kind` decides both how it renders and what it means in schema:
+      //   "interview" — Mike is the subject. Emitted as Person.subjectOf.
+      //   "writing"   — Mike wrote it, published under someone else's masthead.
+      //                 Rendered as a link only; schema.org has no accurate
+      //                 property for "authored a work hosted elsewhere", and a
+      //                 stretched one would assert something untrue.
+      //
+      // Third-party corroboration is the part of an author profile that is
+      // hardest to fake and therefore weighted most, so this list is worth
+      // filling out properly. Empty entries are skipped; the section does not
+      // render until there is at least one.
+      elsewhere: [
+        // { kind: "interview", title: "", publisher: "", url: "", date: "2026-01-01" },
+      ],
     },
   },
   { name: "John Cannizzaro", title: "Co-Founder & CBDO" },

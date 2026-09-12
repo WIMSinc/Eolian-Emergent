@@ -49,6 +49,12 @@ export default async function AuthorPage({ params }) {
   const all = await getAllPosts();
   const posts = all.filter((p) => (p.authorSlug || "mike-simmons") === slug);
 
+  // Entries need a title and a URL to be worth rendering; a half-filled one is
+  // dropped rather than shown as a dead link.
+  const external = (author.elsewhere || []).filter((e) => e.url && e.title);
+  const interviews = external.filter((e) => e.kind === "interview");
+  const writing = external.filter((e) => e.kind === "writing");
+
   return (
     <main className="pt-32 pb-24 md:pt-40">
       <script
@@ -101,6 +107,49 @@ export default async function AuthorPage({ params }) {
                 </li>
               ))}
             </ul>
+          </section>
+        )}
+
+        {/* Interviews and bylined work published elsewhere. Third-party
+            corroboration is the hardest part of an author profile to fake, so
+            it carries the most weight — but the section stays hidden until
+            there is something real to put in it. */}
+        {interviews.length + writing.length > 0 && (
+          <section className="mt-10 border-t border-zinc-800 pt-8">
+            <h2 className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase mb-4">
+              Elsewhere
+            </h2>
+            {[
+              ["Interviews & appearances", interviews],
+              ["Published writing", writing],
+            ].map(([label, items]) =>
+              items.length ? (
+                <div key={label} className="mb-6 last:mb-0">
+                  <h3 className="font-mono text-[10px] tracking-[0.15em] text-zinc-600 uppercase mb-3">
+                    {label}
+                  </h3>
+                  <ul className="space-y-3">
+                    {items.map((e) => (
+                      <li key={e.url}>
+                        <a
+                          href={e.url}
+                          rel="noopener noreferrer"
+                          target="_blank"
+                          className="text-sm text-zinc-300 hover:text-[#FF0B1B] transition-colors"
+                        >
+                          {e.title}
+                        </a>
+                        {(e.publisher || e.date) && (
+                          <span className="block font-mono text-[10px] text-zinc-600 tracking-wider uppercase mt-1">
+                            {[e.publisher, e.date?.slice(0, 4)].filter(Boolean).join(" · ")}
+                          </span>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null,
+            )}
           </section>
         )}
 
