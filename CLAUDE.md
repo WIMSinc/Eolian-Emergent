@@ -40,6 +40,7 @@ Routes are `web/app/blog/page.js`, not `src/app/blog/page.tsx`. The sitemap is
 | Legal name | EolianVR, Inc. |
 | Founded | **2016** |
 | Leadership | **Michael** McCormack (CEO), **Mike** Simmons (COO) — different first-name forms, both correct as written |
+| Leadership source of truth | **`web/data/team.js`** — `/team`, the author pages and the `Person` JSON-LD all read from it |
 | Address | 12577 66th St, Largo, FL 33773-3440, US |
 | Phone | **(305) 562-9639** |
 | Website | https://www.eolianvr.com |
@@ -265,6 +266,7 @@ JSON-LD**, or values drift from the canonical facts above.
 | `/products/[slug]` | `Product` + `Offer` (11 pages) |
 | `/support` | `FAQPage` |
 | `/acquire` | `HowTo` × 3 |
+| `/team/[slug]` | `Person` |
 | `/blog` | `Blog` |
 | `/blog/[slug]` | `BlogPosting` + `FAQPage` (when the post has `faqs`) |
 
@@ -291,6 +293,20 @@ out rather than publishing an empty `HowTo`. Note that Google retired HowTo
 *rich results* in 2023: this earns no search card and is not meant to. It is
 there so an answer engine extracting "how does a unit buy ARTAK" gets ordered
 steps instead of inferring them from prose.
+
+**Authors are one entity, referenced by `@id`.** `personId(slug)` returns
+`https://www.eolianvr.com/team/<slug>#person`. The full `Person` — job title,
+bio, `knowsAbout`, `sameAs` — is emitted **once**, on the author page.
+`BlogPosting.author` and `Organization.founder` both reference that same `@id`
+rather than restating it. Without the shared `@id` those are three unconnected
+people who happen to share a name, and the credentials on the author page
+attach to none of the bylines — which would defeat the entire point of
+bylining. Do not inline a second copy of the Person anywhere.
+
+`author.sameAs` in `data/team.js` is **empty and must stay empty until a real
+profile URL is supplied.** A guessed LinkedIn URL is worse than none, and the
+builder omits the key entirely when the array is empty rather than emitting
+`[]`, which would assert the person has no findable profiles.
 
 Per-SKU pricing lives on `/products/<slug>`. The `AggregateOffer` on `/artak`
 derives `lowPrice` and `offerCount` from the same catalogue those pages price
@@ -422,8 +438,19 @@ live site for its own terms.
   It is a server component on purpose: `/artak` passes it into the client
   `ArtakContent` as the `offerBanner` prop rather than importing it there, so
   the expiry date is never evaluated in a visitor's browser.
-- Open: cover images for both posts (uploaded in Studio, not the filesystem),
-  `backend/` removal, YouTube facade pattern
+- **Posts are bylined to a person, not the company.** `data/team.js` holds the
+  author profiles; the Sanity `author` field stores a slug key, not a
+  reference, because the credentials belong next to `/team` in the repo rather
+  than in the CMS. An absent or unknown key falls back to
+  `DEFAULT_AUTHOR_SLUG`, so a post imported without an author still carries a
+  byline. All three live posts are set to `mike-simmons`.
+- **`content/blog-posts.ndjson` now holds all three posts.** It was missing the
+  Block 3 post entirely — written after the last export — which quietly broke
+  the §4 recovery story that names this file as the real source. Re-export
+  after publishing, and check the count.
+- Open: cover images for `/blog/what-is-artak` and `/blog/who-is-eolianvr` (the
+  Block 3 post has one), `backend/` removal, YouTube facade pattern,
+  **a real LinkedIn URL for `author.sameAs` in `data/team.js`**
 
 **Publishing content is not a deploy — but it races one.** Content imported into
 Sanity while a build is running will be missing from anything rendered at build

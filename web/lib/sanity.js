@@ -47,6 +47,7 @@ const POST_FIELDS = `
   _updatedAt,
   coverImage,
   tags,
+  "authorSlug": author,
   seoTitle,
   seoDescription,
   faqs[]{question, answer}

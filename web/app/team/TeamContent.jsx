@@ -1,16 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { User } from "lucide-react";
+import Link from "next/link";
+import { User, ArrowRight } from "lucide-react";
+import { TEAM } from "@/data/team";
 
-const leadership = [
-  { name: "Michael McCormack", title: "Co-Founder & CEO" },
-  { name: "Mike Simmons", title: "Co-Founder & CMO" },
-  { name: "John Cannizzaro", title: "Co-Founder & CBDO" },
-  { name: "Michael Havenick", title: "Co-Founder" },
-  { name: "Pablo Lopez", title: "Chief Financial Officer" },
-  { name: "Shaun Kelley", title: "Information Security Officer" },
-];
+// Names and titles come from data/team.js so this page, the author pages and
+// the Person JSON-LD cannot disagree. They already had: this list said
+// "Co-Founder & CMO" for Mike Simmons while CLAUDE.md §2 and the Block 3
+// newsletter signature both said COO.
+const leadership = TEAM;
 
 function getInitials(name) {
   return name.split(" ").map((n) => n[0]).join("").toUpperCase();
@@ -40,6 +39,16 @@ function MemberCard({ member, index }) {
       </div>
       <h3 className="font-heading text-sm font-semibold text-white uppercase tracking-wide mb-1">{member.name}</h3>
       <p className="font-mono text-[10px] text-zinc-500 tracking-wider uppercase">{member.title}</p>
+      {/* Only members with a profile in data/team.js get a page; the rest are
+          cards and nothing more, so no link goes anywhere empty. */}
+      {member.slug && (
+        <Link
+          href={`/team/${member.slug}`}
+          className="mt-3 inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.15em] text-zinc-400 group-hover:text-[#FF0B1B] uppercase transition-colors"
+        >
+          Profile <ArrowRight size={10} />
+        </Link>
+      )}
       <div className="absolute bottom-0 left-0 w-0 h-px bg-[#FF0B1B] group-hover:w-full transition-all duration-500" />
     </motion.li>
   );

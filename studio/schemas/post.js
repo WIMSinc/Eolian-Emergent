@@ -3,10 +3,16 @@ import { defineField, defineType } from "sanity";
 /**
  * Blog post.
  *
- * Field set is deliberately lean — one author, no editorial workflow — but
- * every field either renders on the page or feeds structured data. The `faqs`
- * array is the deliberate AEO play: it emits FAQPage JSON-LD alongside the
- * BlogPosting schema, which is what answer engines quote directly.
+ * Field set is deliberately lean — no editorial workflow — but every field
+ * either renders on the page or feeds structured data. The `faqs` array is the
+ * deliberate AEO play: it emits FAQPage JSON-LD alongside the BlogPosting
+ * schema, which is what answer engines quote directly.
+ *
+ * `author` is a slug string rather than a reference to an author document.
+ * The profiles live in web/data/team.js because /team renders from the same
+ * list, and a name or title kept in both Sanity and the repo drifts. Keeping
+ * it here as a key means a post picks an author without the CMS owning the
+ * credentials.
  */
 export const post = defineType({
   name: "post",
@@ -111,6 +117,18 @@ export const post = defineType({
           preview: { select: { title: "question" } },
         },
       ],
+    }),
+    defineField({
+      name: "author",
+      title: "Author",
+      type: "string",
+      description:
+        "Who gets the byline. Leave as Mike Simmons unless someone else wrote the post — the value must match a slug in web/data/team.js, and an unknown value falls back to the default rather than dropping the byline.",
+      options: {
+        list: [{ title: "Mike Simmons", value: "mike-simmons" }],
+        layout: "radio",
+      },
+      initialValue: "mike-simmons",
     }),
     defineField({
       name: "tags",

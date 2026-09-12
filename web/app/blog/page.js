@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { pageMetadata, SITE_URL } from "@/lib/seo";
 import { getAllPosts, urlForImage, isSanityConfigured } from "@/lib/sanity";
+import { getAuthor } from "@/data/team";
 
 export const metadata = pageMetadata({
   title: "Insights",
@@ -108,6 +109,17 @@ export default async function Page() {
                     <h2 className="font-heading text-base font-semibold text-white uppercase tracking-wide mt-3 mb-2">
                       {post.title}
                     </h2>
+                    {/* Not a link: the whole card is already one, and an <a>
+                        inside an <a> is invalid. The name still reads as
+                        attribution to a crawler. */}
+                    {getAuthor(post.authorSlug) && (
+                      <p className="text-xs text-zinc-500 mb-3">
+                        By{" "}
+                        <span className="text-zinc-400">
+                          {getAuthor(post.authorSlug).name}
+                        </span>
+                      </p>
+                    )}
                     {post.excerpt && (
                       <p className="text-sm text-zinc-500 leading-relaxed mb-4">{post.excerpt}</p>
                     )}

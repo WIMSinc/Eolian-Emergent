@@ -4,6 +4,7 @@ import { PortableText } from "@portabletext/react";
 import { ArrowLeft } from "lucide-react";
 import { pageMetadata, blogPostingSchema, faqSchema } from "@/lib/seo";
 import { getPostBySlug, getPostSlugs, urlForImage, readingTime } from "@/lib/sanity";
+import { getAuthor } from "@/data/team";
 
 export const revalidate = 3600;
 
@@ -97,6 +98,8 @@ export default async function Page({ params }) {
   const cover = urlForImage(post.coverImage, { width: 1400 });
   const mins = readingTime(post.body);
 
+  const author = getAuthor(post.authorSlug);
+
   const schemas = [
     blogPostingSchema({
       title: post.seoTitle || post.title,
@@ -105,6 +108,7 @@ export default async function Page({ params }) {
       slug,
       published: post.publishedAt,
       modified: post._updatedAt,
+      authorSlug: post.authorSlug,
     }),
   ];
   // Posts can carry their own Q&A, which is the strongest AEO signal available
@@ -144,6 +148,24 @@ export default async function Page({ params }) {
           )}
           {mins && <span className="text-zinc-600">{mins} min read</span>}
         </div>
+
+        {/* Byline. Above the fold and in the raw HTML, because a credential
+            nobody can see is only half the signal — the schema asserts the
+            author, this is the part a reader actually reads. */}
+        {author && (
+          <p className="mb-6 text-sm text-zinc-400">
+            By{" "}
+            <Link
+              href={`/team/${author.slug}`}
+              rel="author"
+              data-testid="post-byline"
+              className="text-white hover:text-[#FF0B1B] transition-colors"
+            >
+              {author.name}
+            </Link>
+            <span className="text-zinc-600">, {author.byline || author.title}</span>
+          </p>
+        )}
 
         <h1 className="font-heading text-3xl sm:text-4xl font-bold uppercase tracking-tight text-white leading-tight">
           {post.title}

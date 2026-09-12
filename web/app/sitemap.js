@@ -1,6 +1,7 @@
 import { SITE_URL } from "@/lib/seo";
 import { slugs } from "@/data/artakUseCases";
 import { ALL_PRODUCTS } from "@/lib/products";
+import { AUTHOR_SLUGS } from "@/data/team";
 import { getAllPosts } from "@/lib/sanity";
 
 /**
@@ -68,6 +69,15 @@ export default async function sitemap() {
       lastModified: p._updatedAt ? new Date(p._updatedAt) : now,
       changeFrequency: "monthly",
       priority: 0.7,
+    })),
+    // Author pages. Derived from data/team.js for the same reason the use-case
+    // URLs are derived — adding an author must not require remembering to edit
+    // this file too.
+    ...AUTHOR_SLUGS.map((slug) => ({
+      url: `${SITE_URL}/team/${slug}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.5,
     })),
     ...slugs.map((slug) => ({
       url: `${SITE_URL}/artak/${slug}`,
