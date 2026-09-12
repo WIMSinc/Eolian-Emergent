@@ -105,9 +105,14 @@ wording problem.
 - **Any TRL claim, including TRL 9** — internally debated, not confirmed.
 - **"every component of USSOCOM"** — the accurate scope is **"most
   components."**
-- **Unapproved third parties:** UK MoD, Australian Army, American Rheinmetall,
-  PNNL, USMA West Point, Montana State. Rheinmetall and Microsoft Federal are
-  real relationships but are not cleared for public naming.
+- **Unapproved third parties: Australian Army and Microsoft Federal.** Real
+  relationships, still not cleared for public naming.
+  **Cleared 2026-09-12** and moved to the §3.1 approved list: UK Ministry of
+  Defence, American Rheinmetall, PNNL, USMA West Point, Montana State. They
+  were already live on `/about/past-performance`; the ruling confirms they
+  belong there rather than that the page was wrong. Australian Army and
+  Microsoft Federal were **not** part of that ruling — do not infer them from
+  it.
 - **Headcount, revenue, capital raised, fundraising status, pipeline values.**
   "Small business" is the approved framing.
 - **Specific unit designations** (ODA numbers, battalion identifiers) in *new*
@@ -187,6 +192,7 @@ Named organisations, with mention counts at time of approval:
 | Marine Corps, Air Force | 4 | |
 | USASOC, MARSOC, MITRE, ERDCWERX | 1 each | |
 | "Booz Allen Hamilton and MITRE" | 1 | Approved — stated as a teaming partnership |
+| UK Ministry of Defence, American Rheinmetall, PNNL, USMA West Point, Montana State | 1 each | **Approved 2026-09-12.** Listed in `additionalCustomers` on `/about/past-performance`; fine to name publicly anywhere |
 
 They appear in `web/app/services/`, `web/app/about/`,
 `web/app/about/past-performance/`, `web/app/about/awards/`,
@@ -233,26 +239,6 @@ and $18M may appear in site copy.** Three rulings from that session:
 Mayo Clinic and Atrium Health. Army, Marine Corps, Air Force, NATO SOF, DHS and
 the Booz Allen / MITRE teaming are approved and published elsewhere but were
 dropped from that page by request — do not add them back as a completeness fix.
-
-### 3.2 OPEN COMPLIANCE FINDING — unapproved names live on the site
-
-Raised 2026-09-12, **not yet resolved.** `additionalCustomers` in
-`web/app/about/past-performance/PastPerformanceContent.jsx` renders five names
-that §3 lists as *withheld from public copy*, and they are in the raw HTML of
-`/about/past-performance` right now:
-
-- UK Ministry of Defence
-- Pacific Northwest National Laboratory (PNNL)
-- American Rheinmetall
-- Montana State University
-- U.S. Military Academy (USMA) — West Point
-
-Either §3 is out of date and these were cleared at some point, or the page is
-publishing relationships that were never cleared. **Deliberately left in place
-pending a ruling** — removing named customers is a business decision, not a
-tidy-up, and §3.1 warns against exactly that kind of unilateral deletion. Once
-decided, either strike them from the component or move them into the §3.1
-approved table and delete this section.
 
 Re-run the scan after any content change:
 
@@ -516,7 +502,6 @@ live site for its own terms.
 - **All three posts have cover images with alt text.** An earlier note here
   said two were missing; that was read off the committed NDJSON, which was
   stale, rather than off Sanity. **Check the dataset, not the export.**
-- **The §3.2 compliance finding is open and outranks the rest of this list.**
 - Open: `backend/` removal, YouTube facade pattern, a larger-readership outlet
   to replace the ClearanceJobs URL in `author.elsewhere`, and the **Business
   Insider** entry (dropped for now — Mike was quoted but it is not worth the
@@ -540,5 +525,13 @@ not just the post URL.
   into the initial HTML, so this costs nothing in crawlability.
 - Verify before claiming. Build output, rendered HTML and live endpoints are
   the evidence — not intent.
+- **Source documents are reachable — do not ask for manual exports.** The
+  Microsoft 365 connector reads Mike's OneDrive *and* his OneNote notebooks
+  (`sharepoint_search`, then `read_resource` on the returned URI). The canonical
+  bio lives at `Notebooks/Mike Notebook/+WIMS To Do 2026/Website.one` → "Bio
+  WIMS", with a docx copy under `Microsoft Copilot Chat Files/`. What is *not*
+  reachable is the local disk on his PC: this session runs in an isolated cloud
+  container with the repo cloned into it, so a `C:\Users\...` path means
+  nothing here. Cloud services yes, local filesystem no.
 - `web/README.md` and `studio/README.md` carry fuller reasoning for the
   decisions summarised here.
