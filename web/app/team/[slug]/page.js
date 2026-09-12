@@ -54,6 +54,7 @@ export default async function AuthorPage({ params }) {
   const external = (author.elsewhere || []).filter((e) => e.url && e.title);
   const interviews = external.filter((e) => e.kind === "interview");
   const writing = external.filter((e) => e.kind === "writing");
+  const press = external.filter((e) => e.kind === "press");
 
   return (
     <main className="pt-32 pb-24 md:pt-40">
@@ -114,13 +115,14 @@ export default async function AuthorPage({ params }) {
             corroboration is the hardest part of an author profile to fake, so
             it carries the most weight — but the section stays hidden until
             there is something real to put in it. */}
-        {interviews.length + writing.length > 0 && (
+        {interviews.length + writing.length + press.length > 0 && (
           <section className="mt-10 border-t border-zinc-800 pt-8">
             <h2 className="font-mono text-xs tracking-[0.2em] text-zinc-400 uppercase mb-4">
               Elsewhere
             </h2>
             {[
               ["Interviews & appearances", interviews],
+              ["In the press", press],
               ["Published writing", writing],
             ].map(([label, items]) =>
               items.length ? (

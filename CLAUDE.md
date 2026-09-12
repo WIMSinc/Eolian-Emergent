@@ -48,6 +48,7 @@ Routes are `web/app/blog/page.js`, not `src/app/blog/page.tsx`. The sitemap is
 | NAICS | 541511 (primary); 541512, 541519, 423420, 423430, 423490, 541613, 611430 |
 | Patents | US 11,297,164 B2 · WO 2019/217437 A2, enforceable through ~2040 |
 | Products | **ARTAK** (flagship), **Map Maker**, **STAK** |
+| ARTAK expands to | **Augmented Reality Team Awareness Kit** — *never* "Tactical Assault Kit" |
 | DoD funding to date | **$18M** (includes the $5M FY26 congressional add) |
 | ARTAK Squad Kit | **$234,683** |
 
@@ -61,6 +62,13 @@ LinkedIn and Google Business Profile — variants split the entity graph.
 
 **The 888-811-5339 number is dead.** It appeared in four places and has been
 removed; do not reintroduce it from older copy.
+
+**ARTAK is the Augmented Reality Team *Awareness* Kit.** Circulating personal
+and speaker bios expand it as "Augmented Reality Tactical Assault Kit", which
+is wrong and reads very differently to a reader deciding what the product is.
+The site has never used that phrasing and must not start. Found 2026-09-12 in
+a bio document that also feeds LinkedIn and speaking submissions, so the fix
+is needed outside this repo as well.
 
 These values are the single source of truth. `web/lib/seo.js` emits them as
 Organization schema, and the Terms, Privacy and About pages must agree with
@@ -201,6 +209,18 @@ them from older copy or drafts:
 Dollar figures that do appear ($350,000 · $234,683 · $207,760 · $149,240 ·
 $114,688 · $15,000) are published catalogue and acquisition-guide pricing, not
 contract values.
+
+**Granted 2026-09-12 — third-party press may be cited by its real headline.**
+Mike asked for the company's contracts and wins on his author page and supplied
+the links himself. `/team/mike-simmons` therefore cites the ClearanceJobs
+headline "Eolian VR Inc. Wins $9.9M Contract to Provide USSOCOM with Augmented
+and Virtual Reality Systems". The scope of this ruling is narrow and worth
+holding to: **a cited headline is not a licence to restate the figure.** $9.9M
+appears nowhere in the site's own copy and must not be lifted into any, and
+the same goes for the "Navy SEALs" in the Last Week In D.C. episode title.
+**$18M DoD funding to date is still not published anywhere on the site** — it
+is in CLAUDE.md §2 and the Block 3 newsletter, but putting it in site copy is a
+separate decision that has not been made.
 
 Re-run the scan after any content change:
 
@@ -465,8 +485,12 @@ live site for its own terms.
   said two were missing; that was read off the committed NDJSON, which was
   stale, rather than off Sanity. **Check the dataset, not the export.**
 - Open: `backend/` removal, YouTube facade pattern, a **headshot** for
-  `author.image` (nothing in `public/` is one), and filling in
-  `author.elsewhere` with real interviews and bylined work
+  `author.image` (drop the file at `web/public/mike-simmons.webp` and set
+  `image: "/mike-simmons.webp"` in `data/team.js` — the key is omitted from
+  the `Person` schema while it is empty), the **Business Insider** entry for
+  `author.elsewhere` (held back: its real headline could not be fetched, and
+  naming Microsoft touches the §3 withhold list), and a decision on whether
+  **$18M DoD funding** belongs in site copy
 
 **Publishing content is not a deploy — but it races one.** Content imported into
 Sanity while a build is running will be missing from anything rendered at build
