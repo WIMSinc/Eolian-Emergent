@@ -49,7 +49,7 @@ Routes are `web/app/blog/page.js`, not `src/app/blog/page.tsx`. The sitemap is
 | Patents | US 11,297,164 B2 · WO 2019/217437 A2, enforceable through ~2040 |
 | Products | **ARTAK** (flagship), **Map Maker**, **STAK** |
 | ARTAK expands to | **Augmented Reality Team Awareness Kit** — *never* "Tactical Assault Kit" |
-| DoD funding to date | **$18M** (includes the $5M FY26 congressional add) |
+| DoD funding to date | **$18M** (includes the $5M FY26 congressional add) — **approved for site copy 2026-09-12**, first used on `/team/mike-simmons` |
 | ARTAK Squad Kit | **$234,683** |
 
 **Eligibility:** Other Small Business, 100% U.S.-owned, **nontraditional defense
@@ -63,12 +63,14 @@ LinkedIn and Google Business Profile — variants split the entity graph.
 **The 888-811-5339 number is dead.** It appeared in four places and has been
 removed; do not reintroduce it from older copy.
 
-**ARTAK is the Augmented Reality Team *Awareness* Kit.** Circulating personal
-and speaker bios expand it as "Augmented Reality Tactical Assault Kit", which
-is wrong and reads very differently to a reader deciding what the product is.
-The site has never used that phrasing and must not start. Found 2026-09-12 in
-a bio document that also feeds LinkedIn and speaking submissions, so the fix
-is needed outside this repo as well.
+**ARTAK is the Augmented Reality Team *Awareness* Kit** — the current and
+accurate expansion, and the only one this site uses. Older material expands it
+as "Augmented Reality Tactical Assault Kit"; that rename is **deliberately
+still in progress** across external material, so leaving the old form in some
+places for now is a known state and not a defect to go fixing. What matters
+here: **new copy uses Awareness**, and nothing on this site has ever used
+Assault (the one "Tactical Assault" match in the repo is the TALOS program
+name — Tactical Assault Light Operator Suit — which is a correct proper noun).
 
 These values are the single source of truth. `web/lib/seo.js` emits them as
 Organization schema, and the Terms, Privacy and About pages must agree with
@@ -210,17 +212,47 @@ Dollar figures that do appear ($350,000 · $234,683 · $207,760 · $149,240 ·
 $114,688 · $15,000) are published catalogue and acquisition-guide pricing, not
 contract values.
 
-**Granted 2026-09-12 — third-party press may be cited by its real headline.**
-Mike asked for the company's contracts and wins on his author page and supplied
-the links himself. `/team/mike-simmons` therefore cites the ClearanceJobs
-headline "Eolian VR Inc. Wins $9.9M Contract to Provide USSOCOM with Augmented
-and Virtual Reality Systems". The scope of this ruling is narrow and worth
-holding to: **a cited headline is not a licence to restate the figure.** $9.9M
-appears nowhere in the site's own copy and must not be lifted into any, and
-the same goes for the "Navy SEALs" in the Last Week In D.C. episode title.
-**$18M DoD funding to date is still not published anywhere on the site** — it
-is in CLAUDE.md §2 and the Block 3 newsletter, but putting it in site copy is a
-separate decision that has not been made.
+**Granted 2026-09-12 — third-party press may be cited by its real headline,
+and $18M may appear in site copy.** Three rulings from that session:
+
+- **$18M DoD funding to date is approved for site copy**, including the $5M
+  FY26 congressional appropriation. It is live on `/team/mike-simmons` and
+  nowhere else yet; the rest of the site may adopt it.
+- **The $9.9M ClearanceJobs headline is the APFIT Production OTA with USSOCOM
+  S&T** that `/about/awards` and `/about/past-performance` already describe —
+  not a separate contract, and not a new claim. It is cited as a headline; a
+  cited headline is still **not** a licence to restate the figure in our own
+  prose.
+- **"Navy SEALs" in the Last Week In D.C. episode title is the publisher's
+  headline grab.** Those units are one part of USSOCOM among many. Quote the
+  title; never paraphrase it into our own copy. **"Most components of USSOCOM"
+  remains the phrasing wherever the site speaks for itself.**
+
+**Author-page naming is deliberately narrower than this approved list.**
+`/team/mike-simmons` names only USSOCOM and DIU on the government side, plus
+Mayo Clinic and Atrium Health. Army, Marine Corps, Air Force, NATO SOF, DHS and
+the Booz Allen / MITRE teaming are approved and published elsewhere but were
+dropped from that page by request — do not add them back as a completeness fix.
+
+### 3.2 OPEN COMPLIANCE FINDING — unapproved names live on the site
+
+Raised 2026-09-12, **not yet resolved.** `additionalCustomers` in
+`web/app/about/past-performance/PastPerformanceContent.jsx` renders five names
+that §3 lists as *withheld from public copy*, and they are in the raw HTML of
+`/about/past-performance` right now:
+
+- UK Ministry of Defence
+- Pacific Northwest National Laboratory (PNNL)
+- American Rheinmetall
+- Montana State University
+- U.S. Military Academy (USMA) — West Point
+
+Either §3 is out of date and these were cleared at some point, or the page is
+publishing relationships that were never cleared. **Deliberately left in place
+pending a ruling** — removing named customers is a business decision, not a
+tidy-up, and §3.1 warns against exactly that kind of unilateral deletion. Once
+decided, either strike them from the component or move them into the §3.1
+approved table and delete this section.
 
 Re-run the scan after any content change:
 
@@ -484,13 +516,11 @@ live site for its own terms.
 - **All three posts have cover images with alt text.** An earlier note here
   said two were missing; that was read off the committed NDJSON, which was
   stale, rather than off Sanity. **Check the dataset, not the export.**
-- Open: `backend/` removal, YouTube facade pattern, a **headshot** for
-  `author.image` (drop the file at `web/public/mike-simmons.webp` and set
-  `image: "/mike-simmons.webp"` in `data/team.js` — the key is omitted from
-  the `Person` schema while it is empty), the **Business Insider** entry for
-  `author.elsewhere` (held back: its real headline could not be fetched, and
-  naming Microsoft touches the §3 withhold list), and a decision on whether
-  **$18M DoD funding** belongs in site copy
+- **The §3.2 compliance finding is open and outranks the rest of this list.**
+- Open: `backend/` removal, YouTube facade pattern, a larger-readership outlet
+  to replace the ClearanceJobs URL in `author.elsewhere`, and the **Business
+  Insider** entry (dropped for now — Mike was quoted but it is not worth the
+  §3 Microsoft-naming question)
 
 **Publishing content is not a deploy — but it races one.** Content imported into
 Sanity while a build is running will be missing from anything rendered at build

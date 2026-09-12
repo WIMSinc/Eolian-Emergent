@@ -78,12 +78,26 @@ export default async function AuthorPage({ params }) {
           </span>
         </div>
 
-        <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tighter text-white leading-[0.95]">
-          {author.name}
-        </h1>
-        <p className="mt-3 font-mono text-xs tracking-[0.2em] text-[#FF0B1B] uppercase">
-          {author.title}
-        </p>
+        <div className="flex flex-col sm:flex-row sm:items-center gap-6">
+          {author.image && (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src={author.image}
+              alt={`${author.name}, ${author.title}, EolianVR`}
+              width="640"
+              height="640"
+              className="w-24 h-24 sm:w-28 sm:h-28 object-cover border border-zinc-800 shrink-0"
+            />
+          )}
+          <div>
+            <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tighter text-white leading-[0.95]">
+              {author.name}
+            </h1>
+            <p className="mt-3 font-mono text-xs tracking-[0.2em] text-[#FF0B1B] uppercase">
+              {author.title}
+            </p>
+          </div>
+        </div>
 
         <div className="mt-8 space-y-5">
           {author.bio?.map((para) => (

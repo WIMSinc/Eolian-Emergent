@@ -21,24 +21,23 @@ export const TEAM = [
       // read in passing, the full title belongs on the author page.
       byline: "Co-Founder & COO",
       email: "mike@eolianvr.com",
-      // Kept to what is verifiable. Anything about career history before
-      // EolianVR would be invention, and an author bio is exactly the wrong
-      // place to guess — it is the page asserting that the author is credible.
       // Deliberately EolianVR-only. The source bio also covers WIMS, Lumint
       // Power Solar and a prior consulting career; those are left out by
-      // request, so this page reads as an author profile for the person
-      // writing about mission planning rather than a general CV.
+      // request, so this page reads as an author profile for the person who
+      // writes about mission planning rather than a general CV.
       //
-      // Every claim here is already public on the site: the patent on
-      // /about/intellectual-property, APFIT on /about/awards and
-      // /about/past-performance, the customer list per CLAUDE.md §3.1. Nothing
-      // new is asserted — see the note on `elsewhere` for the one figure that
-      // is only cited, never restated.
+      // The customer naming here is NARROWER than the site's own approved list,
+      // on purpose: USSOCOM and DIU on the government side, plus the two
+      // healthcare engagements. Army, Marine Corps, Air Force, NATO SOF, DHS
+      // and the Booz Allen / MITRE teaming are all approved and published
+      // elsewhere on this site but were dropped from this page by request — do
+      // not add them back as a completeness fix.
       bio: [
-        "Mike Simmons is a co-founder and the Chief Operating Officer of EolianVR, Inc., the defense technology company behind ARTAK — the Augmented Reality Team Awareness Kit, a mixed-reality platform for multi-domain mission planning, command and control, and situational awareness.",
+        "Mike Simmons is a co-founder and the Chief Operating Officer of EolianVR, Inc., the defense technology company behind ARTAK \u2014 the Augmented Reality Team Awareness Kit, a mixed-reality platform for multi-domain mission planning, command and control, and situational awareness.",
         "Mike leads operations at EolianVR and is the direct point of contact for units, contracting officers and partners evaluating ARTAK. He writes the company's field notes on immersive mission planning, command and control, and the acquisition side of getting software into the hands of a unit that wants it.",
-        "EolianVR was founded in 2016 and is based in Largo, Florida. Its technology is built on a patented simulation platform, U.S. Patent No. 11,297,164 B2, and the company was one of ten selected for the USSOCOM-nominated APFIT Production OTA. ARTAK has been fielded across most components of USSOCOM since 2022, as well as with the Army, Marine Corps, Air Force, NATO SOF, DIU and DHS, and EolianVR has teamed with Booz Allen Hamilton and MITRE.",
-        "EolianVR is a small business and a nontraditional defense contractor under 10 U.S.C. § 3014. Mike holds dual bachelor's degrees in Marketing and Finance, with a minor in Advertising, from the University of Miami.",
+        "EolianVR was founded in 2016 and is based in Largo, Florida. Its technology is built on a patented simulation platform, U.S. Patent No. 11,297,164 B2. ARTAK has been fielded across most components of USSOCOM since 2022 and the company works with the Defense Innovation Unit; earlier Eolian engagements include Mayo Clinic and Atrium Health on the healthcare side.",
+        "EolianVR has received $18M in Department of Defense funding to date, including a $5M FY26 congressional appropriation that Mike played a central role in securing, and was one of ten companies selected for the USSOCOM-nominated APFIT Production OTA.",
+        "EolianVR is a small business and a nontraditional defense contractor under 10 U.S.C. \u00a7 3014. Mike holds dual bachelor's degrees in Marketing and Finance, with a minor in Advertising, from the University of Miami.",
       ],
       // What this author is credibly an authority on. Feeds Person.knowsAbout,
       // which is how an answer engine decides whose byline to weight on a
@@ -57,10 +56,17 @@ export const TEAM = [
       // person is worse than an absent one.
       sameAs: ["https://www.linkedin.com/in/mikesimmons305/"],
 
-      // Headshot for Person.image, served from public/. EMPTY ON PURPOSE —
-      // no photograph exists in this repo, and Person.image must point at a
-      // real picture of the person. /team renders initials in the meantime.
-      image: "",
+      // Headshot for Person.image, served from public/.
+      //
+      // Converted from the uploaded "Mike Simmons Headshot.jpg" (4850×4850,
+      // 9.9 MB) down to 640×640 / 14 KB — the page renders it at 112px, so the
+      // source was ~700× larger than anything a visitor needs. A space in a
+      // filename
+      // means every reference needs %20, and a .jpg misses the immutable cache
+      // rule in next.config.mjs, which matches /:file*.webp only. The -v1
+      // suffix is the §6.3 rule: these are served immutable for a year, so a
+      // replacement photo must be -v2, never a re-encode over this name.
+      image: "/mike-simmons-v1.webp",
 
       // Interviews, podcast appearances and bylined work published elsewhere.
       //
@@ -96,6 +102,10 @@ export const TEAM = [
         },
         {
           kind: "interview",
+          // The episode title is the publisher's headline grab. Those units
+          // are one part of USSOCOM among many, so "most components of
+          // USSOCOM" stays the phrasing wherever the site speaks for itself —
+          // this title is quoted, never paraphrased into our own copy.
           title: "Michael Simmons: \"I Refinanced My House to Build Tech for Navy SEALs\"",
           publisher: "Last Week In D.C.",
           url: "https://youtu.be/a1p_XHvCwcM",
@@ -107,6 +117,10 @@ export const TEAM = [
           url: "https://podcasts.apple.com/us/podcast/103-the-best-kept-secret-backdoor-to-influence-w-mike/id1489534133?i=1000519918352",
         },
         {
+          // This is the APFIT Production OTA with USSOCOM S&T that
+          // /about/awards and /about/past-performance already describe, not a
+          // separate contract. Several outlets ran the release; swap the URL
+          // for a larger-readership one once it is identified.
           kind: "press",
           title: "Eolian VR Inc. Wins $9.9M Contract to Provide USSOCOM with Augmented and Virtual Reality Systems",
           publisher: "ClearanceJobs",

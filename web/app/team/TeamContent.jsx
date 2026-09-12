@@ -32,11 +32,25 @@ function MemberCard({ member, index }) {
       data-testid={`team-member-${index}`}
       className="bg-[#0A0A0A] p-6 group hover:bg-[#0D0D0D] transition-colors relative"
     >
-      <div className="w-14 h-14 border border-zinc-800 flex items-center justify-center mb-4 group-hover:border-[#FF0B1B] transition-colors">
-        <span className="font-heading text-sm font-bold text-zinc-600 group-hover:text-[#FF0B1B] transition-colors">
-          {initials}
-        </span>
-      </div>
+      {/* A photo where one exists, initials otherwise — the cards stay the
+          same size either way, so the grid does not reflow as photos land. */}
+      {member.author?.image ? (
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img
+          src={member.author.image}
+          alt={`${member.name}, ${member.title}, EolianVR`}
+          width="640"
+          height="640"
+          loading="lazy"
+          className="w-14 h-14 object-cover border border-zinc-800 mb-4 group-hover:border-[#FF0B1B] transition-colors"
+        />
+      ) : (
+        <div className="w-14 h-14 border border-zinc-800 flex items-center justify-center mb-4 group-hover:border-[#FF0B1B] transition-colors">
+          <span className="font-heading text-sm font-bold text-zinc-600 group-hover:text-[#FF0B1B] transition-colors">
+            {initials}
+          </span>
+        </div>
+      )}
       <h3 className="font-heading text-sm font-semibold text-white uppercase tracking-wide mb-1">{member.name}</h3>
       <p className="font-mono text-[10px] text-zinc-500 tracking-wider uppercase">{member.title}</p>
       {/* Only members with a profile in data/team.js get a page; the rest are
