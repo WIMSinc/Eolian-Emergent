@@ -532,6 +532,17 @@ not just the post URL.
   that was actually asked for — do not open an investigation, and never edit
   approved copy to match a note here. §3's own list was the stale half twice in
   one session while the pages were right both times.
+- **Binary assets reach the repo one way only: a commit.** Images pasted into
+  chat and images read from OneDrive both arrive as *rendered pictures*, not as
+  bytes that can be written to disk, so neither can be optimised and committed.
+  The agreed workflow is therefore: **Mike uploads the original to a throwaway
+  branch** (GitHub UI, switch the branch dropdown off `main` — e.g.
+  `assets-inbox`), the assistant converts it to a sized WebP, commits **only**
+  the WebP to `main`, and the branch is deleted. `main`'s history never carries
+  the original. He has asked to be reminded of this each time, so remind him —
+  a 9.9 MB JPG went into `main` before this was worked out, and history keeps
+  it forever. The alternative, if he would rather not think about it: resize to
+  ~640px WebP at squoosh.app before uploading.
 - **Source documents are reachable — do not ask for manual exports.** The
   Microsoft 365 connector reads Mike's OneDrive *and* his OneNote notebooks
   (`sharepoint_search`, then `read_resource` on the returned URI). The canonical
