@@ -128,6 +128,17 @@ export const TEAM = [
           date: "2022-11-08",
         },
         {
+          // Wider readership than the ClearanceJobs run of the same news, so
+          // both stay. The headline expands ARTAK the old way — quoting a
+          // headline verbatim is correct; §2 governs our own copy, not
+          // someone else's masthead.
+          kind: "press",
+          title: "Eolian Successfully Delivers $10M Worth of Augmented Reality Tactical Assault Kits (ARTAK) To USSOCOM",
+          publisher: "Benzinga",
+          url: "https://www.benzinga.com/pressreleases/23/04/n31729366/eolian-successfully-delivers-10m-worth-of-augmented-reality-tactical-assault-kits-artak-to-ussocom",
+          date: "2023-04-01",
+        },
+        {
           kind: "writing",
           title: "Eolian Signs New Information Exchange Agreement with the US Department of Defense for Technology Innovation",
           publisher: "PRLog",

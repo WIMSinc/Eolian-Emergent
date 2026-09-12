@@ -525,6 +525,13 @@ not just the post URL.
   into the initial HTML, so this costs nothing in crawlability.
 - Verify before claiming. Build output, rendered HTML and live endpoints are
   the evidence — not intent.
+- **Existing site content is settled. Do not re-audit it as part of another
+  task.** Everything already published was reviewed and approved; a scan that
+  turns up something surprising means the note in this file is probably stale,
+  not that the page is wrong. Say so in one line and carry on with the task
+  that was actually asked for — do not open an investigation, and never edit
+  approved copy to match a note here. §3's own list was the stale half twice in
+  one session while the pages were right both times.
 - **Source documents are reachable — do not ask for manual exports.** The
   Microsoft 365 connector reads Mike's OneDrive *and* his OneNote notebooks
   (`sharepoint_search`, then `read_resource` on the returned URI). The canonical
