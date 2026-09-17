@@ -53,7 +53,7 @@ export default function CatalogModal({ open, onClose }) {
                   className="space-y-4"
                 >
                   {/* Honeypot */}
-                  <input type="text" name="_hp" value={form._hp} onChange={(e) => setForm({ ...form, _hp: e.target.value })} tabIndex={-1} autoComplete="off" style={{ position: "absolute", left: "-9999px", opacity: 0, height: 0 }} aria-hidden="true" />
+                  <input type="text" name="_hp" value={form._hp} onChange={(e) => setForm({ ...form, _hp: e.target.value })} readOnly tabIndex={-1} autoComplete="off" style={{ position: "absolute", left: "-9999px", opacity: 0, height: 0 }} aria-hidden="true" />
                   <div>
                     <label className="font-mono text-[10px] tracking-[0.2em] text-zinc-400 uppercase block mb-1.5">Name *</label>
                     <input data-testid="catalog-name" type="text" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Your name" className={inputCls} />

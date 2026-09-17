@@ -127,6 +127,7 @@ export default function KitRequestModal({ kit, onClose }) {
                     name="_hp"
                     value={form._hp}
                     onChange={(e) => setForm({ ...form, _hp: e.target.value })}
+                    readOnly
                     tabIndex={-1}
                     autoComplete="off"
                     style={{ position: "absolute", left: "-9999px", opacity: 0, height: 0 }}

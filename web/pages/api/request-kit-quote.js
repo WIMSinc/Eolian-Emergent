@@ -11,6 +11,7 @@
  */
 
 const nodemailer = require("nodemailer");
+const { honeypotVerdict } = require("../../lib/honeypot");
 const { submitToHubSpotForm, getHutk, FORM_GUIDS } = require("../../lib/hubspot");
 const { getBySku, formatUsd } = require("../../lib/catalog");
 
@@ -67,21 +68,13 @@ module.exports = async (req, res) => {
   const { sku, quantity, name, email, phone, organization, notes, _hp, recaptchaToken } =
     req.body || {};
 
-  // Honeypot. Still answers 200 so a bot cannot tell it was caught, but it no
-  // longer does so silently: this was the only branch in the route with no
-  // output, which made a discarded submission indistinguishable from a
-  // delivered one in the Vercel logs. A real submission was silently dropped
-  // on 2026-09-17 and it took a HubSpot query to work out which branch ran.
-  //
-  // The field is `_hp`, not `website`: password managers and browser autofill
-  // populate anything named website/url regardless of autocomplete="off", so
-  // the old name let a human trip a bot trap.
-  if (_hp) {
-    console.warn("Honeypot triggered — submission discarded", {
-      route: "request-kit-quote",
-      hp: String(_hp).slice(0, 80),
-      ua: req.headers["user-agent"],
-    });
+  // See lib/honeypot.js — answers 200 either way, but autofill is not a bot.
+  if (honeypotVerdict({
+    hp: _hp,
+    fields: { name, email, phone, organization, notes },
+    route: "request-kit-quote",
+    userAgent: req.headers["user-agent"],
+  }).bot) {
     return res.status(200).json({ success: true });
   }
 

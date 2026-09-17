@@ -90,6 +90,7 @@ export default function ContactSection() {
                 name="_hp"
                 value={form._hp}
                 onChange={handleChange}
+                readOnly
                 tabIndex={-1}
                 autoComplete="off"
                 style={{ position: "absolute", left: "-9999px", opacity: 0, height: 0 }}

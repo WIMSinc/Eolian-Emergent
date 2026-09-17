@@ -461,14 +461,28 @@ live site for its own terms.
   anyway — every form route verifies reCAPTCHA server-side and checks a
   honeypot *before* forwarding, so anything reaching HubSpot has already
   cleared spam checks the site controls.
-- **The honeypot is `_hp`, never `website`.** All three forms carry a hidden
-  field that makes the route answer 200 and discard the submission. It was
-  named `website` until 2026-09-17, and password managers and browser autofill
-  populate anything named website/url *regardless* of `autocomplete="off"` —
-  so a human could trip a bot trap and be told their message sent. If the name
-  ever changes again, change it in the component **and** the route together;
-  the value binding is easy to miss (`KitRequestModal` had exactly that bug for
-  one commit).
+- **The honeypot ate real submissions twice on 2026-09-17. Read this before
+  touching it.** All three forms carry a hidden `_hp` field; a filled one makes
+  the route answer 200 and discard the submission. Renaming it from `website`
+  to `_hp` did **not** fix the problem, because **Chrome autofill classifies by
+  structural position, not by the `name` attribute** — the field is the first
+  input in each form, so Chrome groups it with the address fields and fills it
+  from the visitor's contact profile. The logged value was literally
+  `'EolianVR, Inc.'`. Two defences now, and they must both stay:
+  1. **`readOnly` on the input.** Chrome and password managers skip readonly
+     fields, which stops it at source. A bot setting `.value` or POSTing the
+     field directly is unaffected, so the trap still catches what it is for.
+  2. **`lib/honeypot.js`.** If the hidden value merely repeats something the
+     visitor typed in a visible field, that is autofill, not a bot — the
+     submission is allowed and logged as allowed. A spammer fills a honeypot
+     with a URL or a payload, never with a copy of the organisation name they
+     just entered.
+  The bias is deliberate: **fail open for humans.** Anything that slips through
+  still has to clear server-side reCAPTCHA v3 at score >= 0.5, whereas a
+  discarded customer leaves no trace and never complains.
+  If the field name ever changes, change it in the component **and** the route
+  together; the value binding is easy to miss (`KitRequestModal` had exactly
+  that bug for one commit).
 - **The honeypot logs when it fires.** It still answers 200 so a bot cannot
   tell it was caught, but it emits `Honeypot triggered — submission discarded`
   with the route and the offending value. It used to be the only branch in the
