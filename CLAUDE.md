@@ -472,13 +472,18 @@ live site for its own terms.
 ## 9. Current state
 
 - `main` and `claude/nextjs-migration-phase1` are identical
-- Dependency audit in `web/`: **3 advisories — 2 high, 1 critical**, all with
-  fixes available. This line said 0 until 2026-09-17; the tree did not change,
-  new advisories were published against pinned versions. **The critical is
-  `next` itself** (unauthenticated RCE in Image Optimization, plus a
-  Windows-host RCE that does not apply on Vercel), alongside high-severity
-  `nodemailer` and a transitive `fast-uri`. Not yet patched — a Next major
-  bump needs its own test pass, not a drive-by `npm audit fix`.
+- Dependency audit: **0 vulnerabilities in `web/`** as of 2026-09-17, after
+  patching `next` 16.3.2 → **16.3.5** (critical: unauthenticated RCE in Image
+  Optimization), `nodemailer` 9.0.5 → **10.0.10** (high), and the transitive
+  `fast-uri` 3.1.5 → **3.1.8** (high). None of the three needed the risky
+  change they looked like: `next` was a patch inside 16.3.x, `fast-uri` had a
+  fix inside the 3.x line that still satisfies `ajv`'s `^3.0.1`, and
+  **nodemailer 10 keeps a CommonJS entry point**, so `pages/api/` kept working
+  unchanged (§6.7). Watch that last one on any future nodemailer bump — its
+  `package.json` is `"type": "module"` and only the `exports.require` mapping
+  keeps `require("nodemailer")` alive.
+- The `studio/` tree still carries **14 advisories** and that is fine — see
+  §6.1. It is deployed separately and nothing in `web/` imports from it.
 - PageSpeed: mobile **75**, desktop **91** (lab variance is ±5; judge trends)
 - Blog is live with three posts — `/blog/what-is-artak`, `/blog/who-is-eolianvr`
   and `/blog/artak-block-3-whats-new` (33 inline FAQs between them). Verified in
