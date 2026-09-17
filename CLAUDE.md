@@ -268,6 +268,15 @@ with what exists, not used to replace it.
   with `revalidate = 3600`
 - Content source of truth is **`content/blog-posts.ndjson`**, committed. Import
   it with `sanity dataset import ... --replace`; export after publishing
+- **Studio needs Node >= 22.12.** `sanity@6` declares that floor; `sanity@5`
+  also ran on Node 20. A Codespace on the default image gets Node 20, `npm
+  install` refuses `sanity@6` on it, and the workaround taken on 2026-08-25 was
+  to downgrade `studio/package.json` to `^5.14.1` **in the Codespace only** —
+  never committed. So the live Studio was deployed from v5 while the repo said
+  v6, and that v6 pin had never been built. `studio/package.json` now declares
+  `engines.node`, `studio/.nvmrc` pins 22.12, and `studio/package-lock.json` is
+  committed so the tree resolves identically every time. **If a Studio deploy
+  fails on install, check `node -v` first** — that is the whole bug.
 
 **Project `n2qolqrd` was deleted on 2026-08-25 — do not reference it.** It was
 billed through the Vercel Marketplace, and such a project is deleted by
@@ -368,7 +377,11 @@ Each of these was reached deliberately, several after trying the alternative.
    implemented and reverted: pulling the `sanity` toolkit into the site's
    dependencies took the audit from **0 advisories to 9**, all `@sanity/cli`
    transitives that never execute at runtime but sit in the tree the production
-   site builds from. The site is at **0 vulnerabilities**. Keep it there.
+   site builds from. Measured 2026-09-17 with lockfiles in place: the `studio/`
+   tree carries **14 advisories** (12 moderate, 2 high) against **3** in `web/`,
+   and nothing under `web/` imports from `studio/`. That gap is the decision
+   working exactly as intended — Studio advisories never reach the tree the
+   live site builds from. Keep it there.
 2. **`next/image` is deliberately not adopted.** Plain `<img>` against
    hand-optimised WebP in `public/`. Converting ~30 components carries real
    visual-regression risk for modest gain.
@@ -459,7 +472,13 @@ live site for its own terms.
 ## 9. Current state
 
 - `main` and `claude/nextjs-migration-phase1` are identical
-- Dependency audit: **0 vulnerabilities** in `web/`
+- Dependency audit in `web/`: **3 advisories — 2 high, 1 critical**, all with
+  fixes available. This line said 0 until 2026-09-17; the tree did not change,
+  new advisories were published against pinned versions. **The critical is
+  `next` itself** (unauthenticated RCE in Image Optimization, plus a
+  Windows-host RCE that does not apply on Vercel), alongside high-severity
+  `nodemailer` and a transitive `fast-uri`. Not yet patched — a Next major
+  bump needs its own test pass, not a drive-by `npm audit fix`.
 - PageSpeed: mobile **75**, desktop **91** (lab variance is ±5; judge trends)
 - Blog is live with three posts — `/blog/what-is-artak`, `/blog/who-is-eolianvr`
   and `/blog/artak-block-3-whats-new` (33 inline FAQs between them). Verified in
