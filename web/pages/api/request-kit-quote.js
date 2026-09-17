@@ -64,11 +64,24 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { sku, quantity, name, email, phone, organization, notes, website, recaptchaToken } =
+  const { sku, quantity, name, email, phone, organization, notes, _hp, recaptchaToken } =
     req.body || {};
 
-  // Honeypot — silently accept so bots do not learn they were caught.
-  if (website) {
+  // Honeypot. Still answers 200 so a bot cannot tell it was caught, but it no
+  // longer does so silently: this was the only branch in the route with no
+  // output, which made a discarded submission indistinguishable from a
+  // delivered one in the Vercel logs. A real submission was silently dropped
+  // on 2026-09-17 and it took a HubSpot query to work out which branch ran.
+  //
+  // The field is `_hp`, not `website`: password managers and browser autofill
+  // populate anything named website/url regardless of autocomplete="off", so
+  // the old name let a human trip a bot trap.
+  if (_hp) {
+    console.warn("Honeypot triggered — submission discarded", {
+      route: "request-kit-quote",
+      hp: String(_hp).slice(0, 80),
+      ua: req.headers["user-agent"],
+    });
     return res.status(200).json({ success: true });
   }
 

@@ -14,7 +14,7 @@ export default function ContactSection() {
     phone: "",
     organization: "",
     message: "",
-    website: "", // honeypot — never shown to users
+    _hp: "", // honeypot — never shown to users; see pages/api/contact.js
   });
   const [status, setStatus] = useState("idle");
 
@@ -29,7 +29,7 @@ export default function ContactSection() {
       const token = executeRecaptcha ? await executeRecaptcha("contact_form") : "";
       await axios.post(`/api/contact`, { ...form, recaptchaToken: token });
       setStatus("success");
-      setForm({ name: "", email: "", phone: "", organization: "", message: "", website: "" });
+      setForm({ name: "", email: "", phone: "", organization: "", message: "", _hp: "" });
       setTimeout(() => setStatus("idle"), 4000);
     } catch {
       setStatus("error");
@@ -87,8 +87,8 @@ export default function ContactSection() {
               {/* Honeypot — hidden from real users */}
               <input
                 type="text"
-                name="website"
-                value={form.website}
+                name="_hp"
+                value={form._hp}
                 onChange={handleChange}
                 tabIndex={-1}
                 autoComplete="off"

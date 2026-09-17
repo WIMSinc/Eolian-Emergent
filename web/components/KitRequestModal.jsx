@@ -20,7 +20,7 @@ export default function KitRequestModal({ kit, onClose }) {
     organization: "",
     quantity: 1,
     notes: "",
-    website: "",
+    _hp: "",
   });
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState("");
@@ -124,9 +124,9 @@ export default function KitRequestModal({ kit, onClose }) {
                   {/* Honeypot */}
                   <input
                     type="text"
-                    name="website"
-                    value={form.website}
-                    onChange={(e) => setForm({ ...form, website: e.target.value })}
+                    name="_hp"
+                    value={form._hp}
+                    onChange={(e) => setForm({ ...form, _hp: e.target.value })}
                     tabIndex={-1}
                     autoComplete="off"
                     style={{ position: "absolute", left: "-9999px", opacity: 0, height: 0 }}

@@ -461,9 +461,25 @@ live site for its own terms.
   anyway — every form route verifies reCAPTCHA server-side and checks a
   honeypot *before* forwarding, so anything reaching HubSpot has already
   cleared spam checks the site controls.
+- **The honeypot is `_hp`, never `website`.** All three forms carry a hidden
+  field that makes the route answer 200 and discard the submission. It was
+  named `website` until 2026-09-17, and password managers and browser autofill
+  populate anything named website/url *regardless* of `autocomplete="off"` —
+  so a human could trip a bot trap and be told their message sent. If the name
+  ever changes again, change it in the component **and** the route together;
+  the value binding is easy to miss (`KitRequestModal` had exactly that bug for
+  one commit).
+- **The honeypot logs when it fires.** It still answers 200 so a bot cannot
+  tell it was caught, but it emits `Honeypot triggered — submission discarded`
+  with the route and the offending value. It used to be the only branch in the
+  three routes with no output, which made a discarded submission
+  indistinguishable from a delivered one — diagnosing one cost a HubSpot query
+  to work out which branch had run.
 - Both of the above fail invisibly, so **check Vercel runtime errors rather
   than trusting a successful-looking submission.** The routes log HubSpot's
-  rejection verbatim, and it names the cause directly.
+  rejection verbatim, and it names the cause directly. **A 200 with no log
+  lines at all now means the success path ran**; before this change it could
+  equally have meant the honeypot.
 - `NEXT_PUBLIC_*` values are baked in **at build time**. Adding one requires a
   redeploy that starts *after* the variable is saved.
 
